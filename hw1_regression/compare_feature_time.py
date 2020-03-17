@@ -71,7 +71,7 @@ dim = 18 * 9 + 1
 w = np.zeros([dim, 1])
 x = np.concatenate((np.ones([12 * 471, 1]), x), axis = 1).astype(float) # insert one col in head as constant term
 learning_rate = 100
-iter_time = 50000 # 500000
+iter_time = 1000000 # 500000
 adagrad = np.zeros([dim, 1])
 eps = 0.0000000001
 loss_list = []
