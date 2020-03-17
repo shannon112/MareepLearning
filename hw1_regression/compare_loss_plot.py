@@ -70,31 +70,33 @@ print("\n=\n")
 dim = 18 * 9 + 1
 w = np.zeros([dim, 1])
 x = np.concatenate((np.ones([12 * 471, 1]), x), axis = 1).astype(float) # insert one col in head as constant term
-learning_rate = 100
-iter_time = 1000000 # 500000
+learning_rates = [0.01, 0.1, 1, 10, 100, 1000]
+iter_time = 50000 # 500000
 adagrad = np.zeros([dim, 1])
 eps = 0.0000000001
-loss_list = []
-for t in range(iter_time):
-    loss = np.sum(np.power(np.dot(x, w) - y, 2))
-    sqrt_loss = np.sqrt(loss/x.shape[0]) #rmse
-    loss_list.append(sqrt_loss)
-    if(t%1000==0):
-        print("iters: {0:<8},loss: {1:<10}".format(str(t), str(sqrt_loss)))
-    gradient = 2 * np.dot(x.transpose(), np.dot(x, w) - y) #dim*1
-    adagrad += gradient ** 2
-    w = w - learning_rate * gradient / np.sqrt(adagrad + eps)
+rl_loss_list = []
 
-# saving weights
-experiment_name = "Lr_"+str(learning_rate)+"_Iter_"+str(iter_time)
-np.save('weights/'+experiment_name+'_mean_x.npy', mean_x)
-np.save('weights/'+experiment_name+'_std_x.npy', std_x)
-np.save('weights/'+experiment_name+'_weight.npy', w)
+
+for lr in learning_rates:
+    loss_list = []
+    experiment_name = "Lr_"+str(lr)+"_Iter_"+str(iter_time)
+    for t in range(iter_time):
+        loss = np.sum(np.power(np.dot(x, w) - y, 2))
+        sqrt_loss = np.sqrt(loss/x.shape[0]) #rmse
+        loss_list.append(sqrt_loss)
+        if(t%200==0):
+            print("iters: {0:<8},loss: {1:<10}".format(str(t), str(sqrt_loss)))
+        gradient = 2 * np.dot(x.transpose(), np.dot(x, w) - y) #dim*1
+        adagrad += gradient ** 2
+        w = w - lr * gradient / np.sqrt(adagrad + eps)
+    rl_loss_list.append(loss_list)
+    plt.plot(range(iter_time), loss_list,label=experiment_name)
 
 # saving learning curve
-plt.plot(range(iter_time), loss_list)
-plt.suptitle(experiment_name)
+plt.suptitle('comparison of learning rate')
 plt.xlabel('iterations')
 plt.ylabel('loss')
-plt.savefig('img/'+experiment_name+'.png')
+#plt.axis([0, 200, 0, 500])
+plt.legend()
+plt.savefig('img/compare.png')
 plt.show()
