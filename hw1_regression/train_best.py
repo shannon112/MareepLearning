@@ -7,8 +7,11 @@ import matplotlib.pyplot as plt
 training_filename = '../train.csv'
 feature_start_index = 0 #9
 feature_target_index = 9 #pm2.5 index
-feature_amount = 18 #1
-window_len = 5
+#feature_selects = [2,5,8,9,16]
+#feature_selects = [0,2,5,7,8,9,11,12,16]
+feature_selects = [0,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17] #w/o RAINFALL 
+feature_amount = len(feature_selects) #1
+window_len = 9
 learning_rate = 100
 iter_time = 50000 # 500000
 experiment_name = "Lr_"+str(learning_rate)+"_Iter_"+str(iter_time)+"_Hr_"+str(window_len)+"_Fe_"+str(feature_start_index)+"-"+str(feature_amount)
@@ -28,12 +31,21 @@ print(raw_data.shape)
 print("\n=\n")
 
 # create a dataset(set) with size 12 * (18, 480) = 12months * (18features, 480hr)
+# PM10 8
+# CO   2
+# NO2  5
+# WIND_SPEED 16
 months_data = {}
 for months in range(12):
     sample = np.empty([18, 480])
     for days in range(20):
         sample[:, days * 24 : (days + 1) * 24] = raw_data[18 * (20 * months + days) : 18 * (20 * months + days + 1), :]
-    months_data[months] = sample[feature_start_index:feature_start_index+feature_amount,:]
+
+    for idx,feature in enumerate(feature_selects):
+        if (idx==0): 
+            months_data[months] = sample[feature:feature+1,:]
+            continue
+        months_data[months] = np.concatenate((months_data[months], sample[feature:feature+1,:]), axis = 0).astype(float)
     print(months, months_data[months].shape)
 print("\n=\n")
 
@@ -123,5 +135,5 @@ plt.legend()
 plt.suptitle(experiment_name)
 plt.xlabel('iterations')
 plt.ylabel('loss')
-plt.savefig('img/'+experiment_name+'.png')
+plt.savefig('img/(test)'+experiment_name+'.png')
 plt.show()
