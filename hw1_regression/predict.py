@@ -8,6 +8,8 @@ input_filename = sys.argv[1]
 output_filename = sys.argv[2]
 logLevel = sys.argv[3]
 modelname = sys.argv[4]
+window_len = 5
+
 logging.basicConfig(level=getattr(logging, logLevel), format='%(message)s')
 logging.debug(input_filename+" "+output_filename)
 logging.debug("\n=\n")
@@ -27,9 +29,9 @@ logging.debug(test_data.shape)
 logging.debug("\n=\n")
 
 # transfer to model input format (240candidate, 18features*9hrs)
-test_x = np.empty([240, 18*9], dtype = float)
+test_x = np.empty([240, 18*window_len], dtype = float)
 for i in range(240):
-    test_x[i, :] = test_data[18 * i: 18* (i + 1), :].reshape(1, -1)
+    test_x[i, :] = test_data[18 * i: 18* (i + 1), window_len-1:].reshape(1, -1)
 
 # loading pre-train weight, mean, std
 mean_x = np.load('weights/'+modelname+'_mean_x.npy')

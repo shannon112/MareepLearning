@@ -27,15 +27,16 @@ for months in range(12):
 print("\n=\n")
 
 # every 10 hrs as a input (9hrs tain, 1hr ans), think in sliding window
-x = np.empty([12 * 471, 18 * 9], dtype = float) # get (12month * 471windows , 18features*9hrs)
+window_len = 9
+x = np.empty([12 * 471, 18 * window_len], dtype = float) # get (12month * 471windows , 18features*9hrs)
 y = np.empty([12 * 471, 1], dtype = float) # get (12month * 471windows , 18features*1hr)
 for months in range(12):
     for days in range(20):
         for hour in range(24):
             if days == 19 and hour > 14: # aborted
                 continue
-            x[months * 471 + days * 24 + hour, :] = months_data[months][:,days * 24 + hour : days * 24 + hour + 9].reshape(1, -1) #vector dim:18*9 (9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9)
-            y[months * 471 + days * 24 + hour, 0] = months_data[months][9, days * 24 + hour + 9] #value
+            x[months * 471 + days * 24 + hour, :] = months_data[months][:,days * 24 + hour : days * 24 + hour + window_len].reshape(1, -1) #vector dim:18*9 (9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9)
+            y[months * 471 + days * 24 + hour, 0] = months_data[months][9, days * 24 + hour + window_len] #value
 print(x.shape)
 print(y.shape)
 print("\n=\n")
@@ -53,8 +54,9 @@ print("\n=\n")
 
 # split training data to train_set and valid_set
 import math
-x_train_set = x[: math.floor(len(x) * 0.8), :]
-y_train_set = y[: math.floor(len(y) * 0.8), :]
+percent_of_usage = 1
+x_train_set = x[: math.floor(len(x) * percent_of_usage), :]
+y_train_set = y[: math.floor(len(y) * percent_of_usage), :]
 x_validation = x[math.floor(len(x) * 0.8): , :]
 y_validation = y[math.floor(len(y) * 0.8): , :]
 print(x_train_set.shape)
@@ -67,23 +69,29 @@ print("\n=\n")
 # model: y = wx, (x = b,x0,x1,x2,...,x162)
 # loss: sum((y^ - wx)**2)
 # learning rate: w = w - (learning_rate / sqrt(sum(grad**2))) * grad
-dim = 18 * 9 + 1
+dim = 18 * window_len + 1
 w = np.zeros([dim, 1])
-x = np.concatenate((np.ones([12 * 471, 1]), x), axis = 1).astype(float) # insert one col in head as constant term
+x_train_set = np.concatenate((np.ones([x_train_set.shape[0], 1]), x_train_set), axis = 1).astype(float) # insert one col in head as constant term
+x_validation = np.concatenate((np.ones([x_validation.shape[0], 1]), x_validation), axis = 1).astype(float)
 learning_rate = 100
-iter_time = 1000000 # 500000
+iter_time = 4000 # 500000
 adagrad = np.zeros([dim, 1])
 eps = 0.0000000001
 loss_list = []
 for t in range(iter_time):
-    loss = np.sum(np.power(np.dot(x, w) - y, 2))
-    sqrt_loss = np.sqrt(loss/x.shape[0]) #rmse
+    loss = np.sum(np.power(np.dot(x_train_set, w) - y_train_set, 2))
+    sqrt_loss = np.sqrt(loss/x_train_set.shape[0]) #rmse
     loss_list.append(sqrt_loss)
     if(t%1000==0):
         print("iters: {0:<8},loss: {1:<10}".format(str(t), str(sqrt_loss)))
-    gradient = 2 * np.dot(x.transpose(), np.dot(x, w) - y) #dim*1
+        # predict
+        ans_y = np.dot(x_validation, w)
+        rmse = np.sqrt(np.sum(np.power(ans_y - y_validation,2))/x_validation.shape[0])
+        print("rmse:",rmse)
+    gradient = 2 * np.dot(x_train_set.transpose(), np.dot(x_train_set, w) - y_train_set) #dim*1
     adagrad += gradient ** 2
     w = w - learning_rate * gradient / np.sqrt(adagrad + eps)
+print(w.shape)
 
 # saving weights
 experiment_name = "Lr_"+str(learning_rate)+"_Iter_"+str(iter_time)
