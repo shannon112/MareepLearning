@@ -103,17 +103,16 @@ for t in range(iter_time):
             select_flag = "min!"
             min_loss = valid_loss
             min_iter = t
+            # saving weights
+            np.save('weights/mean_x.npy', mean_x)
+            np.save('weights/std_x.npy', std_x)
+            np.save('weights/weight.npy', w)
         else: select_flag = ""
         print("iters: {0:<8}, train_loss: {1:<10}, valid_loss: {2:<10} {3:<5}".format(str(t), str(train_loss), str(valid_loss),select_flag))
     gradient = 2 * np.dot(x_train_set.transpose(), np.dot(x_train_set, w) - y_train_set) #dim*1
     adagrad += gradient ** 2
     w = w - learning_rate * gradient / np.sqrt(adagrad + eps)
 print(w.shape)
-
-# saving weights
-np.save('weights/'+experiment_name+'_mean_x.npy', mean_x)
-np.save('weights/'+experiment_name+'_std_x.npy', std_x)
-np.save('weights/'+experiment_name+'_weight.npy', w)
 
 # saving learning curve
 plt.plot(range(0,iter_time,print_gap), train_loss_list,label="train_loss")

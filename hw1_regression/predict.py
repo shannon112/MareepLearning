@@ -8,7 +8,6 @@ input_filename = sys.argv[1]
 output_filename = sys.argv[2]
 logLevel = sys.argv[3]
 modelname = sys.argv[4]
-window_len = 5
 
 logging.basicConfig(level=getattr(logging, logLevel), format='%(message)s')
 logging.debug(input_filename+" "+output_filename)
@@ -29,9 +28,9 @@ logging.debug(test_data.shape)
 logging.debug("\n=\n")
 
 # transfer to model input format (240candidate, 18features*9hrs)
-test_x = np.empty([240, 18*window_len], dtype = float)
+test_x = np.empty([240, 18*9], dtype = float)
 for i in range(240):
-    test_x[i, :] = test_data[18 * i: 18* (i + 1), window_len-1:].reshape(1, -1)
+    test_x[i, :] = test_data[18 * i: 18* (i + 1), :].reshape(1, -1)
 
 # loading pre-train weight, mean, std
 mean_x = np.load('weights/'+modelname+'_mean_x.npy')
@@ -59,4 +58,4 @@ with open(output_filename, mode='w', newline='') as submit_file:
     for i in range(240):
         row = ['id_' + str(i), ans_y[i][0]]
         csv_writer.writerow(row)
-logging.debug("saved to "+output_filename)
+logging.info("saved to "+output_filename)
