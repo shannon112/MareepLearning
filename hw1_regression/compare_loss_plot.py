@@ -118,7 +118,7 @@ for idx, learning_rate in enumerate(learning_rates):
         adagrad += gradient ** 2
         w = w - learning_rate * gradient / np.sqrt(adagrad + eps)
     #plt.plot(range(0,iter_time,print_gap), train_loss_list,label=str(learning_rate), c=plt.cm.Set2(idx))
-    min_valid_loss = "min_valid_loss = {0:},{1:.2f}".format(min_iter, min_loss)
+    min_valid_loss = "min_valid_loss = {0:},{1:.5f}".format(min_iter, min_loss)
     plt.plot(min_iter, min_loss,'o',label=min_valid_loss, c=plt.cm.Set2(idx))
     plt.plot(range(0,iter_time,print_gap), valid_loss_list,label=str(learning_rate), c=plt.cm.Set2(idx))
  
