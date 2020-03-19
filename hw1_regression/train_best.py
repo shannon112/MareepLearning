@@ -87,12 +87,21 @@ print("\n=\n")
 
 # split training data to train_set and valid_set
 import math
-percent_of_usage = 1.0
-
+percent_of_usage = 1
 x_train_set = x[: math.floor(len(x) * percent_of_usage), :]
 y_train_set = y[: math.floor(len(y) * percent_of_usage), :]
-x_validation = x[math.floor(len(x) * 0.2): math.floor(len(x) * 0.4), :]
-y_validation = y[math.floor(len(y) * 0.2): math.floor(len(x) * 0.4) , :]
+x_validation = x[math.floor(len(x) * 0.8): , :]
+y_validation = y[math.floor(len(y) * 0.8): , :]
+'''
+valid_left = 0.0
+valid_right = 0.2
+x_train_set = x[math.floor(len(x) * 0.0) : math.floor(len(x) * valid_left), :]
+y_train_set = y[math.floor(len(x) * 0.0) : math.floor(len(y) * valid_left), :]
+x_validation = x[math.floor(len(x) * valid_left): math.floor(len(x) * valid_right), :]
+y_validation = y[math.floor(len(y) * valid_left): math.floor(len(x) * valid_right) , :]
+x_train_set = np.concatenate( (x_train_set, x[math.floor(len(x) * valid_right) : math.floor(len(x) * 1.0), :]) , axis=0)
+y_train_set = np.concatenate( (y_train_set, y[math.floor(len(x) * valid_right) : math.floor(len(y) * 1.0), :]) , axis=0)
+'''
 '''
 for month in range(12):
     if month == 0: 
@@ -121,6 +130,9 @@ print("\n=\n")
 # learning rate: w = w - (learning_rate / sqrt(sum(grad**2))) * grad
 dim = feature_amount * window_len_used + 1
 w = np.zeros([dim, 1])
+for i in range(window_len_used):
+    w[9+1+i*18,:] = 0
+
 x_train_set = np.concatenate((np.ones([x_train_set.shape[0], 1]), x_train_set), axis = 1).astype(float) # insert one col in head as constant term
 x_validation = np.concatenate((np.ones([x_validation.shape[0], 1]), x_validation), axis = 1).astype(float)
 adagrad = np.zeros([dim, 1])
