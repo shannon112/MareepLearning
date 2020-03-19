@@ -93,7 +93,7 @@ min_iter = 0
 for t in range(iter_time):
     loss = np.sum(np.power(np.dot(x_train_set, w) - y_train_set, 2))
     if(t%print_gap==0):
-        # predict
+        # validate
         ans_y = np.dot(x_validation, w)
         valid_loss = np.sqrt(np.sum(np.power(ans_y - y_validation,2))/x_validation.shape[0])
         valid_loss_list.append(valid_loss)

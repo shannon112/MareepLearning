@@ -85,12 +85,6 @@ x_validation = np.concatenate((np.ones([x_validation.shape[0], 1]), x_validation
 eps = 0.0000000001
 print_gap = 100
 learning_rates = [0.01,0.1,1,10,100,1000]
-#0.01 iters: 49900   , train_loss: 18.729618155494936, valid_loss: 18.043221717255232 min! 
-#0.1 iters: 49900   , train_loss: 5.685879811554643, valid_loss: 5.432788535479192 min! 
-#1 iters: 34300   , train_loss: 5.679868125269123, valid_loss: 5.4237776520366126 min! 
-#10 iters: 37900   , train_loss: 5.679887534278326, valid_loss: 5.423738930812674 min! 
-#100 iters: 34000   , train_loss: 5.6800454206538085, valid_loss: 5.42356064369309 min! 
-#1000 iters: 34400   , train_loss: 5.6809708945496675, valid_loss: 5.42247826974859 min! 
 
 for idx, learning_rate in enumerate(learning_rates):
     train_loss_list = []

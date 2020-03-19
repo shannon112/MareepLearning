@@ -9,9 +9,9 @@ feature_start_index = 0 #9
 feature_target_index = 9 #pm2.5 index
 #feature_selects = [2,5,8,9,16]
 #feature_selects = [0,2,5,7,8,9,11,12,16]
+#feature_selects = [0,2,5,7,8,9,10,11,12,16,18,19] #paper
 #feature_selects = [0,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17] #w/o RAINFALL 
 feature_selects = [0,1,2,3,4,5,6,7,8,9,11,12,13,14,16,17,18,19] #w/o RAINFALL w/ sincos wind direction
-#feature_selects = [0,2,5,7,8,9,10,11,12,16,18,19] #paper
 feature_amount = len(feature_selects) #1
 window_len_total = 10
 window_len_used = 9
@@ -48,7 +48,6 @@ for months in range(12):
             continue
         months_data[months] = np.concatenate((months_data[months], sample[feature:feature+1,:]), axis = 0).astype(float)
     print(months, months_data[months].shape)
-    #print(np.sum(months_data[months][9,:])/480)
 print("\n=\n")
 
 # every 10 hrs as a input (9hrs tain, 1hr ans), think in sliding window
@@ -65,17 +64,20 @@ print(x.shape)
 print(y.shape)
 print("\n=\n")
 
-# normalized (mean=0, std=1)
+# normalized and filtered (mean=0, std=1)
 mean_x = np.mean(x, axis = 0) #18 * 9 
 std_x = np.std(x, axis = 0) #18 * 9 
 for i in range(len(x)): #12 * 471
     for j in range(len(x[0])): #18 * 9 
         if std_x[j] != 0:
             x[i][j] = (x[i][j] - mean_x[j]) / std_x[j]
+            # filtered by customized and replaced by boundary
             if (x[i][j] - mean_x[j])>0.25: x[i][j] = mean_x[j] +0.25
             elif (x[i][j] - mean_x[j])<-70: x[i][j] = mean_x[j] - 70
+            # filtered by std
             #if (x[i][j])> 3: x[i][j] = 3
             #elif (x[i][j])< -3: x[i][j] = - 3
+            # filtered by customized and resuse previous one
             #if j > 18:
             #    if (x[i][j] - mean_x[j])>2: x[i][j] = x[i][j-18]
             #    elif (x[i][j] - mean_x[j])<-70: x[i][j] = x[i][j-18]
@@ -89,11 +91,13 @@ print("\n=\n")
 
 # split training data to train_set and valid_set
 import math
+# taking all to train
 percent_of_usage = 1
 x_train_set = x[: math.floor(len(x) * percent_of_usage), :]
 y_train_set = y[: math.floor(len(y) * percent_of_usage), :]
 x_validation = x[math.floor(len(x) * 0.8): , :]
 y_validation = y[math.floor(len(y) * 0.8): , :]
+# taking 80% to train 20% to valid
 '''
 valid_left = 0.0
 valid_right = 0.2
@@ -104,6 +108,7 @@ y_validation = y[math.floor(len(y) * valid_left): math.floor(len(x) * valid_righ
 x_train_set = np.concatenate( (x_train_set, x[math.floor(len(x) * valid_right) : math.floor(len(x) * 1.0), :]) , axis=0)
 y_train_set = np.concatenate( (y_train_set, y[math.floor(len(x) * valid_right) : math.floor(len(y) * 1.0), :]) , axis=0)
 '''
+# taking 12*20 to valid rest to train
 '''
 for month in range(12):
     if month == 0: 
@@ -126,15 +131,16 @@ print(x_validation.shape)
 print(y_validation.shape)
 print("\n=\n")
 
+# weight initialized
+w = np.zeros([dim, 1])
+for i in range(window_len_used):
+    w[9+1+i*18,:] = 0
+
 # training
 # model: y = wx, (x = b,x0,x1,x2,...,x162)
 # loss: sum((y^ - wx)**2)
 # learning rate: w = w - (learning_rate / sqrt(sum(grad**2))) * grad
 dim = feature_amount * window_len_used + 1
-w = np.zeros([dim, 1])
-for i in range(window_len_used):
-    w[9+1+i*18,:] = 0
-
 x_train_set = np.concatenate((np.ones([x_train_set.shape[0], 1]), x_train_set), axis = 1).astype(float) # insert one col in head as constant term
 x_validation = np.concatenate((np.ones([x_validation.shape[0], 1]), x_validation), axis = 1).astype(float)
 adagrad = np.zeros([dim, 1])
@@ -147,7 +153,7 @@ min_iter = 0
 for t in range(iter_time):
     loss = np.sum(np.power(np.dot(x_train_set, w) - y_train_set, 2))
     if(t%print_gap==0):
-        # predict
+        # validate
         ans_y = np.dot(x_validation, w)
         valid_loss = np.sqrt(np.sum(np.power(ans_y - y_validation,2))/x_validation.shape[0])
         valid_loss_list.append(valid_loss)
