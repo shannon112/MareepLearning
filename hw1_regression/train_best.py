@@ -74,6 +74,8 @@ for i in range(len(x)): #12 * 471
             x[i][j] = (x[i][j] - mean_x[j]) / std_x[j]
             if (x[i][j] - mean_x[j])>0.25: x[i][j] = mean_x[j] +0.25
             elif (x[i][j] - mean_x[j])<-70: x[i][j] = mean_x[j] - 70
+            #if (x[i][j])> 3: x[i][j] = 3
+            #elif (x[i][j])< -3: x[i][j] = - 3
             #if j > 18:
             #    if (x[i][j] - mean_x[j])>2: x[i][j] = x[i][j-18]
             #    elif (x[i][j] - mean_x[j])<-70: x[i][j] = x[i][j-18]
