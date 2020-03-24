@@ -17,3 +17,5 @@ library limitation: https://reurl.cc/GVkjWD
 bash  hw1.sh  <input file>  <output file>
 bash  hw1_best.sh  <input file>  <output file>
 ```
+## Homework version
+https://github.com/NTU-speech-lab/hw1-shannon112
