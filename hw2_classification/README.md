@@ -6,7 +6,7 @@ https://archive.ics.uci.edu/ml/datasets/Census-Income+(KDD)
 There are totally 54256 instances of training data and 27622 instances of test data (13811 in private testing set and 13811 in public testing set). There are 42 features for each row (including id and income). If using the one hot version, there are 512 features for each row (including id and income).  
 
 ## Resource
-homework video: https://www.youtube.com/watch?v=0_dbrUYoVow&feature=youtu.be
+homework video: https://www.youtube.com/watch?v=0_dbrUYoVow&feature=youtu.be  
 kaggle: https://www.kaggle.com/c/ml2020spring-hw2/overview  
 library limitation: https://reurl.cc/GVkjWD  
 
