@@ -22,3 +22,6 @@ bash  hw2_logistic.sh $1 $2 $3 $4 $5 $6
 bash  hw2_generative.sh $1 $2 $3 $4 $5 $6
 bash  hw2_best.sh $1 $2 $3 $4 $5 $6
 ```
+
+## Homework version
+https://github.com/NTU-speech-lab/hw2-shannon112
