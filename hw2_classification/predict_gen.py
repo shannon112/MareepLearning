@@ -1,18 +1,12 @@
 import numpy as np
+import sys
 
 np.random.seed(0)
-X_train_fpath = '../data/X_train'
-Y_train_fpath = '../data/Y_train'
-X_test_fpath = '../data/X_test'
-output_fpath = '../data/output_{}.csv'
+X_test_fpath = sys.argv[1]
+output_fpath = sys.argv[2]
+modelname = sys.argv[3]
 
 # Parse csv files to numpy array
-with open(X_train_fpath) as f:
-    next(f)
-    X_train = np.array([line.strip('\n').split(',')[1:] for line in f], dtype = float)
-with open(Y_train_fpath) as f:
-    next(f)
-    Y_train = np.array([line.strip('\n').split(',')[1] for line in f], dtype = float)
 with open(X_test_fpath) as f:
     next(f)
     X_test = np.array([line.strip('\n').split(',')[1:] for line in f], dtype = float)
@@ -46,13 +40,12 @@ def _normalize(X, train = True, specified_column = None, X_mean = None, X_std = 
 
 
 # Normalize training and testing data
-X_train, X_mean, X_std = _normalize(X_train, train = True)
+X_mean = np.load('weights/'+modelname+'_mean_x.npy')
+X_std = np.load('weights/'+modelname+'_std_x.npy')
 X_test, _, _= _normalize(X_test, train = False, specified_column = None, X_mean = X_mean, X_std = X_std)
 
-train_size = X_train.shape[0]
 test_size = X_test.shape[0]
-data_dim = X_train.shape[1]
-print('Size of training set: {}'.format(train_size))
+data_dim = X_test.shape[1]
 print('Size of testing set: {}'.format(test_size))
 print('Dimension of data: {}'.format(data_dim))
 
@@ -82,56 +75,11 @@ def _accuracy(Y_pred, Y_label):
     acc = 1 - np.mean(np.abs(Y_pred - Y_label))
     return acc
 
-# Compute in-class mean
-X_train_0 = np.array([x for x, y in zip(X_train, Y_train) if y == 0])
-X_train_1 = np.array([x for x, y in zip(X_train, Y_train) if y == 1])
-
-mean_0 = np.mean(X_train_0, axis = 0)
-mean_1 = np.mean(X_train_1, axis = 0)  
-
-# Compute in-class covariance
-cov_0 = np.zeros((data_dim, data_dim))
-cov_1 = np.zeros((data_dim, data_dim))
-
-for x in X_train_0:
-    cov_0 += np.dot(np.transpose([x - mean_0]), [x - mean_0]) / X_train_0.shape[0]
-for x in X_train_1:
-    cov_1 += np.dot(np.transpose([x - mean_1]), [x - mean_1]) / X_train_1.shape[0]
-
-# Shared covariance is taken as a weighted average of individual in-class covariance.
-cov = (cov_0 * X_train_0.shape[0] + cov_1 * X_train_1.shape[0]) / (X_train_0.shape[0] + X_train_1.shape[0])
-
-# Compute inverse of covariance matrix.
-# Since covariance matrix may be nearly singular, np.linalg.inv() may give a large numerical error.
-# Via SVD decomposition, one can get matrix inverse efficiently and accurately.
-u, s, v = np.linalg.svd(cov, full_matrices=False)
-inv = np.matmul(v.T * 1 / s, u.T)
-
-# Directly compute weights and bias
-w = np.dot(inv, mean_0 - mean_1)
-b =  (-0.5) * np.dot(mean_0, np.dot(inv, mean_0)) + 0.5 * np.dot(mean_1, np.dot(inv, mean_1))\
-    + np.log(float(X_train_0.shape[0]) / X_train_1.shape[0]) 
-
-np.save('weights/mean_x.npy', X_mean)
-np.save('weights/std_x.npy', X_std)
-np.save('weights/weight_w.npy', w)
-np.save('weights/weight_b.npy', b)
-
-# Compute accuracy on training set
-Y_train_pred = 1 - _predict(X_train, w, b)
-print('Training accuracy: {}'.format(_accuracy(Y_train_pred, Y_train)))
-
 # Predict testing labels
-predictions = 1 - _predict(X_test, w, b)
-with open(output_fpath.format('generative'), 'w') as f:
+w_best = np.load('weights/'+modelname+'_weight_w.npy')
+b_best = np.load('weights/'+modelname+'_weight_b.npy')
+predictions = 1 - _predict(X_test, w_best, b_best)
+with open(output_fpath, 'w') as f:
     f.write('id,label\n')
     for i, label in  enumerate(predictions):
         f.write('{},{}\n'.format(i, label))
-
-# Print out the most significant weights
-ind = np.argsort(np.abs(w))[::-1]
-with open(X_test_fpath) as f:
-    content = f.readline().strip('\n').split(',')
-features = np.array(content)
-for i in ind[0:10]:
-    print(features[i], w[i])
