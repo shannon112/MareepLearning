@@ -74,10 +74,8 @@ X_train = np.concatenate( (X_train[:,0:198-2],X_train[:,1+203-2:]), axis=1) #rea
 #X_train = np.concatenate( (X_train[:,0:178-2],X_train[:,1+182-2:]), axis=1) #race
 #X_train = np.concatenate( (X_train[:,0:12-1],X_train[:,82-1:]), axis=1) #recode
 #X_train[:,128-2] = np.ceil(X_train[:,128-2] / 1000.) #wage per hour
-#X_train = np.concatenate( (X_train, np.power(X_train,2)), axis=1) #square
-#X_train = np.concatenate( (X_train, np.sqrt(X_train)), axis=1) #root
-X_train_temp = np.concatenate( (np.sqrt(X_train), np.power(X_train,2)), axis=1) #square
-X_train = np.concatenate( (X_train, X_train_temp), axis=1) #root
+X_train = np.concatenate( (X_train, np.power(X_train,2)), axis=1) #square
+X_train = np.concatenate( (X_train, np.sqrt(X_train)), axis=1) #root
 #X_train = np.concatenate( (X_train, np.power(X_train[:,215:216],2)), axis=1) #square certain term
 #X_train = np.concatenate( (X_train, np.power(X_train[:,6:7],2)), axis=1) #
 #X_train = np.concatenate( (X_train, np.power(X_train[:,222:223],2)), axis=1) #
@@ -95,10 +93,8 @@ X_test = np.concatenate( (X_test[:,0:198-2],X_test[:,1+203-2:]), axis=1)
 #X_test = np.concatenate( (X_test[:,0:178-2],X_test[:,1+182-2:]), axis=1)
 #X_test = np.concatenate( (X_test[:,0:12-1],X_test[:,82-1:]), axis=1)
 #X_test[:,128-2] = np.ceil(X_test[:,128-2] / 1000.)
-#X_test = np.concatenate( (X_test, np.power(X_test,2)), axis=1)
-#X_test = np.concatenate( (X_test, np.sqrt(X_test)), axis=1)
-X_test_temp = np.concatenate( (np.sqrt(X_test), np.power(X_test,2)), axis=1) #square
-X_test = np.concatenate( (X_test, X_test_temp), axis=1) #root
+X_test = np.concatenate( (X_test, np.power(X_test,2)), axis=1)
+X_test = np.concatenate( (X_test, np.sqrt(X_test)), axis=1)
 #X_test = np.concatenate( (X_test, np.power(X_test[:,215:216],2)), axis=1) #
 #X_test = np.concatenate( (X_test, np.power(X_test[:,6:7],2)), axis=1) #
 #X_test = np.concatenate( (X_test, np.power(X_test[:,222:223],2)), axis=1) #
@@ -183,7 +179,7 @@ w = np.zeros((data_dim,))
 b = np.zeros((1,))
 
 # Some parameters for training    
-max_iter = 3000
+max_iter = 1500
 batch_size = 1024
 learning_rate = 0.2
 lamda = 0
@@ -250,6 +246,10 @@ for epoch in range(max_iter):
         w_best = w
         b_best = b
         print("min!")
+        np.save('weights/mean_x.npy', X_mean)
+        np.save('weights/std_x.npy', X_std)
+        np.save('weights/weight_w.npy', w_best)
+        np.save('weights/weight_b.npy', b_best)
 
 print('Training loss: {}'.format(train_loss[-1]))
 print('Development loss: {}'.format(dev_loss[-1]))
