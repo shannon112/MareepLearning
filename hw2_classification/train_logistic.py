@@ -123,8 +123,8 @@ b = np.zeros((1,))
 
 # Some parameters for training    
 max_iter = 200
-batch_size = 4
-learning_rate = 0.1
+batch_size = 8
+learning_rate = 0.2
 
 # Keep the loss and accuracy at every iteration for plotting
 train_loss = []
@@ -178,6 +178,10 @@ for epoch in range(max_iter):
         w_best = w
         b_best = b
         print("min!")
+        np.save('weights/mean_x.npy', X_mean)
+        np.save('weights/std_x.npy', X_std)
+        np.save('weights/weight_w.npy', w_best)
+        np.save('weights/weight_b.npy', b_best)
 
 print('Training loss: {}'.format(train_loss[-1]))
 print('Development loss: {}'.format(dev_loss[-1]))
