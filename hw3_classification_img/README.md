@@ -9,7 +9,7 @@ Validation set: 3430張
 Testing set: 3347張  
 
 ## Resource
-homework video: https://www.youtube.com/watch?v=L_ebtE4qk14
+homework video: https://www.youtube.com/watch?v=L_ebtE4qk14  
 kaggle: https://www.kaggle.com/c/ml2020spring-hw3/overview  
 library limitation: https://reurl.cc/GVkjWD  
 
