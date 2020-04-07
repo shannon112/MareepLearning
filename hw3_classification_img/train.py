@@ -46,7 +46,7 @@ test_x = readfile(os.path.join(workspace_dir, "testing"), False)
 print("Size of Testing data = {}".format(len(test_x)))
 
 # create train and valid dataset
-batch_size = 12
+batch_size = 8
 train_set = ImgDataset(train_x, train_y, train_transform)
 val_set = ImgDataset(val_x, val_y, test_transform)
 train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)

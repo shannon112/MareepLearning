@@ -1,9 +1,6 @@
 import torch
 import torch.nn as nn
 
-# if image size is 224, batch can only be 8
-#[002/200] 339.29 sec(s) Train Acc: 0.201196 Loss: 0.280109 | Val Acc: 0.216910 loss: 0.292741
-
 # model
 class Classifier(nn.Module):
     def __init__(self):
@@ -16,25 +13,16 @@ class Classifier(nn.Module):
             nn.Conv2d(3, 64, 3, 1, 1),  # [64, 128, 128]
             nn.BatchNorm2d(64),
             nn.ReLU(),
-            nn.Conv2d(64, 64, 3, 1, 1),  # [64, 128, 128]
-            nn.BatchNorm2d(64),
-            nn.ReLU(),
             nn.MaxPool2d(2, 2, 0),      # [64, 64, 64]
             #img_size /= 2
 
             nn.Conv2d(64, 128, 3, 1, 1), # [128, 64, 64]
             nn.BatchNorm2d(128),
             nn.ReLU(),
-            nn.Conv2d(128, 128, 3, 1, 1), # [128, 64, 64]
-            nn.BatchNorm2d(128),
-            nn.ReLU(),
             nn.MaxPool2d(2, 2, 0),      # [128, 32, 32]
             #img_size /= 2
 
             nn.Conv2d(128, 256, 3, 1, 1), # [256, 32, 32]
-            nn.BatchNorm2d(256),
-            nn.ReLU(),
-            nn.Conv2d(256, 256, 3, 1, 1), # [256, 32, 32]
             nn.BatchNorm2d(256),
             nn.ReLU(),
             nn.Conv2d(256, 256, 3, 1, 1), # [256, 32, 32]
@@ -49,15 +37,9 @@ class Classifier(nn.Module):
             nn.Conv2d(512, 512, 3, 1, 1), # [512, 16, 16]
             nn.BatchNorm2d(512),
             nn.ReLU(),
-            nn.Conv2d(512, 512, 3, 1, 1), # [512, 16, 16]
-            nn.BatchNorm2d(512),
-            nn.ReLU(),
             nn.MaxPool2d(2, 2, 0),       # [512, 8, 8]
             #img_size /= 2
             
-            nn.Conv2d(512, 512, 3, 1, 1), # [512, 8, 8]
-            nn.BatchNorm2d(512),
-            nn.ReLU(),
             nn.Conv2d(512, 512, 3, 1, 1), # [512, 8, 8]
             nn.BatchNorm2d(512),
             nn.ReLU(),
