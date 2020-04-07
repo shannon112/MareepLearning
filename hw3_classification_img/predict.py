@@ -10,7 +10,7 @@ import time
 import sys
 
 # model
-from model_vgg16 import Classifier
+from model_vgg16_lite import Classifier
 
 # dataset
 from dataset import ImgDataset

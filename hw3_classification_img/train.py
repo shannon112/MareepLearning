@@ -48,19 +48,16 @@ print("Size of validation data = {}".format(len(val_x)))
 test_x = readfile(os.path.join(workspace_dir, "testing"), False)
 print("Size of Testing data = {}".format(len(test_x)))
 
+# train in training & validating set (final step)
+train_x = np.concatenate((train_x, val_x), axis=0)
+train_y = np.concatenate((train_y, val_y), axis=0)
+
 # create train and valid dataset
 batch_size = 48
 train_set = ImgDataset(train_x, train_y, train_transform)
 val_set = ImgDataset(val_x, val_y, test_transform)
 train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
 val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=False)
-# train in training & validating set
-'''
-train_val_x = np.concatenate((train_x, val_x), axis=0)
-train_val_y = np.concatenate((train_y, val_y), axis=0)
-train_val_set = ImgDataset(train_val_x, train_val_y, train_transform)
-train_val_loader = DataLoader(train_val_set, batch_size=batch_size, shuffle=True)
-'''
 
 # Keep the loss and accuracy at every iteration for plotting
 train_loss_list = []
@@ -70,12 +67,12 @@ dev_acc_list = []
 
 # training configuration
 model = Classifier().cuda()
-model_filename = "./model/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112/model_0.8"
+model_filename = "./model/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112/model_0.8230320699708454"
 model.load_state_dict(torch.load(model_filename))
 loss = nn.CrossEntropyLoss() # due to classification task，we use CrossEntropyLoss
 #optimizer = torch.optim.Adam(model.parameters(), lr=0.002) # optimizer use Adam
 optimizer = torch.optim.SGD(model.parameters(), 0.001, momentum=0.9, weight_decay=1e-4)
-num_epoch = 100
+num_epoch = 50
 val_acc_max = 0.0
 model_best = None
 
@@ -121,6 +118,7 @@ for epoch in range(num_epoch):
             model_best = Classifier().cuda()
             print("save")
             torch.save(model.state_dict(), "./model_"+str(val_acc/val_set.__len__()))
+torch.save(model.state_dict(), "./model_"+str(val_acc/val_set.__len__()))
 
 # create testing dataset
 test_set = ImgDataset(test_x, transform=test_transform)
