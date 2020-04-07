@@ -3,6 +3,7 @@ import torch.nn as nn
 
 # if image size is 224, batch can only be 8
 #[002/200] 339.29 sec(s) Train Acc: 0.201196 Loss: 0.280109 | Val Acc: 0.216910 loss: 0.292741
+torch.manual_seed(0)
 
 # model
 class Classifier(nn.Module):

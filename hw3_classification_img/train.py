@@ -10,16 +10,19 @@ import time
 import sys
 
 # model
-from model_vgg16 import Classifier
+from model_vgg16_lite import Classifier
 
 # dataset
 from dataset import ImgDataset
 from dataset import test_transform
 from dataset import train_transform
 
+#random.seed(args.seed)
+torch.manual_seed(0)
+
 # read img, resize img and get label from filename
 def readfile(path, label):    
-    img_size = 224
+    img_size = 128
     image_dir = sorted(os.listdir(path))
     x = np.zeros((len(image_dir), img_size, img_size, 3), dtype=np.uint8)
     y = np.zeros((len(image_dir)), dtype=np.uint8)
@@ -46,7 +49,7 @@ test_x = readfile(os.path.join(workspace_dir, "testing"), False)
 print("Size of Testing data = {}".format(len(test_x)))
 
 # create train and valid dataset
-batch_size = 8
+batch_size = 48
 train_set = ImgDataset(train_x, train_y, train_transform)
 val_set = ImgDataset(val_x, val_y, test_transform)
 train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
@@ -67,11 +70,12 @@ dev_acc_list = []
 
 # training configuration
 model = Classifier().cuda()
-#model_filename = "./model/vgg16_bth48_lr0.002_ep200_deg180_img128/model_0.7145772594752187"
-#model.load_state_dict(torch.load(model_filename))
+model_filename = "./model/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112/model_0.8"
+model.load_state_dict(torch.load(model_filename))
 loss = nn.CrossEntropyLoss() # due to classification task，we use CrossEntropyLoss
-optimizer = torch.optim.Adam(model.parameters(), lr=0.002) # optimizer use Adam
-num_epoch = 200
+#optimizer = torch.optim.Adam(model.parameters(), lr=0.002) # optimizer use Adam
+optimizer = torch.optim.SGD(model.parameters(), 0.001, momentum=0.9, weight_decay=1e-4)
+num_epoch = 100
 val_acc_max = 0.0
 model_best = None
 
@@ -83,7 +87,7 @@ for epoch in range(num_epoch):
     val_acc = 0.0
     val_loss = 0.0
 
-    model.train() # ensure model is at train model (enable Dropout, etc.)
+    model.train() # ensure models is at train model (enable Dropout, etc.)
     for i, data in enumerate(train_loader):
         optimizer.zero_grad()
         train_pred = model(data[0].cuda()) # using model get prediction, actually call model' forward function

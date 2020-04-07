@@ -1,6 +1,8 @@
 import torch
 import torch.nn as nn
 
+torch.manual_seed(0)
+
 # model
 class Classifier(nn.Module):
     def __init__(self):

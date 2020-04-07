@@ -1,8 +1,9 @@
 import torch
 import torch.nn as nn
 
-# if image size is 224, batch can only be 12
-#[002/200] 340.57 sec(s) Train Acc: 0.226029 Loss: 0.273743 | Val Acc: 0.213703 loss: 0.274633
+# if image size is 112, batch can only be 48
+#[002/100] 75.14 sec(s) Train Acc: 0.319481 Loss: 0.061322 | Val Acc: 0.430612 loss: 0.053158
+torch.manual_seed(0)
 
 # model
 class Classifier(nn.Module):
@@ -60,12 +61,14 @@ class Classifier(nn.Module):
 
         self.fc = nn.Sequential(
             nn.Linear(512*img_size*img_size, 4096),
+            nn.Dropout(p=0.5),
             nn.BatchNorm1d(4096),
             nn.ReLU(),
-            nn.Linear(4096, 4096),
-            nn.BatchNorm1d(4096),
+            nn.Linear(4096, 1024),
+            nn.Dropout(p=0.5),
+            nn.BatchNorm1d(1024),
             nn.ReLU(),
-            nn.Linear(4096, 11)
+            nn.Linear(1024, 11)
         )
 
     def forward(self, x):
