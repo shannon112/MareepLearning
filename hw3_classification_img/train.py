@@ -14,8 +14,8 @@ from model_vgg16_lite import Classifier
 
 # dataset
 from dataset import ImgDataset
-from dataset import test_transform
 from dataset import train_transform
+from dataset import test_transform
 
 #random.seed(args.seed)
 torch.manual_seed(0)
@@ -45,8 +45,6 @@ train_x, train_y = readfile(os.path.join(workspace_dir, "training"), True)
 print("Size of training data = {}".format(len(train_x)))
 val_x, val_y = readfile(os.path.join(workspace_dir, "validation"), True)
 print("Size of validation data = {}".format(len(val_x)))
-test_x = readfile(os.path.join(workspace_dir, "testing"), False)
-print("Size of Testing data = {}".format(len(test_x)))
 
 # train in training & validating set (final step)
 train_x = np.concatenate((train_x, val_x), axis=0)
@@ -67,14 +65,14 @@ dev_acc_list = []
 
 # training configuration
 model = Classifier().cuda()
-model_filename = "./model/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112/model_0.8230320699708454"
+model_filename = "./model/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112/lr0001_train_n_val/model_0.9431486880466472"
 model.load_state_dict(torch.load(model_filename))
 loss = nn.CrossEntropyLoss() # due to classification task，we use CrossEntropyLoss
 #optimizer = torch.optim.Adam(model.parameters(), lr=0.002) # optimizer use Adam
-optimizer = torch.optim.SGD(model.parameters(), 0.001, momentum=0.9, weight_decay=1e-4)
-num_epoch = 50
+optimizer = torch.optim.SGD(model.parameters(), 0.0005, momentum=0.9, weight_decay=1e-4)
+num_epoch = 100
 val_acc_max = 0.0
-model_best = None
+train_acc_max = 0.0
 
 # training loop
 for epoch in range(num_epoch):
@@ -113,32 +111,12 @@ for epoch in range(num_epoch):
         train_acc_list.append(train_acc/train_set.__len__())
         dev_acc_list.append(val_acc/val_set.__len__())
 
-        if (val_acc/val_set.__len__()) > val_acc_max:
+        if ((val_acc/val_set.__len__()) > val_acc_max) and (train_acc/train_set.__len__()>train_acc_max):
             val_acc_max = val_acc/val_set.__len__()
-            model_best = Classifier().cuda()
+            train_acc_max = train_acc/train_set.__len__()
             print("save")
             torch.save(model.state_dict(), "./model_"+str(val_acc/val_set.__len__()))
-torch.save(model.state_dict(), "./model_"+str(val_acc/val_set.__len__()))
-
-# create testing dataset
-test_set = ImgDataset(test_x, transform=test_transform)
-test_loader = DataLoader(test_set, batch_size=batch_size, shuffle=False)
-
-# eval on testing set
-model_best.eval()
-prediction = []
-with torch.no_grad():
-    for i, data in enumerate(test_loader):
-        test_pred = model_best(data.cuda())
-        test_label = np.argmax(test_pred.cpu().data.numpy(), axis=1)
-        for y in test_label:
-            prediction.append(y)
-
-# Write the result to csv file
-with open("predict.csv", 'w') as f:
-    f.write('Id,Category\n')
-    for i, y in  enumerate(prediction):
-        f.write('{},{}\n'.format(i, y))
+torch.save(model.state_dict(), "./model_last")
 
 # plotting result
 import matplotlib.pyplot as plt
