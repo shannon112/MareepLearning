@@ -10,7 +10,9 @@ import time
 import sys
 
 # model
-from model_vgg16_lite import Classifier
+#from model_vgg16_lite import Classifier
+#from model_vgg16_lite_shallow import Classifier
+from model_dnn import Classifier
 
 # dataset
 from dataset import ImgDataset
@@ -47,11 +49,11 @@ val_x, val_y = readfile(os.path.join(workspace_dir, "validation"), True)
 print("Size of validation data = {}".format(len(val_x)))
 
 # train in training & validating set (final step)
-train_x = np.concatenate((train_x, val_x), axis=0)
-train_y = np.concatenate((train_y, val_y), axis=0)
+#train_x = np.concatenate((train_x, val_x), axis=0)
+#train_y = np.concatenate((train_y, val_y), axis=0)
 
 # create train and valid dataset
-batch_size = 48
+batch_size = 16
 train_set = ImgDataset(train_x, train_y, train_transform)
 val_set = ImgDataset(val_x, val_y, test_transform)
 train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
@@ -65,11 +67,11 @@ dev_acc_list = []
 
 # training configuration
 model = Classifier().cuda()
-model_filename = "./model/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112/lr0001_train_n_val/model_0.9848396501457726_ep150"
-model.load_state_dict(torch.load(model_filename))
+#model_filename = "./model/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112/lr0001_train_n_val/model_0.9848396501457726_ep150"
+#model.load_state_dict(torch.load(model_filename))
 loss = nn.CrossEntropyLoss() # due to classification task，we use CrossEntropyLoss
 #optimizer = torch.optim.Adam(model.parameters(), lr=0.002) # optimizer use Adam
-optimizer = torch.optim.SGD(model.parameters(), 0.0001, momentum=0.9, weight_decay=1e-4)
+optimizer = torch.optim.SGD(model.parameters(), 0.0002, momentum=0.9, weight_decay=1e-4)
 num_epoch = 50
 val_acc_max = 0.0
 train_acc_max = 0.0
@@ -115,8 +117,8 @@ for epoch in range(num_epoch):
             val_acc_max = val_acc/val_set.__len__()
             train_acc_max = train_acc/train_set.__len__()
             print("save")
-            torch.save(model.state_dict(), "./model_"+str(val_acc/val_set.__len__()))
-torch.save(model.state_dict(), "./model_last")
+            #torch.save(model.state_dict(), "./model_"+str(val_acc/val_set.__len__()))
+#torch.save(model.state_dict(), "./model_last")
 
 # plotting result
 import matplotlib.pyplot as plt
