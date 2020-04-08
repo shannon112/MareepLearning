@@ -65,12 +65,12 @@ dev_acc_list = []
 
 # training configuration
 model = Classifier().cuda()
-model_filename = "./model/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112/lr0001_train_n_val/model_0.9431486880466472"
+model_filename = "./model/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112/lr0001_train_n_val/model_0.9848396501457726_ep150"
 model.load_state_dict(torch.load(model_filename))
 loss = nn.CrossEntropyLoss() # due to classification task，we use CrossEntropyLoss
 #optimizer = torch.optim.Adam(model.parameters(), lr=0.002) # optimizer use Adam
-optimizer = torch.optim.SGD(model.parameters(), 0.0005, momentum=0.9, weight_decay=1e-4)
-num_epoch = 100
+optimizer = torch.optim.SGD(model.parameters(), 0.0001, momentum=0.9, weight_decay=1e-4)
+num_epoch = 50
 val_acc_max = 0.0
 train_acc_max = 0.0
 
