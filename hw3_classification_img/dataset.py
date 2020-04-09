@@ -25,38 +25,24 @@ class ImgDataset(Dataset):
         else:
             return X
 
-#normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
-#                                 std=[0.229, 0.224, 0.225])
+normalize = transforms.Normalize(mean=[0.3339, 0.4526, 0.5676],
+                                 std=[0.2298, 0.2322, 0.2206])
 
 # testing without data augmentation
-'''
-test_transform = transforms.Compose([
-    transforms.ToPILImage(),                                    
-    transforms.ToTensor(),
-])
-'''
-
 test_transform = transforms.Compose([
             transforms.ToPILImage(),                                    
             transforms.CenterCrop(112),
             transforms.ToTensor(),
-#            normalize,
+            normalize,    # data normalization
 ])
 
 # training with data augmentation
-'''
 train_transform = transforms.Compose([
     transforms.ToPILImage(),
-    transforms.RandomHorizontalFlip(),
-    transforms.RandomRotation(180), 
+#    transforms.CenterCrop(112),
+    transforms.RandomResizedCrop(112),  # data augmentation
+    transforms.RandomHorizontalFlip(),  # data augmentation
+    transforms.RandomRotation(60),     # data augmentation 
     transforms.ToTensor(), # image to Tensor，value normalize to [0,1] (data normalization)
-])
-'''
-train_transform = transforms.Compose([
-            transforms.ToPILImage(),
-            transforms.RandomResizedCrop(112),
-            transforms.RandomHorizontalFlip(),
-            transforms.RandomRotation(60), 
-            transforms.ToTensor(),
-#            normalize,
+    normalize,   # data normalization
 ])

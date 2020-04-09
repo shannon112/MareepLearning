@@ -10,9 +10,9 @@ import time
 import sys
 
 # model
-#from model_vgg16_lite import Classifier
+from model_vgg16_lite import Classifier
 #from model_vgg16_lite_shallow import Classifier
-from model_dnn import Classifier
+#from model_dnn import Classifier
 
 # dataset
 from dataset import ImgDataset
@@ -53,7 +53,7 @@ print("Size of validation data = {}".format(len(val_x)))
 #train_y = np.concatenate((train_y, val_y), axis=0)
 
 # create train and valid dataset
-batch_size = 16
+batch_size = 48
 train_set = ImgDataset(train_x, train_y, train_transform)
 val_set = ImgDataset(val_x, val_y, test_transform)
 train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
