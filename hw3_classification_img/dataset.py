@@ -33,7 +33,7 @@ test_transform = transforms.Compose([
             transforms.ToPILImage(),                                    
             transforms.CenterCrop(112),
             transforms.ToTensor(),
-            normalize,    # data normalization
+#            normalize,    # data normalization
 ])
 
 # training with data augmentation
@@ -44,5 +44,5 @@ train_transform = transforms.Compose([
     transforms.RandomHorizontalFlip(),  # data augmentation
     transforms.RandomRotation(60),     # data augmentation 
     transforms.ToTensor(), # image to Tensor，value normalize to [0,1] (data normalization)
-    normalize,   # data normalization
+#    normalize,   # data normalization
 ])
