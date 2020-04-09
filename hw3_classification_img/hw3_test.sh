@@ -1,8 +1,5 @@
 # TODO: create shell script
-echo $1 #: raw training data (train.csv)
-echo $2 #: raw testing data (test_no_label.csv)
-echo $3 #: preprocessed training feature (X_train)
-echo $4 #: training label (Y_train)
-echo $5 #: preprocessed testing feature (X_test)
-echo $6 #: output path (prediction.csv)
-python3 predict_best.py $5 $6 strong_1224iter
+echo $1 #: raw data directory
+echo $2 #: prediction file
+wget -O model/model_vgg16lite https://www.dropbox.com/s/yy7v913fu6vsbot/model_0.9848396501457726_ep150?raw=1
+python3 predict.py $1 $2 model/model_vgg16lite

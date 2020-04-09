@@ -72,7 +72,7 @@ model = Classifier().cuda()
 loss = nn.CrossEntropyLoss() # due to classification task，we use CrossEntropyLoss
 #optimizer = torch.optim.Adam(model.parameters(), lr=0.002) # optimizer use Adam
 optimizer = torch.optim.SGD(model.parameters(), 0.0002, momentum=0.9, weight_decay=1e-4)
-num_epoch = 50
+num_epoch = 100
 val_acc_max = 0.0
 train_acc_max = 0.0
 
@@ -117,8 +117,8 @@ for epoch in range(num_epoch):
             val_acc_max = val_acc/val_set.__len__()
             train_acc_max = train_acc/train_set.__len__()
             print("save")
-            #torch.save(model.state_dict(), "./model_"+str(val_acc/val_set.__len__()))
-#torch.save(model.state_dict(), "./model_last")
+            torch.save(model.state_dict(), "./model_"+str(val_acc/val_set.__len__()))
+torch.save(model.state_dict(), "./model_last")
 
 # plotting result
 import matplotlib.pyplot as plt
