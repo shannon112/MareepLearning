@@ -33,7 +33,7 @@ train on train 0~100ep
 train on train+val 0~50ep  
 <img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_classification_img/img/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112_all_acc.png" width=420/> <img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_classification_img/img/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112_all_loss.png" width=420/>
 
-train on train+val 0~50ep  
+train on train+val 50~150ep  
 <img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_classification_img/img/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112_all_acc2.png" width=420/> <img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_classification_img/img/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112_all_loss2.png" width=420/>
 
 <img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_classification_img/img/confusion_matrix.png" width=560/>
