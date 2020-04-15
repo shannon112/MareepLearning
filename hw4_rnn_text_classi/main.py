@@ -1,11 +1,19 @@
 # main.py
 import os
 import torch
-import argparse
 import numpy as np
-from torch import nn
-from gensim.models import word2vec
+import pandas as pd
 from sklearn.model_selection import train_test_split
+
+from utils import load_training_data
+from utils import load_testing_data
+from preprocess import Preprocess
+from dataset import TwitterDataset
+from model import LSTM_Net
+from train import training
+from test import testing
+
+path_prefix = "/home/shannon/Downloads/dataset"
 
 # 通過 torch.cuda.is_available() 的回傳值進行判斷是否有使用 GPU 的環境，如果有的話 device 就設為 "cuda"，沒有的話就設為 "cpu"
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

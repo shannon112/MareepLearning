@@ -1,9 +1,6 @@
 # test.py
 # 這個 block 用來對 testing_data.txt 做預測
 import torch
-from torch import nn
-import torch.optim as optim
-import torch.nn.functional as F
 
 def testing(batch_size, test_loader, model, device):
     model.eval()

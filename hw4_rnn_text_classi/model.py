@@ -2,6 +2,7 @@
 # 這個 block 是要拿來訓練的模型
 import torch
 from torch import nn
+
 class LSTM_Net(nn.Module):
     def __init__(self, embedding, embedding_dim, hidden_dim, num_layers, dropout=0.5, fix_embedding=True):
         super(LSTM_Net, self).__init__()

@@ -3,7 +3,8 @@
 import torch
 from torch import nn
 import torch.optim as optim
-import torch.nn.functional as F
+
+from utils import evaluation
 
 def training(batch_size, n_epoch, lr, model_dir, train, valid, model, device):
     total = sum(p.numel() for p in model.parameters())

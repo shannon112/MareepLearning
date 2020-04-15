@@ -2,9 +2,6 @@
 # 這個 block 用來先定義一些等等常用到的函式
 import torch
 import numpy as np
-import pandas as pd
-import torch.optim as optim
-import torch.nn.functional as F
 
 def load_training_data(path='training_label.txt'):
     # 把 training 時需要的 data 讀進來
