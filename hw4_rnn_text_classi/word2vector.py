@@ -9,26 +9,27 @@ from utils import load_training_data
 from utils import load_testing_data
 
 path_prefix = "/home/shannon/Downloads/dataset"
-train_with_label = os.path.join(path_prefix, 'training_label.txt')
-train_no_label = os.path.join(path_prefix, 'training_nolabel.txt')
-testing_data = os.path.join(path_prefix, 'testing_data.txt')
+train_w_filename = os.path.join(path_prefix, 'training_label.txt')
+train_wo_filename = os.path.join(path_prefix, 'training_nolabel.txt')
+testing_filename = os.path.join(path_prefix, 'testing_data.txt')
 
 def train_word2vec(x):
-    # 訓練 word to vector 的 word embedding
+    # training word to vector by word embedding
     model = word2vec.Word2Vec(x, size=250, window=5, min_count=5, workers=12, iter=10, sg=1)
     return model
 
 if __name__ == "__main__":
     print("loading training data ...")
-    train_x, y = load_training_data(train_with_label)
-    train_x_no_label = load_training_data(train_no_label)
+    train_x, y = load_training_data(train_w_filename)
+    train_x_no_label = load_training_data(train_wo_filename)
 
     print("loading testing data ...")
-    test_x = load_testing_data(testing_data)
+    test_x = load_testing_data(testing_filename)
 
-    #model = train_word2vec(train_x + train_x_no_label + test_x)
-    model = train_word2vec(train_x + test_x)
+    embedding_x = train_x + train_x_no_label + test_x #1578614
+    #embedding_x = train_x + test_x #400000
+    print("embedding ... lenght=",len(embedding_x))
+    model = train_word2vec(embedding_x)
     
     print("saving model ...")
-    # model.save(os.path.join(path_prefix, 'model/w2v_all.model'))
-    model.save(os.path.join(path_prefix, 'w2v_all.model'))
+    model.save(os.path.join('model/w2v_all.model'))

@@ -1,6 +1,3 @@
-# data.py
-# 實作了 dataset 所需要的 '__init__', '__getitem__', '__len__'
-# 好讓 dataloader 能使用
 import torch
 from torch.utils import data
 
