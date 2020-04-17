@@ -29,22 +29,27 @@ print("device:",device)
 print("loading training data ...")
 train_x, y = load_training_data(train_w_filename)
 train_x_no_label = load_training_data(train_wo_filename)
+print(train_x[1])
 
-# 定義句子長度、要不要固定 embedding、batch 大小、要訓練幾個 epoch、learning rate 的值、model 的資料夾路徑
-sen_len = 20
+# parameters
+sen_len = 32#32
 fix_embedding = True # fix embedding during training
-batch_size = 128
-epoch = 5
+batch_size = 16#16
+epoch = 10
 lr = 0.001
 
-# 對 input 跟 labels 做預處理
+# preprocessing data
+print("preprocessing training data ...")
 preprocess = Preprocess(train_x, sen_len, w2v_path=w2v_model_filename)
-embedding = preprocess.make_embedding(load=True)
+embedding_matrix = preprocess.make_embedding(load=True)
+print("embedding_matrix",embedding_matrix.shape)
 train_x = preprocess.sentence_word2idx()
+print("x",train_x.shape)
 y = preprocess.labels_to_tensor(y)
+print("y",y.shape)
 
-# 製作一個 model 的對象
-model = LSTM_Net(embedding, embedding_dim=250,
+# model
+model = LSTM_Net(embedding_matrix, embedding_dim=250,
                             hidden_dim=150, 
                             num_layers=1, 
                             dropout=0.5, fix_embedding=fix_embedding)

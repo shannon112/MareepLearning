@@ -28,8 +28,8 @@ print("loading testing data ...")
 test_x = load_testing_data(testing_filename)
 
 # parameters
-sen_len = 20
-batch_size = 128
+sen_len = 32
+batch_size = 16
 
 # predicting
 preprocess = Preprocess(test_x, sen_len, w2v_path=w2v_model_filename)

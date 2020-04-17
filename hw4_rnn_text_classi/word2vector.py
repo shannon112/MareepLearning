@@ -1,6 +1,3 @@
-# w2v.py
-# 這個 block 是用來訓練 word to vector 的 word embedding
-# 注意！這個 block 在訓練 word to vector 時是用 cpu，可能要花到 10 分鐘以上
 import os
 import pandas as pd
 from gensim.models import word2vec
@@ -8,6 +5,7 @@ from gensim.models import word2vec
 from utils import load_training_data
 from utils import load_testing_data
 
+# path and filename
 path_prefix = "/home/shannon/Downloads/dataset"
 train_w_filename = os.path.join(path_prefix, 'training_label.txt')
 train_wo_filename = os.path.join(path_prefix, 'training_nolabel.txt')
@@ -28,7 +26,7 @@ if __name__ == "__main__":
 
     embedding_x = train_x + train_x_no_label + test_x #1578614
     #embedding_x = train_x + test_x #400000
-    print("embedding ... lenght=",len(embedding_x))
+    print("embedding 2d list ... lenght=",len(embedding_x))
     model = train_word2vec(embedding_x)
     
     print("saving model ...")

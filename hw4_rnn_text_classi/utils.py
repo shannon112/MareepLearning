@@ -1,4 +1,3 @@
-
 import torch
 import numpy as np
 
@@ -32,9 +31,8 @@ def load_testing_data(path='testing_data'):
     return X
 
 def evaluation(outputs, labels):
-    # outputs => probability (float)
-    # labels => labels
-    outputs[outputs>=0.5] = 1 # 大於等於 0.5 為有惡意
-    outputs[outputs<0.5] = 0 # 小於 0.5 為無惡意
+    # outputs => probability (float), labels => labels
+    outputs[outputs>=0.5] = 1 # label as bad
+    outputs[outputs<0.5] = 0 # label as good
     correct = torch.sum(torch.eq(outputs, labels)).item()
     return correct

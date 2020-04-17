@@ -1,29 +1,46 @@
-# model.py
-# 這個 block 是要拿來訓練的模型
 import torch
 from torch import nn
 
 class LSTM_Net(nn.Module):
     def __init__(self, embedding, embedding_dim, hidden_dim, num_layers, dropout=0.5, fix_embedding=True):
         super(LSTM_Net, self).__init__()
-        # 製作 embedding layer
-        self.embedding = torch.nn.Embedding(embedding.size(0),embedding.size(1))
-        self.embedding.weight = torch.nn.Parameter(embedding)
-        # 是否將 embedding fix 住，如果 fix_embedding 為 False，在訓練過程中，embedding 也會跟著被訓練
-        self.embedding.weight.requires_grad = False if fix_embedding else True
-        self.embedding_dim = embedding.size(1)
+        # parameters
         self.hidden_dim = hidden_dim
         self.num_layers = num_layers
         self.dropout = dropout
+
+        # embedding layer
+        self.embedding_matrix = torch.nn.Embedding(embedding.size(0),embedding.size(1))
+        self.embedding_matrix.weight = torch.nn.Parameter(embedding)
+        # fix embedding_matrix or not，if False，it will update during the training
+        self.embedding_matrix.weight.requires_grad = False if fix_embedding else True
+        self.embedding_dim = embedding.size(1)
+
+        # lstm layer
         self.lstm = nn.LSTM(embedding_dim, hidden_dim, num_layers=num_layers, batch_first=True)
-        self.classifier = nn.Sequential( nn.Dropout(dropout),
-                                         nn.Linear(hidden_dim, 1),
-                                         nn.Sigmoid() )
+
+        # fc layer
+        '''
+        self.classifier = nn.Sequential( 
+            nn.Dropout(dropout),
+            nn.Linear(hidden_dim, hidden_dim),
+            nn.Sigmoid(),
+            nn.Linear(hidden_dim, 1),
+            nn.Sigmoid(),
+        )
+        '''
+        self.classifier = nn.Sequential( 
+            nn.Dropout(dropout),
+            nn.Linear(hidden_dim, 1),
+            nn.Sigmoid(),
+        )
+
     def forward(self, inputs):
-        inputs = self.embedding(inputs)
+        # inputs is (batch128, sen_len20, vectordim250])
+        inputs = self.embedding_matrix(inputs)
+        # x is (batch128, sen_len20, hidden_size150)
         x, _ = self.lstm(inputs, None)
-        # x 的 dimension (batch, seq_len, hidden_size)
-        # 取用 LSTM 最後一層的 hidden state
+        # use LSTM last layer's hidden state (batch128, hidden_size150)
         x = x[:, -1, :] 
         x = self.classifier(x)
         return x
