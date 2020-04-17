@@ -24,7 +24,7 @@ def training(batch_size, n_epoch, lr, model_dir, train, valid, model, device):
 
     # training loop
     model.train()
-    train_total_loss, train_total_acc, best_acc = 0, 0, 0
+    train_total_loss, train_total_acc, best_acc, best_loss = 0, 0, 0, 10000
     for epoch in range(n_epoch):
         # training
         train_total_loss, train_total_acc = 0, 0
@@ -59,8 +59,9 @@ def training(batch_size, n_epoch, lr, model_dir, train, valid, model, device):
                 valid_total_loss += loss.item()
 
             print("Valid | Loss:{:.5f} Acc: {:.3f} ".format(valid_total_loss/v_batch_num, valid_total_acc/v_batch_num*100))
-            if valid_total_acc > best_acc:
+            if valid_total_acc > best_acc and valid_total_loss < best_loss:
                 best_acc = valid_total_acc
+                best_loss = valid_total_loss
                 torch.save(model, "{}/ckpt.model".format(model_dir))
                 print('saving model with acc {:.3f}'.format(valid_total_acc/v_batch_num*100))
         print('-----------------------------------------------')

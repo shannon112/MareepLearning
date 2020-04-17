@@ -34,7 +34,7 @@ print(train_x[1])
 # parameters
 sen_len = 32#32
 fix_embedding = True # fix embedding during training
-batch_size = 16#1024
+batch_size = 32#1024
 epoch = 15
 lr = 0.0002
 
@@ -54,11 +54,12 @@ model = LSTM_Net(embedding_matrix, embedding_dim=250,
                             num_layers=1, 
                             dropout=0.5, fix_embedding=fix_embedding)
 model = model.to(device) # if device is "cuda"，model will use GPU to train（inputs need to be cuda tensor）
-#model_filename = "./model/ckpt_lr0001.model"
-#model.load_state_dict(torch.load(model_filename))
+#model_filename = "./model/base_train_0821.model"
+#model = torch.load(model_filename)
 
 # devide to train90% and vaild10% on labeled training set
 X_train, X_val, y_train, y_val = train_x[:180000], train_x[180000:], y[:180000], y[180000:]
+#X_train, X_val, y_train, y_val = train_x[:], train_x[180000:], y[:], y[180000:]
 
 # to dataset
 train_dataset = TwitterDataset(X=X_train, y=y_train)
