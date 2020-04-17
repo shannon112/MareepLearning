@@ -60,6 +60,8 @@ class Preprocess():
             pad_len = self.sen_len - len(sentence)
             for _ in range(pad_len):
                 sentence.append(self.word2idx["<PAD>"])
+                #last_word = sentence[-1]
+                #sentence.append(last_word)
         assert len(sentence) == self.sen_len
         return sentence
 

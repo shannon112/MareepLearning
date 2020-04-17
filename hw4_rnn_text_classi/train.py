@@ -5,6 +5,12 @@ import torch.optim as optim
 from utils import evaluation
 
 def training(batch_size, n_epoch, lr, model_dir, train, valid, model, device):
+    # Keep the loss and accuracy at every iteration for plotting
+    train_loss_list = []
+    valid_loss_list = []
+    train_acc_list = []
+    valid_acc_list = []
+
     # print model status
     total = sum(p.numel() for p in model.parameters())
     trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
@@ -18,9 +24,10 @@ def training(batch_size, n_epoch, lr, model_dir, train, valid, model, device):
 
     # training loop
     model.train()
-    total_loss, total_acc, best_acc = 0, 0, 0
+    train_total_loss, train_total_acc, best_acc = 0, 0, 0
     for epoch in range(n_epoch):
-        total_loss, total_acc = 0, 0
+        # training
+        train_total_loss, train_total_acc = 0, 0
         for i, (inputs, labels) in enumerate(train):
             inputs = inputs.to(device, dtype=torch.long) # device is "cuda" inputs to torch.cuda.LongTensor
             labels = labels.to(device, dtype=torch.float) # device is "cuda" labels to torch.cuda.FloatTensor
@@ -32,15 +39,15 @@ def training(batch_size, n_epoch, lr, model_dir, train, valid, model, device):
             optimizer.step() # update model parameters
 
             correct = evaluation(outputs, labels)
-            total_acc += (correct / batch_size)
-            total_loss += loss.item()
+            train_total_acc += (correct / batch_size)
+            train_total_loss += loss.item()
             print('[ Epoch{}: {}/{} ] '.format(epoch+1, i+1, t_batch_num), end='\r')
-        print('\nTrain | Loss:{:.5f} Acc: {:.3f}'.format(total_loss/t_batch_num, total_acc/t_batch_num*100))
+        print('\nTrain | Loss:{:.5f} Acc: {:.3f}'.format(train_total_loss/t_batch_num, train_total_acc/t_batch_num*100))
 
         # validation
         model.eval() # set model to eval mode，fix model parameters
         with torch.no_grad():
-            total_loss, total_acc = 0, 0
+            valid_total_loss, valid_total_acc = 0, 0
             for i, (inputs, labels) in enumerate(valid):
                 inputs = inputs.to(device, dtype=torch.long)
                 labels = labels.to(device, dtype=torch.float)
@@ -48,12 +55,38 @@ def training(batch_size, n_epoch, lr, model_dir, train, valid, model, device):
                 outputs = outputs.squeeze()
                 loss = criterion(outputs, labels)
                 correct = evaluation(outputs, labels)
-                total_acc += (correct / batch_size)
-                total_loss += loss.item()
-            print("Valid | Loss:{:.5f} Acc: {:.3f} ".format(total_loss/v_batch_num, total_acc/v_batch_num*100))
-            if total_acc > best_acc:
-                best_acc = total_acc
+                valid_total_acc += (correct / batch_size)
+                valid_total_loss += loss.item()
+
+            print("Valid | Loss:{:.5f} Acc: {:.3f} ".format(valid_total_loss/v_batch_num, valid_total_acc/v_batch_num*100))
+            if valid_total_acc > best_acc:
+                best_acc = valid_total_acc
                 torch.save(model, "{}/ckpt.model".format(model_dir))
-                print('saving model with acc {:.3f}'.format(total_acc/v_batch_num*100))
+                print('saving model with acc {:.3f}'.format(valid_total_acc/v_batch_num*100))
         print('-----------------------------------------------')
         model.train() # set model to train mode，let model parameters updatable
+
+        # store acc and loss result
+        train_loss_list.append(train_total_loss/t_batch_num)
+        valid_loss_list.append(valid_total_loss/v_batch_num)
+        train_acc_list.append(train_total_acc/t_batch_num*100)
+        valid_acc_list.append(valid_total_acc/v_batch_num*100)
+
+    # plotting result
+    import matplotlib.pyplot as plt
+
+    # Loss curve
+    plt.plot(train_loss_list)
+    plt.plot(valid_loss_list)
+    plt.title('Loss')
+    plt.legend(['train', 'valid'])
+    plt.savefig('loss.png')
+    plt.show()
+
+    # Accuracy curve
+    plt.plot(train_acc_list)
+    plt.plot(valid_acc_list)
+    plt.title('Accuracy')
+    plt.legend(['train', 'dev'])
+    plt.savefig('acc.png')
+    plt.show()

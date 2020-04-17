@@ -34,9 +34,9 @@ print(train_x[1])
 # parameters
 sen_len = 32#32
 fix_embedding = True # fix embedding during training
-batch_size = 16#16
-epoch = 10
-lr = 0.001
+batch_size = 16#1024
+epoch = 15
+lr = 0.0002
 
 # preprocessing data
 print("preprocessing training data ...")
@@ -54,6 +54,8 @@ model = LSTM_Net(embedding_matrix, embedding_dim=250,
                             num_layers=1, 
                             dropout=0.5, fix_embedding=fix_embedding)
 model = model.to(device) # if device is "cuda"，model will use GPU to train（inputs need to be cuda tensor）
+#model_filename = "./model/ckpt_lr0001.model"
+#model.load_state_dict(torch.load(model_filename))
 
 # devide to train90% and vaild10% on labeled training set
 X_train, X_val, y_train, y_val = train_x[:180000], train_x[180000:], y[:180000], y[180000:]
