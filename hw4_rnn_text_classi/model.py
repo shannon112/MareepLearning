@@ -17,7 +17,8 @@ class LSTM_Net(nn.Module):
         self.embedding_dim = embedding.size(1)
 
         # lstm layer
-        self.lstm = nn.LSTM(embedding_dim, hidden_dim, num_layers=num_layers, batch_first=True)
+        #self.lstm = nn.LSTM(embedding_dim, hidden_dim, num_layers=num_layers, batch_first=True)
+        self.lstm = nn.GRU(embedding_dim, hidden_dim, num_layers=num_layers, batch_first=True)
 
         # fc layer
         '''

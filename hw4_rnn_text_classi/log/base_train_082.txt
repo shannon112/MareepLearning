@@ -17,6 +17,9 @@ embedding_matrix torch.Size([24696, 250])
 x torch.Size([200000, 32])
 y torch.Size([200000])
 
+
+batch=32, lr=0.0002, sen_len=32, lstm 1 layer
+
 start training, parameter total:6415351, trainable:241351
 
 [ Epoch1: 5625/5625 ] 

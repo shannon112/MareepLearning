@@ -21,7 +21,9 @@ def training(batch_size, n_epoch, lr, model_dir, train, valid, model, device):
     t_batch_num = len(train) 
     v_batch_num = len(valid) 
     optimizer = optim.Adam(model.parameters(), lr=lr)
-
+    #optimizer = torch.optim.SGD(model.parameters(), lr, momentum=0.9, weight_decay=1e-4)
+    #optimizer = optim.ASGD(model.parameters(), lr=lr)
+    
     # training loop
     model.train()
     train_total_loss, train_total_acc, best_acc, best_loss = 0, 0, 0, 10000
@@ -59,10 +61,10 @@ def training(batch_size, n_epoch, lr, model_dir, train, valid, model, device):
                 valid_total_loss += loss.item()
 
             print("Valid | Loss:{:.5f} Acc: {:.3f} ".format(valid_total_loss/v_batch_num, valid_total_acc/v_batch_num*100))
-            if valid_total_acc > best_acc and valid_total_loss < best_loss:
+            if valid_total_acc > best_acc or valid_total_loss < best_loss:
                 best_acc = valid_total_acc
                 best_loss = valid_total_loss
-                torch.save(model, "{}/ckpt.model".format(model_dir))
+                torch.save(model, "{}/ckpt_{}.model".format(model_dir,valid_total_acc/v_batch_num*100))
                 print('saving model with acc {:.3f}'.format(valid_total_acc/v_batch_num*100))
         print('-----------------------------------------------')
         model.train() # set model to train mode，let model parameters updatable
@@ -82,12 +84,12 @@ def training(batch_size, n_epoch, lr, model_dir, train, valid, model, device):
     plt.title('Loss')
     plt.legend(['train', 'valid'])
     plt.savefig('loss.png')
-    #plt.show()
+    plt.show()
 
     # Accuracy curve
     plt.plot(train_acc_list)
     plt.plot(valid_acc_list)
     plt.title('Accuracy')
-    plt.legend(['train', 'dev'])
+    plt.legend(['train', 'valid'])
     plt.savefig('acc.png')
-    #plt.show()
+    plt.show()

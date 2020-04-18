@@ -47,7 +47,7 @@ test_loader = torch.utils.data.DataLoader(dataset = test_dataset,
 
 # testing
 print('\nload model ...')
-model = torch.load(os.path.join(model_dir, 'base_train_082.model'))
+model = torch.load(os.path.join(model_dir, 'ckpt_82.34.model'))
 outputs = testing(batch_size, test_loader, model, device)
 
 # save result to csv

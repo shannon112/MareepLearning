@@ -1,0 +1,185 @@
+sen_len = 32#32
+fix_embedding = True # fix embedding during training
+batch_size = 16#1024
+epoch = 15
+lr = 0.00005 #0.0002
+GRU 2layer
+
+(robotpower) ➜  hw4_rnn_text_classi git:(master) ✗ python main.py
+unable to import 'smart_open.gcs', disabling that module
+device: cuda
+loading training data ...
+length =  200000
+length =  93510
+preprocessing training data ...
+Get embedding ...
+loading word to vec model ...
+get words #24694
+word ˆâ
+index 24693
+vector length 250
+total words: torch.Size([24696, 250])
+embedding_matrix torch.Size([24696, 250])
+x torch.Size([200000, 32])
+y torch.Size([200000])
+
+start training, parameter total:6490951, trainable:316951
+
+[ Epoch1: 11250/11250 ] 
+Train | Loss:0.52574 Acc: 72.122
+Valid | Loss:0.47976 Acc: 77.275 
+saving model with acc 77.275
+-----------------------------------------------
+[ Epoch2: 11250/11250 ] 
+Train | Loss:0.45956 Acc: 78.404
+Valid | Loss:0.45948 Acc: 78.820 
+saving model with acc 78.820
+-----------------------------------------------
+[ Epoch3: 11250/11250 ] 
+Train | Loss:0.44454 Acc: 79.213
+Valid | Loss:0.44089 Acc: 79.385 
+saving model with acc 79.385
+-----------------------------------------------
+[ Epoch4: 11250/11250 ] 
+Train | Loss:0.43255 Acc: 79.981
+Valid | Loss:0.43244 Acc: 80.080 
+saving model with acc 80.080
+-----------------------------------------------
+[ Epoch5: 11250/11250 ] 
+Train | Loss:0.42488 Acc: 80.382
+Valid | Loss:0.42753 Acc: 80.220 
+saving model with acc 80.220
+-----------------------------------------------
+[ Epoch6: 11250/11250 ] 
+Train | Loss:0.41828 Acc: 80.659
+Valid | Loss:0.42244 Acc: 80.660 
+saving model with acc 80.660
+-----------------------------------------------
+[ Epoch7: 11250/11250 ] 
+Train | Loss:0.41213 Acc: 81.041
+Valid | Loss:0.41763 Acc: 80.795 
+saving model with acc 80.795
+-----------------------------------------------
+[ Epoch8: 11250/11250 ] 
+Train | Loss:0.40707 Acc: 81.327
+Valid | Loss:0.41313 Acc: 80.915 
+saving model with acc 80.915
+-----------------------------------------------
+[ Epoch9: 11250/11250 ] 
+Train | Loss:0.40207 Acc: 81.624
+Valid | Loss:0.42151 Acc: 80.180 
+-----------------------------------------------
+[ Epoch10: 11250/11250 ] 
+Train | Loss:0.39737 Acc: 81.989
+Valid | Loss:0.41092 Acc: 81.265 
+saving model with acc 81.265
+-----------------------------------------------
+[ Epoch11: 11250/11250 ] 
+Train | Loss:0.39299 Acc: 82.211
+Valid | Loss:0.40593 Acc: 81.340 
+saving model with acc 81.340
+-----------------------------------------------
+[ Epoch12: 11250/11250 ] 
+Train | Loss:0.38862 Acc: 82.477
+Valid | Loss:0.40526 Acc: 81.520 
+saving model with acc 81.520
+-----------------------------------------------
+[ Epoch13: 11250/11250 ] 
+Train | Loss:0.38453 Acc: 82.677
+Valid | Loss:0.40319 Acc: 81.640 
+saving model with acc 81.640
+-----------------------------------------------
+[ Epoch14: 11250/11250 ] 
+Train | Loss:0.37977 Acc: 82.869
+Valid | Loss:0.41429 Acc: 81.495 
+-----------------------------------------------
+[ Epoch15: 11250/11250 ] 
+Train | Loss:0.37610 Acc: 83.122
+Valid | Loss:0.40064 Acc: 81.880 
+saving model with acc 81.880
+-----------------------------------------------
+(robotpower) ➜  hw4_rnn_text_classi git:(master) ✗ python main.py
+unable to import 'smart_open.gcs', disabling that module
+device: cuda
+loading training data ...
+length =  200000
+length =  93510
+preprocessing training data ...
+Get embedding ...
+loading word to vec model ...
+get words #24694
+word ˆâ
+index 24693
+vector length 250
+total words: torch.Size([24696, 250])
+embedding_matrix torch.Size([24696, 250])
+x torch.Size([200000, 32])
+y torch.Size([200000])
+
+start training, parameter total:6490951, trainable:316951
+
+[ Epoch1: 11250/11250 ] 
+Train | Loss:0.37227 Acc: 83.317
+Valid | Loss:0.40195 Acc: 81.865 
+saving model with acc 81.865
+-----------------------------------------------
+[ Epoch2: 11250/11250 ] 
+Train | Loss:0.36876 Acc: 83.511
+Valid | Loss:0.40075 Acc: 81.825 
+saving model with acc 81.825
+-----------------------------------------------
+[ Epoch3: 11250/11250 ] 
+Train | Loss:0.36449 Acc: 83.784
+Valid | Loss:0.40001 Acc: 81.955 
+saving model with acc 81.955
+-----------------------------------------------
+[ Epoch4: 11250/11250 ] 
+Train | Loss:0.36117 Acc: 83.920
+Valid | Loss:0.40585 Acc: 82.035 
+saving model with acc 82.035
+-----------------------------------------------
+[ Epoch5: 11250/11250 ] 
+Train | Loss:0.35730 Acc: 84.120
+Valid | Loss:0.39862 Acc: 82.225 
+saving model with acc 82.225
+-----------------------------------------------
+[ Epoch6: 11250/11250 ] 
+Train | Loss:0.35333 Acc: 84.364
+Valid | Loss:0.40918 Acc: 82.100 
+-----------------------------------------------
+[ Epoch7: 11250/11250 ] 
+Train | Loss:0.34960 Acc: 84.542
+Valid | Loss:0.40503 Acc: 82.105 
+-----------------------------------------------
+[ Epoch8: 11250/11250 ] 
+Train | Loss:0.34586 Acc: 84.693
+Valid | Loss:0.40739 Acc: 81.780 
+-----------------------------------------------
+[ Epoch9: 11250/11250 ] 
+Train | Loss:0.34159 Acc: 84.956
+Valid | Loss:0.40522 Acc: 81.720 
+-----------------------------------------------
+[ Epoch10: 11250/11250 ] 
+Train | Loss:0.33784 Acc: 85.099
+Valid | Loss:0.41674 Acc: 81.595 
+-----------------------------------------------
+[ Epoch11: 11250/11250 ] 
+Train | Loss:0.33456 Acc: 85.356
+Valid | Loss:0.41375 Acc: 81.850 
+-----------------------------------------------
+[ Epoch12: 11250/11250 ] 
+Train | Loss:0.33025 Acc: 85.529
+Valid | Loss:0.40937 Acc: 81.890 
+-----------------------------------------------
+[ Epoch13: 11250/11250 ] 
+Train | Loss:0.32569 Acc: 85.810
+Valid | Loss:0.41441 Acc: 81.840 
+-----------------------------------------------
+[ Epoch14: 11250/11250 ] 
+Train | Loss:0.32147 Acc: 85.981
+Valid | Loss:0.41408 Acc: 81.820 
+-----------------------------------------------
+[ Epoch15: 11250/11250 ] 
+Train | Loss:0.31766 Acc: 86.147
+Valid | Loss:0.42790 Acc: 81.915 
+-----------------------------------------------
