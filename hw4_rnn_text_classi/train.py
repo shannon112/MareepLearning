@@ -82,7 +82,7 @@ def training(batch_size, n_epoch, lr, model_dir, train, valid, model, device):
     plt.title('Loss')
     plt.legend(['train', 'valid'])
     plt.savefig('loss.png')
-    plt.show()
+    #plt.show()
 
     # Accuracy curve
     plt.plot(train_acc_list)
@@ -90,4 +90,4 @@ def training(batch_size, n_epoch, lr, model_dir, train, valid, model, device):
     plt.title('Accuracy')
     plt.legend(['train', 'dev'])
     plt.savefig('acc.png')
-    plt.show()
+    #plt.show()
