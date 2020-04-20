@@ -29,7 +29,7 @@ print("device:",device)
 # loading data
 print("loading training data ...")
 train_x, y = load_training_data(train_w_filename)
-train_x_no_label, y_no_label = load_training_data(train_wo_filename)
+#train_x_no_label, y_no_label = load_training_data(train_wo_filename)
 #train_x = train_x+train_x_no_label
 #y = y+y_no_label
 
