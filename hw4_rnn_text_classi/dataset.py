@@ -14,12 +14,14 @@ class TwitterDataset(data.Dataset):
         self.data = X
         self.label = y
     def __getitem__(self, idx):
+        # randomly sample sub-sentencce
         '''
         first_idx = random.randint(0,30-30)
         last_idx = first_idx+30
         if self.label is None: return self.data[idx][first_idx:last_idx]
         return self.data[idx][first_idx:last_idx], self.label[idx]
         '''
+        # directly output
         if self.label is None: return self.data[idx]
         return self.data[idx], self.label[idx]
 

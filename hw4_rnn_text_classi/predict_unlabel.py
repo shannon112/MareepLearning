@@ -7,6 +7,7 @@ from utils import load_testing_data
 from preprocess import Preprocess
 from dataset import TwitterDataset
 from model import LSTM_Net
+#from model_DNN import LSTM_Net
 from test import testing_unlabel
 
 # path and filename
@@ -29,7 +30,7 @@ test_x = load_testing_data(testing_filename)
 
 # parameters
 sen_len = 32
-batch_size = 32
+batch_size = 16
 
 # predicting
 preprocess = Preprocess(test_x, sen_len, w2v_path=w2v_model_filename)
@@ -47,14 +48,14 @@ test_loader = torch.utils.data.DataLoader(dataset = test_dataset,
 
 # testing
 print('\nload model ...')
-model = torch.load(os.path.join(model_dir, 'base_train_082.model'))
+model = torch.load(os.path.join(model_dir, 'last_82.43.model'))
 outputs = testing_unlabel(batch_size, test_loader, model, device)
 
-#
-with open(testing_filename, 'r') as f:
-    lines = f.readlines()
+# get testing data content
+f = open(testing_filename,"r")
+lines = f.readlines()
 
-# save result to csv
+# save label with content to csv
 f = open(output_filename, "w")
 for i, output in enumerate(outputs):
     if output == 2: continue

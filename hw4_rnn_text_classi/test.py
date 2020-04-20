@@ -8,7 +8,7 @@ def testing(batch_size, test_loader, model, device):
             inputs = inputs.to(device, dtype=torch.long)
             outputs = model(inputs)
             outputs = outputs.squeeze()
-            print(outputs)
+            #print(outputs) #original score
             outputs[outputs>=0.5] = 1 # good
             outputs[outputs<0.5] = 0 # bad
             ret_output += outputs.int().tolist()
