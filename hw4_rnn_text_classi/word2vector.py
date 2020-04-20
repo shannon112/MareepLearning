@@ -13,7 +13,7 @@ testing_filename = os.path.join(path_prefix, 'testing_data.txt')
 
 def train_word2vec(x):
     # training word to vector by word embedding
-    model = word2vec.Word2Vec(x, size=250, window=5, min_count=5, workers=12, iter=10, sg=1)
+    model = word2vec.Word2Vec(x, size=200, window=5, min_count=5, workers=12, iter=8, sg=1)
     return model
 
 if __name__ == "__main__":
@@ -24,10 +24,10 @@ if __name__ == "__main__":
     print("loading testing data ...")
     test_x = load_testing_data(testing_filename)
 
-    embedding_x = train_x + train_x_no_label + test_x #1578614
-    #embedding_x = train_x + test_x #400000
+    #embedding_x = train_x + train_x_no_label + test_x #1578614
+    embedding_x = train_x + test_x #400000
     print("embedding 2d list ... lenght=",len(embedding_x))
     model = train_word2vec(embedding_x)
     
     print("saving model ...")
-    model.save(os.path.join('model/w2v_all.model'))
+    model.save(os.path.join('model/w2v_200.model'))

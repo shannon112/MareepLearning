@@ -1,0 +1,192 @@
+
+lr 0.0002, hidden 200, GRU
+(robotpower) ➜  hw4_rnn_text_classi git:(master) ✗ python main.py 
+unable to import 'smart_open.gcs', disabling that module
+device: cuda
+loading training data ...
+length =  200000
+length =  93510
+preprocessing training data ...
+Get embedding ...
+loading word to vec model ...
+get words #24694
+word ˆâ
+index 24693
+vector length 250
+total words: torch.Size([24696, 250])
+embedding_matrix torch.Size([24696, 250])
+x torch.Size([200000, 32])
+y torch.Size([200000])
+
+start training, parameter total:6686601, trainable:512601
+
+[ Epoch1: 11875/11875 ] 
+Train | Loss:0.47298 Acc: 76.806
+Valid | Loss:0.47086 Acc: 77.120 
+saving model with acc 77.120
+-----------------------------------------------
+[ Epoch2: 11875/11875 ] 
+Train | Loss:0.42160 Acc: 80.572
+Valid | Loss:0.41405 Acc: 80.940 
+saving model with acc 80.940
+-----------------------------------------------
+[ Epoch3: 11875/11875 ] 
+Train | Loss:0.40347 Acc: 81.659
+Valid | Loss:0.41536 Acc: 80.620 
+-----------------------------------------------
+[ Epoch4: 11875/11875 ] 
+Train | Loss:0.39003 Acc: 82.368
+Valid | Loss:0.40008 Acc: 81.800 
+saving model with acc 81.800
+-----------------------------------------------
+[ Epoch5: 11875/11875 ] 
+Train | Loss:0.37683 Acc: 83.102
+Valid | Loss:0.39738 Acc: 82.400 
+saving model with acc 82.400
+-----------------------------------------------
+[ Epoch6: 11875/11875 ] 
+Train | Loss:0.36462 Acc: 83.764
+Valid | Loss:0.39489 Acc: 82.130 
+saving model with acc 82.130
+-----------------------------------------------
+[ Epoch7: 11875/11875 ] 
+Train | Loss:0.35090 Acc: 84.516
+Valid | Loss:0.39377 Acc: 82.160 
+saving model with acc 82.160
+-----------------------------------------------
+[ Epoch8: 11875/11875 ] 
+Train | Loss:0.33621 Acc: 85.199
+Valid | Loss:0.40449 Acc: 81.980 
+-----------------------------------------------
+[ Epoch9: 11875/11875 ] 
+Train | Loss:0.31973 Acc: 86.093
+Valid | Loss:0.41084 Acc: 82.300 
+saving model with acc 82.300
+-----------------------------------------------
+[ Epoch10: 11875/11875 ] 
+Train | Loss:0.30127 Acc: 87.122
+Valid | Loss:0.42250 Acc: 81.780 
+-----------------------------------------------
+[ Epoch11: 11875/11875 ] 
+Train | Loss:0.28047 Acc: 88.160
+Valid | Loss:0.43398 Acc: 81.550 
+-----------------------------------------------
+[ Epoch12: 11875/11875 ] 
+Train | Loss:0.25791 Acc: 89.299
+Valid | Loss:0.45995 Acc: 80.960 
+-----------------------------------------------
+[ Epoch13: 11875/11875 ] 
+Train | Loss:0.23404 Acc: 90.465
+Valid | Loss:0.50455 Acc: 80.880 
+-----------------------------------------------
+[ Epoch14: 11875/11875 ] 
+Train | Loss:0.21012 Acc: 91.632
+Valid | Loss:0.50569 Acc: 80.200 
+-----------------------------------------------
+[ Epoch15: 11875/11875 ] 
+Train | Loss:0.18564 Acc: 92.697
+Valid | Loss:0.57211 Acc: 80.350 
+-----------------------------------------------
+[ Epoch16: 11875/11875 ] 
+Train | Loss:0.16372 Acc: 93.698
+Valid | Loss:0.61919 Acc: 79.630 
+-----------------------------------------------
+[ Epoch17: 11875/11875 ] 
+Train | Loss:0.14470 Acc: 94.509
+Valid | Loss:0.67012 Acc: 79.910 
+-----------------------------------------------
+[ Epoch18: 11875/11875 ] 
+Train | Loss:0.12693 Acc: 95.227
+Valid | Loss:0.73186 Acc: 79.560 
+-----------------------------------------------
+[ Epoch19: 11875/11875 ] 
+Train | Loss:0.11139 Acc: 95.894
+Valid | Loss:0.76698 Acc: 79.400 
+-----------------------------------------------
+[ Epoch20: 11875/11875 ] 
+Train | Loss:0.09887 Acc: 96.393
+Valid | Loss:0.82342 Acc: 78.850 
+-----------------------------------------------
+
+
+pretrain on 0.824 lr = 0.00005
+(robotpower) ➜  hw4_rnn_text_classi git:(master) ✗ python main.py   
+unable to import 'smart_open.gcs', disabling that module
+device: cuda
+loading training data ...
+length =  200000
+length =  93510
+preprocessing training data ...
+Get embedding ...
+loading word to vec model ...
+get words #24694
+word ˆâ
+index 24693
+vector length 250
+total words: torch.Size([24696, 250])
+embedding_matrix torch.Size([24696, 250])
+x torch.Size([200000, 32])
+y torch.Size([200000])
+
+start training, parameter total:6686601, trainable:512601
+
+[ Epoch1: 11875/11875 ] 
+Train | Loss:0.35523 Acc: 84.341
+Valid | Loss:0.39835 Acc: 82.110 
+saving model with acc 82.110
+-----------------------------------------------
+[ Epoch2: 11875/11875 ] 
+Train | Loss:0.34833 Acc: 84.608
+Valid | Loss:0.39403 Acc: 82.430 
+saving model with acc 82.430
+-----------------------------------------------
+[ Epoch3: 11875/11875 ] 
+Train | Loss:0.34264 Acc: 84.943
+Valid | Loss:0.39730 Acc: 82.300 
+-----------------------------------------------
+[ Epoch4: 11875/11875 ] 
+Train | Loss:0.33731 Acc: 85.201
+Valid | Loss:0.39997 Acc: 82.330 
+-----------------------------------------------
+
+
+
+lr 0.00005, pretrain = last_82.43,
+(robotpower) ➜  hw4_rnn_text_classi git:(master) ✗ python main.py   
+unable to import 'smart_open.gcs', disabling that module
+device: cuda
+loading training data ...
+length =  200000
+length =  93510
+preprocessing training data ...
+Get embedding ...
+loading word to vec model ...
+get words #24694
+word ˆâ
+index 24693
+vector length 250
+total words: torch.Size([24696, 250])
+embedding_matrix torch.Size([24696, 250])
+x torch.Size([293510, 32])
+y torch.Size([293510])
+
+start training, parameter total:6686601, trainable:512601
+
+[ Epoch1: 17720/17720 ] 
+Train | Loss:0.56004 Acc: 73.280
+Valid | Loss:0.43599 Acc: 82.380 
+saving model with acc 82.380
+-----------------------------------------------
+[ Epoch2: 17720/17720 ] 
+Train | Loss:0.55457 Acc: 73.575
+Valid | Loss:0.43653 Acc: 82.150 
+-----------------------------------------------
+[ Epoch3: 17720/17720 ] 
+Train | Loss:0.55096 Acc: 73.916
+Valid | Loss:0.43814 Acc: 81.670 
+-----------------------------------------------
+[ Epoch4: 17720/17720 ] 
+Train | Loss:0.54760 Acc: 74.253
+Valid | Loss:0.43449 Acc: 82.040 
+saving model with acc 82.040
+-----------------------------------------------
