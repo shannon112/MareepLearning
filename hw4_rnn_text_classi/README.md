@@ -7,7 +7,7 @@ Unlabeled Training set: 1178614
 Testing set: 200000  
 
 ## Resource
-homework video: https://www.youtube.com/watch?v=P1Lg5l5IPec
+homework video: https://www.youtube.com/watch?v=P1Lg5l5IPec  
 kaggle: https://www.kaggle.com/c/ml2020spring-hw4/overview  
 library limitation: https://reurl.cc/GVkjWD  
 
