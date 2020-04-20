@@ -54,7 +54,6 @@ class Preprocess():
     def pad_sequence(self, sentence):
         # padding every sentance to the same sen_len by trim and pad
         if len(sentence) > self.sen_len:
-            #print("trim", len(sentence))
             sentence = sentence[:self.sen_len]
         else:
             pad_len = self.sen_len - len(sentence)

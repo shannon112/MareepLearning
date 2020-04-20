@@ -7,12 +7,13 @@ from utils import load_testing_data
 from preprocess import Preprocess
 from dataset import TwitterDataset
 from model import LSTM_Net
+#from model_DNN import LSTM_Net
 from test import testing
 
 # path and filename
 path_prefix = "/home/shannon/Downloads/dataset"
 model_dir = "./model"
-testing_filename = os.path.join(path_prefix, 'testing_data.txt')
+testing_filename = os.path.join(path_prefix, 'goodday.txt')
 w2v_model_filename = os.path.join(model_dir, 'w2v_labeled.model')
 output_filename = "predict.csv"
 if len(sys.argv)>2:
@@ -47,7 +48,7 @@ test_loader = torch.utils.data.DataLoader(dataset = test_dataset,
 
 # testing
 print('\nload model ...')
-model = torch.load(os.path.join(model_dir, 'ckpt_82.38.model'))
+model = torch.load(os.path.join(model_dir, 'last_semi_82.38.model'))
 outputs = testing(batch_size, test_loader, model, device)
 
 # save result to csv

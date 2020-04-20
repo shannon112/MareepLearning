@@ -8,8 +8,9 @@ def testing(batch_size, test_loader, model, device):
             inputs = inputs.to(device, dtype=torch.long)
             outputs = model(inputs)
             outputs = outputs.squeeze()
-            outputs[outputs>=0.5] = 1 # bad
-            outputs[outputs<0.5] = 0 # good
+            #print(outputs) #original score
+            outputs[outputs>=0.5] = 1 # good
+            outputs[outputs<0.5] = 0 # bad
             ret_output += outputs.int().tolist()
     return ret_output
 
@@ -21,9 +22,9 @@ def testing_unlabel(batch_size, test_loader, model, device):
             inputs = inputs.to(device, dtype=torch.long)
             outputs = model(inputs)
             outputs = outputs.squeeze()
-            outputs[outputs<0.1] = 0 # good
-            outputs[outputs>=0.9] = -1 # bad
+            outputs[outputs<0.1] = 0 # bad
+            outputs[outputs>=0.9] = -1 # good
             outputs[outputs>=0.1] = 2 # delete
-            outputs[outputs==-1] = 1 # bad
+            outputs[outputs==-1] = 1 # good
             ret_output += outputs.int().tolist()
     return ret_output

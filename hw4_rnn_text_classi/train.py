@@ -22,7 +22,7 @@ def training(batch_size, n_epoch, lr, model_dir, train, valid, model, device):
     v_batch_num = len(valid) 
     optimizer = optim.Adam(model.parameters(), lr=lr)
     #optimizer = torch.optim.SGD(model.parameters(), lr, momentum=0.9, weight_decay=1e-4)
-    #optimizer = optim.Adadelta(model.parameters(), lr=lr)
+    #optimizer = optim.Adadelta(model.parameters(), lr=lr) #lr=1
     
     # training loop
     model.train()

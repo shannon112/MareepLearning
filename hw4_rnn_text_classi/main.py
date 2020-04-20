@@ -9,13 +9,14 @@ from utils import load_training_data
 from preprocess import Preprocess
 from dataset import TwitterDataset
 from model import LSTM_Net
+#from model_DNN import LSTM_Net
 from train import training
 
 # path and filename
 path_prefix = "/home/shannon/Downloads/dataset"
 model_dir = "./model"
 train_w_filename = os.path.join(path_prefix, 'training_label.txt')
-train_wo_filename = os.path.join(path_prefix, 'training_label_fixed1.txt')
+train_wo_filename = os.path.join(path_prefix, 'training_label_semi.txt')
 if len(sys.argv)>2:
     train_w_filename = sys.argv[1]
     train_wo_filename = sys.argv[2]
@@ -28,17 +29,16 @@ print("device:",device)
 # loading data
 print("loading training data ...")
 train_x, y = load_training_data(train_w_filename)
-train_x_no_label, y_no_label = load_training_data(train_wo_filename)
-train_x = train_x+train_x_no_label
-y = y+y_no_label
+#train_x_no_label, y_no_label = load_training_data(train_wo_filename)
+#train_x = train_x+train_x_no_label
+#y = y+y_no_label
 
 # parameters
 sen_len = 32#32
 fix_embedding = True # fix embedding during training
 batch_size = 16#1024
 epoch = 20
-lr = 0.00002 #0.0002
-#0.0002 0.00005 0.00001
+lr = 0.0002 #0.0002 0.00005
 
 # preprocessing data
 print("preprocessing training data ...")
@@ -56,18 +56,18 @@ model = LSTM_Net(embedding_matrix, embedding_dim=250,
                             num_layers=2, 
                             dropout=0.5, fix_embedding=fix_embedding)
 model = model.to(device) # if device is "cuda"，model will use GPU to train（inputs need to be cuda tensor）
-model_filename = "./model/ckpt_82.43.model"
-model = torch.load(model_filename)
+#model_filename = "./model/semi_no_76.084.model"
+#model = torch.load(model_filename)
 
 # devide to train90% and vaild10% on labeled training set
-#X_train, X_val, y_train, y_val = train_x[:190000], train_x[190000:], y[:190000], y[190000:]
+X_train, X_val, y_train, y_val = train_x[:190000], train_x[190000:], y[:190000], y[190000:]
 # devide to train90% and vaild10% on both labeled and predicted labeled training set
 #X_train, X_val, y_train, y_val = train_x[20000:], train_x[:20000], y[20000:], y[:20000]
 # devide to train90% and vaild10% on both labeled and predicted labeled training set
-X_train, y_train = train_x[:190000], y[:190000]
-X_val, y_val = train_x[190000:200000], y[190000:200000]
-X_train = torch.cat((X_train, train_x[200000:]), 0)
-y_train = torch.cat((y_train, y[200000:]), 0)
+#X_train, y_train = train_x[:20000], y[:20000]
+#X_val, y_val = train_x[190000:200000], y[190000:200000]
+#X_train = torch.cat((X_train, train_x[200000:]), 0)
+#y_train = torch.cat((y_train, y[200000:]), 0)
 
 # to dataset
 train_dataset = TwitterDataset(X=X_train, y=y_train)
