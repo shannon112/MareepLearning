@@ -1,0 +1,112 @@
+(robotpower) ➜  hw4_rnn_text_classi git:(master) ✗ python main.py 
+unable to import 'smart_open.gcs', disabling that module
+device: cuda
+loading training data ...
+length =  200000
+length =  83408
+preprocessing training data ...
+Get embedding ...
+loading word to vec model ...
+get words #24694
+word ˆâ
+index 24693
+vector length 250
+total words: torch.Size([24696, 250])
+embedding_matrix torch.Size([24696, 250])
+x torch.Size([200000, 32])
+y torch.Size([200000])
+
+start training, parameter total:8264851, trainable:2090851
+
+[ Epoch1: 186/186 ] 
+Train | Loss:0.66926 Acc: 57.264
+Valid | Loss:0.58158 Acc: 67.764 
+saving model with acc 67.764
+-----------------------------------------------
+[ Epoch2: 186/186 ] 
+Train | Loss:0.54376 Acc: 72.628
+Valid | Loss:0.55466 Acc: 70.088 
+saving model with acc 70.088
+-----------------------------------------------
+[ Epoch3: 186/186 ] 
+Train | Loss:0.51767 Acc: 74.594
+Valid | Loss:0.51929 Acc: 73.125 
+saving model with acc 73.125
+-----------------------------------------------
+[ Epoch4: 186/186 ] 
+Train | Loss:0.50541 Acc: 75.288
+Valid | Loss:0.50598 Acc: 73.721 
+saving model with acc 73.721
+-----------------------------------------------
+[ Epoch5: 186/186 ] 
+Train | Loss:0.49409 Acc: 76.061
+Valid | Loss:0.50165 Acc: 74.092 
+saving model with acc 74.092
+-----------------------------------------------
+[ Epoch6: 186/186 ] 
+Train | Loss:0.48710 Acc: 76.470
+Valid | Loss:0.50542 Acc: 73.828 
+-----------------------------------------------
+[ Epoch7: 186/186 ] 
+Train | Loss:0.48184 Acc: 76.808
+Valid | Loss:0.49414 Acc: 74.580 
+saving model with acc 74.580
+-----------------------------------------------
+[ Epoch8: 186/186 ] 
+Train | Loss:0.47870 Acc: 77.027
+Valid | Loss:0.50668 Acc: 73.564 
+-----------------------------------------------
+[ Epoch9: 186/186 ] 
+Train | Loss:0.47548 Acc: 77.205
+Valid | Loss:0.49277 Acc: 74.717 
+saving model with acc 74.717
+-----------------------------------------------
+[ Epoch10: 186/186 ] 
+Train | Loss:0.47358 Acc: 77.347
+Valid | Loss:0.48750 Acc: 74.951 
+saving model with acc 74.951
+-----------------------------------------------
+[ Epoch11: 186/186 ] 
+Train | Loss:0.46991 Acc: 77.500
+Valid | Loss:0.49162 Acc: 74.590 
+-----------------------------------------------
+[ Epoch12: 186/186 ] 
+Train | Loss:0.46553 Acc: 77.886
+Valid | Loss:0.48584 Acc: 75.146 
+saving model with acc 75.146
+-----------------------------------------------
+[ Epoch13: 186/186 ] 
+Train | Loss:0.46492 Acc: 77.852
+Valid | Loss:0.48812 Acc: 74.863 
+-----------------------------------------------
+[ Epoch14: 186/186 ] 
+Train | Loss:0.46589 Acc: 77.809
+Valid | Loss:0.51837 Acc: 72.500 
+-----------------------------------------------
+[ Epoch15: 186/186 ] 
+Train | Loss:0.46033 Acc: 78.236
+Valid | Loss:0.48426 Acc: 75.400 
+saving model with acc 75.400
+-----------------------------------------------
+[ Epoch16: 186/186 ] 
+Train | Loss:0.45763 Acc: 78.361
+Valid | Loss:0.48305 Acc: 75.078 
+saving model with acc 75.078
+-----------------------------------------------
+[ Epoch17: 186/186 ] 
+Train | Loss:0.45832 Acc: 78.260
+Valid | Loss:0.48933 Acc: 74.766 
+-----------------------------------------------
+[ Epoch18: 186/186 ] 
+Train | Loss:0.45582 Acc: 78.389
+Valid | Loss:0.48994 Acc: 74.619 
+-----------------------------------------------
+[ Epoch19: 186/186 ] 
+Train | Loss:0.45479 Acc: 78.518
+Valid | Loss:0.48300 Acc: 75.420 
+saving model with acc 75.420
+-----------------------------------------------
+[ Epoch20: 186/186 ] 
+Train | Loss:0.45281 Acc: 78.621
+Valid | Loss:0.51665 Acc: 72.910 
+-----------------------------------------------
