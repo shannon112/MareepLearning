@@ -1,0 +1,212 @@
+(robotpower) ➜  hw4_rnn_text_classi git:(master) ✗ python main.py
+unable to import 'smart_open.gcs', disabling that module
+device: cuda
+loading training data ...
+length =  200000
+length =  93510
+preprocessing training data ...
+Get embedding ...
+loading word to vec model ...
+get words #24694
+word ˆâ
+index 24693
+vector length 250
+total words: torch.Size([24696, 250])
+embedding_matrix torch.Size([24696, 250])
+x torch.Size([200000, 32])
+y torch.Size([200000])
+
+start training, parameter total:6686601, trainable:512601
+
+[ Epoch1: 20/20 ] 
+Train | Loss:0.69417 Acc: 49.546
+Valid | Loss:0.69179 Acc: 51.816 
+saving model with acc 51.816
+-----------------------------------------------
+[ Epoch2: 20/20 ] 
+Train | Loss:0.69251 Acc: 50.454
+Valid | Loss:0.69108 Acc: 51.836 
+saving model with acc 51.836
+-----------------------------------------------
+[ Epoch3: 20/20 ] 
+Train | Loss:0.69173 Acc: 50.596
+Valid | Loss:0.68982 Acc: 51.436 
+saving model with acc 51.436
+-----------------------------------------------
+[ Epoch4: 20/20 ] 
+Train | Loss:0.68858 Acc: 51.860
+Valid | Loss:0.68474 Acc: 53.008 
+saving model with acc 53.008
+-----------------------------------------------
+[ Epoch5: 20/20 ] 
+Train | Loss:0.67893 Acc: 55.215
+Valid | Loss:0.65815 Acc: 60.938 
+saving model with acc 60.938
+-----------------------------------------------
+[ Epoch6: 20/20 ] 
+Train | Loss:0.60726 Acc: 65.410
+Valid | Loss:0.56371 Acc: 70.088 
+saving model with acc 70.088
+-----------------------------------------------
+[ Epoch7: 20/20 ] 
+Train | Loss:0.53826 Acc: 70.918
+Valid | Loss:0.52918 Acc: 72.354 
+saving model with acc 72.354
+-----------------------------------------------
+[ Epoch8: 20/20 ] 
+Train | Loss:0.51392 Acc: 73.091
+Valid | Loss:0.51548 Acc: 73.037 
+saving model with acc 73.037
+-----------------------------------------------
+[ Epoch9: 20/20 ] 
+Train | Loss:0.49755 Acc: 73.857
+Valid | Loss:0.50344 Acc: 74.062 
+saving model with acc 74.062
+-----------------------------------------------
+[ Epoch10: 20/20 ] 
+Train | Loss:0.48875 Acc: 74.658
+Valid | Loss:0.50006 Acc: 74.238 
+saving model with acc 74.238
+-----------------------------------------------
+[ Epoch11: 20/20 ] 
+Train | Loss:0.48161 Acc: 75.112
+Valid | Loss:0.49190 Acc: 74.795 
+saving model with acc 74.795
+-----------------------------------------------
+[ Epoch12: 20/20 ] 
+Train | Loss:0.47747 Acc: 75.322
+Valid | Loss:0.49019 Acc: 74.980 
+saving model with acc 74.980
+-----------------------------------------------
+[ Epoch13: 20/20 ] 
+Train | Loss:0.47229 Acc: 75.830
+Valid | Loss:0.48773 Acc: 75.059 
+saving model with acc 75.059
+-----------------------------------------------
+[ Epoch14: 20/20 ] 
+Train | Loss:0.47109 Acc: 75.659
+Valid | Loss:0.48435 Acc: 75.078 
+saving model with acc 75.078
+-----------------------------------------------
+[ Epoch15: 20/20 ] 
+Train | Loss:0.46514 Acc: 76.348
+Valid | Loss:0.48160 Acc: 75.381 
+saving model with acc 75.381
+-----------------------------------------------
+[ Epoch16: 20/20 ] 
+Train | Loss:0.46332 Acc: 76.489
+Valid | Loss:0.48164 Acc: 75.518 
+saving model with acc 75.518
+-----------------------------------------------
+[ Epoch17: 20/20 ] 
+Train | Loss:0.46012 Acc: 76.587
+Valid | Loss:0.47862 Acc: 75.488 
+saving model with acc 75.488
+-----------------------------------------------
+[ Epoch18: 20/20 ] 
+Train | Loss:0.45974 Acc: 76.553
+Valid | Loss:0.47838 Acc: 75.488 
+saving model with acc 75.488
+-----------------------------------------------
+[ Epoch19: 20/20 ] 
+Train | Loss:0.45487 Acc: 76.919
+Valid | Loss:0.47761 Acc: 75.605 
+saving model with acc 75.605
+-----------------------------------------------
+[ Epoch20: 20/20 ] 
+Train | Loss:0.45611 Acc: 76.885
+Valid | Loss:0.47621 Acc: 75.566 
+saving model with acc 75.566
+-----------------------------------------------
+[ Epoch21: 20/20 ] 
+Train | Loss:0.45376 Acc: 76.787
+Valid | Loss:0.47723 Acc: 75.645 
+saving model with acc 75.645
+-----------------------------------------------
+[ Epoch22: 20/20 ] 
+Train | Loss:0.44993 Acc: 77.178
+Valid | Loss:0.47590 Acc: 75.703 
+saving model with acc 75.703
+-----------------------------------------------
+[ Epoch23: 20/20 ] 
+Train | Loss:0.45084 Acc: 76.914
+Valid | Loss:0.47696 Acc: 75.439 
+-----------------------------------------------
+[ Epoch24: 20/20 ] 
+Train | Loss:0.45038 Acc: 77.100
+Valid | Loss:0.47304 Acc: 75.830 
+saving model with acc 75.830
+-----------------------------------------------
+[ Epoch25: 20/20 ] 
+Train | Loss:0.44415 Acc: 77.642
+Valid | Loss:0.47321 Acc: 75.635 
+-----------------------------------------------
+[ Epoch26: 20/20 ] 
+Train | Loss:0.44388 Acc: 77.788
+Valid | Loss:0.47157 Acc: 75.723 
+saving model with acc 75.723
+-----------------------------------------------
+[ Epoch27: 20/20 ] 
+Train | Loss:0.44196 Acc: 77.617
+Valid | Loss:0.47192 Acc: 75.850 
+saving model with acc 75.850
+-----------------------------------------------
+[ Epoch28: 20/20 ] 
+Train | Loss:0.44195 Acc: 77.690
+Valid | Loss:0.46954 Acc: 75.986 
+saving model with acc 75.986
+-----------------------------------------------
+[ Epoch29: 20/20 ] 
+Train | Loss:0.43811 Acc: 77.900
+Valid | Loss:0.47292 Acc: 75.928 
+-----------------------------------------------
+[ Epoch30: 20/20 ] 
+Train | Loss:0.43697 Acc: 78.032
+Valid | Loss:0.47273 Acc: 75.967 
+-----------------------------------------------
+[ Epoch31: 20/20 ] 
+Train | Loss:0.43430 Acc: 78.140
+Valid | Loss:0.47095 Acc: 75.918 
+-----------------------------------------------
+[ Epoch32: 20/20 ] 
+Train | Loss:0.43194 Acc: 77.988
+Valid | Loss:0.47043 Acc: 75.869 
+-----------------------------------------------
+[ Epoch33: 20/20 ] 
+Train | Loss:0.43451 Acc: 77.964
+Valid | Loss:0.46823 Acc: 75.791 
+saving model with acc 75.791
+-----------------------------------------------
+[ Epoch34: 20/20 ] 
+Train | Loss:0.43214 Acc: 78.267
+Valid | Loss:0.47033 Acc: 76.162 
+saving model with acc 76.162
+-----------------------------------------------
+[ Epoch35: 20/20 ] 
+Train | Loss:0.42947 Acc: 78.389
+Valid | Loss:0.47091 Acc: 75.752 
+-----------------------------------------------
+[ Epoch36: 20/20 ] 
+Train | Loss:0.43214 Acc: 78.164
+Valid | Loss:0.47914 Acc: 75.156 
+-----------------------------------------------
+[ Epoch37: 20/20 ] 
+Train | Loss:0.42736 Acc: 78.408
+Valid | Loss:0.46964 Acc: 75.830 
+saving model with acc 75.830
+-----------------------------------------------
+[ Epoch38: 20/20 ] 
+Train | Loss:0.42478 Acc: 78.525
+Valid | Loss:0.47053 Acc: 75.938 
+saving model with acc 75.938
+-----------------------------------------------
+[ Epoch39: 20/20 ] 
+Train | Loss:0.42038 Acc: 78.789
+Valid | Loss:0.47082 Acc: 76.182 
+saving model with acc 76.182
+-----------------------------------------------
+[ Epoch40: 20/20 ] 
+Train | Loss:0.42175 Acc: 78.735
+Valid | Loss:0.46691 Acc: 76.084 
+saving model with acc 76.084
+-----------------------------------------------
