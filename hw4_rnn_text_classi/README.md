@@ -1,42 +1,27 @@
-# hw3_classification: Food Classification
+# hw4_rnn_text_classi: Text Sentiment Classification
 
-This is a dataset containing 16643 food images grouped in 11 major food categories. The 11 categories are Bread, Dairy product, Dessert, Egg, Fried food, Meat, Noodles/Pasta, Rice, Seafood, Soup, and Vegetable/Fruit. Similar as Food-5K dataset, the whole dataset is divided in three parts: training, validation and evaluation. The naming convention is {ClassID}_{ImageID}.jpg, where ID 0-10 refers to the 11 food categories respectively.   
+Dataset is made from the sentences in Twitter posts, if it is positive labeled as 1, negative labeled as 0
 
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_classification_img/img/Description.png" width=560/>
-
-Bread, Dairy product, Dessert, Egg, Fried food, Meat, Noodles/Pasta, Rice, Seafood, Soup, and Vegetable/Fruit.  
-
-Training set: 9866  
-Validation set: 3430  
-Testing set: 3347  
-https://reurl.cc/3DLavL  
+Labeled Training set: 200000  
+Unlabeled Training set: 1178614  
+Testing set: 200000  
 
 ## Resource
-homework video: https://www.youtube.com/watch?v=L_ebtE4qk14  
-kaggle: https://www.kaggle.com/c/ml2020spring-hw3/overview  
+homework video: https://www.youtube.com/watch?v=P1Lg5l5IPec
+kaggle: https://www.kaggle.com/c/ml2020spring-hw4/overview  
 library limitation: https://reurl.cc/GVkjWD  
 
 ## Model
-modified by vgg16  
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_classification_img/img/vgg16lite.png" width=500/>
+<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw4_rnn_text_classi/img/structure.png" width=560/>
 
 ## Usage
 ```
-bash  hw3_train.sh <data directory>
-bash  hw3_test.sh  <data directory>  <prediction file>
+bash hw4_train.sh <training label data> <training unlabel data>
+bash hw4_test.sh <testing data> <prediction file>
 ```
 
 ## Result
-train on train 0~100ep  
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_classification_img/img/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112_acc.png" width=420/> <img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_classification_img/img/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112_loss.png" width=420/>
-
-train on train+val 0~50ep  
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_classification_img/img/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112_all_acc.png" width=420/> <img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_classification_img/img/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112_all_loss.png" width=420/>
-
-train on train+val 0~50ep  
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_classification_img/img/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112_all_acc2.png" width=420/> <img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_classification_img/img/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112_all_loss2.png" width=420/>
-
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_classification_img/img/confusion_matrix.png" width=560/>
+<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw4_rnn_text_classi/img/last_acc.png" width=420/> <img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw4_rnn_text_classi/img/last_loss.png" width=420/>
 
 ## Homework version
-https://github.com/NTU-speech-lab/hw3-shannon112
+https://github.com/NTU-speech-lab/hw4-shannon112
