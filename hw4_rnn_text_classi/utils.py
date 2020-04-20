@@ -32,7 +32,7 @@ def load_testing_data(path='testing_data'):
 
 def evaluation(outputs, labels):
     # outputs => probability (float), labels => labels
-    outputs[outputs>=0.5] = 1 # label as bad
-    outputs[outputs<0.5] = 0 # label as good
+    outputs[outputs>=0.5] = 1 # label as positive
+    outputs[outputs<0.5] = 0 # label as negative
     correct = torch.sum(torch.eq(outputs, labels)).item()
     return correct
