@@ -6,6 +6,8 @@ import cv2
 def readfile(path, label):    
     img_size = 128
     image_dir = sorted(os.listdir(path))
+    print(image_dir[:20])
+    print("data len",len(image_dir))
     x = np.zeros((len(image_dir), img_size, img_size, 3), dtype=np.uint8)
     y = np.zeros((len(image_dir)), dtype=np.uint8)
     for i, file in enumerate(image_dir):
