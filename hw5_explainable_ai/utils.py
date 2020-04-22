@@ -11,7 +11,7 @@ def readfile(path, label):
     x = np.zeros((len(image_dir), img_size, img_size, 3), dtype=np.uint8)
     y = np.zeros((len(image_dir)), dtype=np.uint8)
     for i, file in enumerate(image_dir):
-        img = cv2.imread(os.path.join(path, file))
+        img = cv2.imread(os.path.join(path, file)) # read as BGR
         x[i, :, :] = cv2.resize(img,(img_size, img_size))
         if label:
           y[i] = int(file.split("_")[0])
