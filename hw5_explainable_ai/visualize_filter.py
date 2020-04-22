@@ -54,7 +54,8 @@ if __name__ == "__main__":
     workspace_dir = sys.argv[1] #'/home/shannon/Downloads/food-11'
     model_filename = sys.argv[2]
     output_dir = sys.argv[3]
-    cnnid = 14
+    cnnids = [7,14,14,14,24]
+    filterids = [0,0,1,2,0]
 
     print("Reading data")
     train_x, train_y = readfile(os.path.join(workspace_dir, "training"), True)
@@ -68,31 +69,33 @@ if __name__ == "__main__":
     # showing filters from assigned indices image 
     img_indices = [800,1602,2001,3201,4001,4800,5600,7000,7400,8003,8801]
     images, labels = train_set.getbatch(img_indices)
-    filter_activations, filter_visualization = filter_explaination(images, model, cnnid=cnnid, filterid=0, iteration=100, lr=0.1)
-    print(images.shape)
-    print(filter_activations.shape)
-    print(filter_visualization.shape)
 
-    # plot filter visualization: what kind of image will maximally activate the filter
-    img_hwc = filter_visualization.permute(1, 2, 0).numpy() # convert tensor from (channels, height, width) to visualable (height, width, channels)
-    img_rgb = cv2.cvtColor(img_hwc, cv2.COLOR_BGR2RGB) # convert img from (BGR) to (RGB)
-    plt.imshow(local_normalize(img_rgb))
-    plt.savefig(os.path.join(output_dir,"filter_visualization_layer"+str(cnnid)))
-    #plt.show()
-    plt.close()
+    for i, (cnnid,filterid) in enumerate(zip(cnnids,filterids)):
+        filter_activations, filter_visualization = filter_explaination(images, model, cnnid=cnnid, filterid=filterid, iteration=100, lr=0.1)
+        print(images.shape)
+        print(filter_activations.shape)
+        print(filter_visualization.shape)
 
-    # plot filter activations: the position in images that activate the filter
-    fig, axs = plt.subplots(2, len(img_indices), figsize=(40, 6))
-    for i, img in enumerate(images):
-        img_hwc = img.permute(1, 2, 0).numpy() # convert tensor from (channels, height, width) to visualable (height, width, channels)
+        # plot filter visualization: what kind of image will maximally activate the filter
+        img_hwc = filter_visualization.permute(1, 2, 0).numpy() # convert tensor from (channels, height, width) to visualable (height, width, channels)
         img_rgb = cv2.cvtColor(img_hwc, cv2.COLOR_BGR2RGB) # convert img from (BGR) to (RGB)
-        axs[0][i].imshow(img_rgb)
-    for i, img in enumerate(filter_activations):
-        axs[1][i].imshow(local_normalize(img))
-    figure_name = os.path.join(output_dir, 'filter_activations_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}'.format(
-        "layer"+str(cnnid),img_indices[0],img_indices[1],img_indices[2],img_indices[3],img_indices[4],img_indices[5],
-        img_indices[6],img_indices[6],img_indices[7],img_indices[8],img_indices[9],img_indices[10]))
-    fig.suptitle(figure_name[:-4],fontsize=24)
-    plt.savefig(figure_name)
-    #plt.show()
-    plt.close()
+        plt.imshow(local_normalize(img_rgb))
+        plt.savefig(os.path.join(output_dir,"filter_visualization_layer"+str(cnnid)+"_filter_"+str(filterid)))
+        #plt.show()
+        plt.close()
+
+        # plot filter activations: the position in images that activate the filter
+        fig, axs = plt.subplots(2, len(img_indices), figsize=(40, 6))
+        for i, img in enumerate(images):
+            img_hwc = img.permute(1, 2, 0).numpy() # convert tensor from (channels, height, width) to visualable (height, width, channels)
+            img_rgb = cv2.cvtColor(img_hwc, cv2.COLOR_BGR2RGB) # convert img from (BGR) to (RGB)
+            axs[0][i].imshow(img_rgb)
+        for i, img in enumerate(filter_activations):
+            axs[1][i].imshow(local_normalize(img))
+        figure_name = os.path.join(output_dir, 'filter_activations_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}'.format(
+            "layer"+str(cnnid),"filter"+str(filterid),img_indices[0],img_indices[1],img_indices[2],img_indices[3],
+            img_indices[4],img_indices[5],img_indices[6],img_indices[6],img_indices[7],img_indices[8],img_indices[9],img_indices[10]))
+        fig.suptitle(figure_name[:-4],fontsize=24)
+        plt.savefig(figure_name)
+        #plt.show()
+        plt.close()
