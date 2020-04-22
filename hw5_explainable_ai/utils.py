@@ -21,3 +21,6 @@ def readfile(path, label):
     # if label=false: test
     else:
       return x
+
+def local_normalize(image):
+    return (image - image.min()) / (image.max() - image.min())

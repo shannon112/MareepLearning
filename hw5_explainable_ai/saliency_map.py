@@ -6,13 +6,10 @@ import torch
 import matplotlib.pyplot as plt
 
 from utils import readfile
+from utils import local_normalize
 from model_vgg16_lite import Classifier
 from dataset import ImgDataset
 from dataset import test_transform
-
-# normalize saliency map
-def normalize(image):
-    return (image - image.min()) / (image.max() - image.min())
 
 # comput saliency map 
 def compute_saliency_maps(x, y, model):
@@ -29,7 +26,7 @@ def compute_saliency_maps(x, y, model):
     # saliencies: (batches, channels, height, weight), means that how a small change in x will affect y
     saliencies = x.grad.abs().detach().cpu() # calculate dy/dx
     # each gradient in image is at different scale, self-normalize to make the coloring task easy
-    saliencies = torch.stack([normalize(item) for item in saliencies])
+    saliencies = torch.stack([local_normalize(item) for item in saliencies])
     return saliencies
 
 if __name__ == "__main__":
