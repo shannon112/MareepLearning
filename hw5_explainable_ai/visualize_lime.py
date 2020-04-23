@@ -13,6 +13,8 @@ from model_vgg16_lite import Classifier
 from dataset import ImgDataset
 from dataset import test_transform
 
+torch.manual_seed(0)
+
 def predict(input):
     # input: numpy array, (batches, height, width, channels)
     model.eval()

@@ -12,6 +12,7 @@ from dataset import ImgDataset
 from dataset import test_transform
 
 layer_activations = None
+torch.manual_seed(0)
 
 def filter_explaination(x, model, cnnid, filterid, iteration=100, lr=1):
     # x: our observation of activation

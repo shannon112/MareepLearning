@@ -19,6 +19,8 @@ from model_vgg16_lite import Classifier
 from dataset import ImgDataset
 from dataset import dream_transform
 
+torch.manual_seed(0)
+
 def preprocess_image(pil_im, resize_im=False):
     #ensure or transform incoming image to PIL image
     if type(pil_im) != Image.Image:
