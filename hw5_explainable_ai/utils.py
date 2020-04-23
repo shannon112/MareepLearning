@@ -1,6 +1,7 @@
 import os
 import numpy as np
 import cv2
+from PIL import Image
 
 # read img, resize img and get label from filename
 def readfile(path, label):    
@@ -21,6 +22,17 @@ def readfile(path, label):
     # if label=false: test
     else:
       return x
+
+def dd_readfile(path, img_indices):    
+    image_dir = sorted(os.listdir(path))
+    print(image_dir[:20])
+    print("data len",len(image_dir))
+    x_list = []
+    for idx in img_indices:
+        print(image_dir[idx])
+        x = Image.open(os.path.join(path, image_dir[idx])).convert('RGB')
+        x_list.append(x)
+    return x_list
 
 def local_normalize(image):
     return (image - image.min()) / (image.max() - image.min())

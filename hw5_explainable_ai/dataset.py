@@ -24,6 +24,7 @@ class ImgDataset(Dataset):
             return X, Y
         else:
             return X
+
     # 這個 method 並不是 pytorch dataset 必要，只是方便未來我們想要指定「取哪幾張圖片」出來當作一個 batch 來 visualize
     def getbatch(self, indices):
         images = []
@@ -43,6 +44,13 @@ test_transform = transforms.Compose([
             transforms.ToPILImage(),                                    
             transforms.CenterCrop(112),
             transforms.ToTensor(),
+#            normalize,    # data normalization
+])
+
+# testing without data augmentation
+dream_transform = transforms.Compose([
+            transforms.ToPILImage(),                                    
+            transforms.CenterCrop(112),
 #            normalize,    # data normalization
 ])
 
