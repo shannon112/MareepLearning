@@ -10,6 +10,8 @@ from model import LSTM_Net
 #from model_DNN import LSTM_Net
 from test import testing
 
+torch.manual_seed(0)
+
 # path and filename
 path_prefix = "/home/shannon/Downloads/dataset"
 model_dir = "./model"
