@@ -24,8 +24,6 @@ class ImgDataset(Dataset):
             return X, Y
         else:
             return X
-
-    # 這個 method 並不是 pytorch dataset 必要，只是方便未來我們想要指定「取哪幾張圖片」出來當作一個 batch 來 visualize
     def getbatch(self, indices):
         images = []
         labels = []
