@@ -11,9 +11,9 @@ labels.csv: info of each image
 
 ## Resource
 homework video: https://www.youtube.com/watch?v=etW_kpTYetE&feature=youtu.be  
-examination website: https://reurl.cc/exvR0R 
-library limitation: https://reurl.cc/GVkjWD  
-training data: https://reurl.cc/vD3Yr1
+examination website: https://reurl.cc/exvR0R  
+library limitation: https://reurl.cc/GVkjWD   
+training data: https://reurl.cc/vD3Yr1  
 
 ## Fast Gradient Sign Method (FGSM) 
 
