@@ -1,42 +1,34 @@
-# hw3_classification: Food Classification
+# hw6_adversarial_attack: Adversarial Attack on CNN Based Black Box Image Classification Network
 
-This is a dataset containing 16643 food images grouped in 11 major food categories. The 11 categories are Bread, Dairy product, Dessert, Egg, Fried food, Meat, Noodles/Pasta, Rice, Seafood, Soup, and Vegetable/Fruit. Similar as Food-5K dataset, the whole dataset is divided in three parts: training, validation and evaluation. The naming convention is {ClassID}_{ImageID}.jpg, where ID 0-10 refers to the 11 food categories respectively.   
+Adversarial Attack on CNN Based Black Box Image Classification Network. First, using Fast Gradient Sign Method (FGSM), choosing any proxy network to attack the black box, implement non-targeted FGSM from scratch, tuning your parameter ε, submiting as hw6_fgsm.sh. Second, using any methods you like to attack the model, implementing any methods you prefer from scratch, beating the best performance in hw6_fgsm.sh, beating your classmates with lower L-inf. Norm and higher success rate, submit as hw6_best.sh.  
+Black box possible candidate: VGG-16, VGG-19, ResNet-50, ResNet-101, DenseNet-121, DenseNet-169  
 
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_cnn_img_classi/img/Description.png" width=560/>
+<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack/img/cover.png" width=560/>
 
-Bread, Dairy product, Dessert, Egg, Fried food, Meat, Noodles/Pasta, Rice, Seafood, Soup, and Vegetable/Fruit.  
-
-Training set: 9866  
-Validation set: 3430  
-Testing set: 3347  
-https://reurl.cc/3DLavL  
+image set: 200 * (224*224*3) images, 000.png - 199.png  
+categories.csv: 1000 categories (0 - 999)  
+labels.csv: info of each image  
 
 ## Resource
-homework video: https://www.youtube.com/watch?v=L_ebtE4qk14  
-kaggle: https://www.kaggle.com/c/ml2020spring-hw3/overview  
+homework video: https://www.youtube.com/watch?v=etW_kpTYetE&feature=youtu.be  
+examination website: https://reurl.cc/exvR0R 
 library limitation: https://reurl.cc/GVkjWD  
+training data: https://reurl.cc/vD3Yr1
 
-## Model
-modified by vgg16  
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_cnn_img_classi/img/vgg16lite.png" width=500/>
+## Fast Gradient Sign Method (FGSM) 
+
+## TBD
 
 ## Usage
 ```
-bash  hw3_train.sh <data directory>
-bash  hw3_test.sh  <data directory>  <prediction file>
+timeout 300 bash hw6_fgsm.sh <input dir> <output img dir>
+timeout 300 bash hw6_best.sh <input dir> <output img dir>
+tar -zcvf <compressed file> <all images>
 ```
 
 ## Result
-train on train 0~100ep  
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_cnn_img_classi/img/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112_acc.png" width=420/> <img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_cnn_img_classi/img/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112_loss.png" width=420/>
-
-train on train+val 0~50ep  
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_cnn_img_classi/img/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112_all_acc.png" width=420/> <img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_cnn_img_classi/img/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112_all_loss.png" width=420/>
-
-train on train+val 50~150ep  
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_cnn_img_classi/img/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112_all_acc2.png" width=420/> <img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_cnn_img_classi/img/vgg16_lite_drop_bth48_lr0.002_ep200_deg60_img168_112_all_loss2.png" width=420/>
-
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw3_cnn_img_classi/img/confusion_matrix.png" width=560/>
+Average L-inf. norm between all input images and adversarial images  
+Success rate of your attack  
 
 ## Homework version
-https://github.com/NTU-speech-lab/hw3-shannon112
+https://github.com/NTU-speech-lab/hw6-shannon112
