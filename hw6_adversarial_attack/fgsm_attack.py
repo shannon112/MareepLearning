@@ -8,14 +8,14 @@ from torchvision.utils import save_image
 device = torch.device("cuda")
 
 class Attacker:
-    def __init__(self, img_dir, label):
+    def __init__(self, img_dir, label,mId):
         # proxy network
-        self.model = models.vgg16(pretrained = True)
-        #self.model = models.vgg19(pretrained = True)
-        #self.model = models.resnet50(pretrained = True)
-        #self.model = models.resnet101(pretrained = True)
-        #self.model = models.densenet121(pretrained = True)
-        #self.model = models.densenet169(pretrained = True)
+        if mId==0: self.model = models.vgg16(pretrained = True)
+        elif mId==1: self.model = models.vgg19(pretrained = True)
+        elif mId==2: self.model = models.resnet50(pretrained = True)
+        elif mId==3: self.model = models.resnet101(pretrained = True)
+        elif mId==4: self.model = models.densenet121(pretrained = True)
+        elif mId==5: self.model = models.densenet169(pretrained = True)
 
         # dataset and dataloader
         self.model.to(device)
@@ -26,6 +26,10 @@ class Attacker:
                         transforms.Resize((224, 224), interpolation=3),
                         transforms.ToTensor(),
                         transforms.Normalize(self.mean, self.std, inplace=False)
+                    ])
+        inverseNor = transforms.Compose([ 
+                        transforms.Normalize([0,0,0], [1/0.229, 1/0.224, 1/0.225], inplace=False),
+                        transforms.Normalize([-0.485, -0.456, -0.406], [1,1,1], inplace=False)
                     ])
         self.dataset = Adverdataset(img_dir, label, transform)        
         self.loader = torch.utils.data.DataLoader(self.dataset,batch_size = 1,shuffle = False)
@@ -38,7 +42,6 @@ class Attacker:
         return perturbed_image
     
     def attack(self, epsilon):
-        # 存下一些成功攻擊後的圖片 以便之後顯示
         adv_examples = []
         perturbed_datas = []
         wrong, fail, success = 0, 0, 0
@@ -66,26 +69,9 @@ class Attacker:
             data_grad = data.grad.data
             perturbed_data = self.fgsm_attack(data, epsilon, data_grad)
 
-            # using pre-train model to predict again
-            output = self.model(perturbed_data)
-            final_pred = output.max(1, keepdim=True)[1]
-
+            # export attacked img
             adv_ex = perturbed_data * torch.tensor(self.std, device = device).view(3, 1, 1) + torch.tensor(self.mean, device = device).view(3, 1, 1)
             adv_ex = adv_ex.squeeze().detach().cpu().numpy() 
             perturbed_datas.append(adv_ex)
 
-            # classification right, attacking is fail
-            if final_pred.item() == target.item():
-                fail += 1
-            # classification fail, attacking works
-            else:
-                success += 1
-                #saving
-                if len(adv_examples) < 5:
-                    data_raw = data_raw * torch.tensor(self.std, device = device).view(3, 1, 1) + torch.tensor(self.mean, device = device).view(3, 1, 1)
-                    data_raw = data_raw.squeeze().detach().cpu().numpy()
-                    adv_examples.append( (init_pred.item(), final_pred.item(), data_raw , adv_ex) )
-        final_acc = (fail / (wrong + success + fail))
-        
-        print("Epsilon: {}\tTest Accuracy = {} / {} = {}\n".format(epsilon, fail, len(self.loader), final_acc))
-        return adv_examples, perturbed_datas, final_acc
+        return perturbed_datas

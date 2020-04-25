@@ -30,12 +30,12 @@ if __name__ == '__main__':
     print(len(label_names),label_names[0:5],"...")
 
     # proxy network
-    model = models.vgg16(pretrained = True)
+    #model = models.vgg16(pretrained = True)
     #model = models.vgg19(pretrained = True)
     #model = models.resnet50(pretrained = True)
     #model = models.resnet101(pretrained = True)
     #model = models.densenet121(pretrained = True)
-    #model = models.densenet169(pretrained = True)
+    model = models.densenet169(pretrained = True)
 
     # dataset and dataloader
     device = torch.device("cuda")
@@ -52,23 +52,24 @@ if __name__ == '__main__':
     atk_dataset = Adverdataset(output_dirname, label_ids, transform)        
     ref_loader = torch.utils.data.DataLoader(ref_dataset,batch_size = 1,shuffle = False)
     atk_loader = torch.utils.data.DataLoader(atk_dataset,batch_size = 1,shuffle = False)
-    """
+
+    # about accuracy
     good = 0
     for idx,(data, target) in enumerate(atk_loader):
         atk_data, target = data.to(device), target.to(device)
-        ref_data = ref_dataset[idx][0].to(device)
         
         # using pre-train model to predict
         atk_output = model(atk_data)
         atk_pred = atk_output.max(1, keepdim=True)[1]
 
         # classification fail, do not attack
-        if atk_pred.item() != target.item():
+        if atk_pred.item() == target.item():
             good += 1
 
-    print("acc: ",good/200,good,"200")
-    """
+    print("classification acc: ",good/200,good,"200")
 
+
+    # about difference
     transform = transforms.Compose([                
                     transforms.Resize((224, 224), interpolation=3),
                 ])

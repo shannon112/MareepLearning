@@ -20,32 +20,34 @@ if __name__ == '__main__':
     label_names = pd.read_csv(categories_filename)
     label_names = label_names.loc[:, 'CategoryName'].to_numpy()
     print(len(label_names),label_names[0:5],"...")
-
-    # create Attacker object
-    attacker = Attacker(images_dirname, label_ids)
-    #epsilons = [10, 1, 0.1, 0.01] #  noise
-    epsilons = [0.4] #  noise
-
-    # attacking
-    accuracies, examples = [], []
-    for eps in epsilons:
-        ex, imgs, acc = attacker.attack(eps)
-        accuracies.append(acc)
-        examples.append(ex)
-
-    # saving all attacked images
     image_filenames = [] #000~199
     for i in range(200):
         image_filenames.append("{:03d}".format(i))
-    for img,fn in zip(imgs,image_filenames):
-        img[img > 1] = 1
-        img[img < 0] = 0
-        img = np.round(img * 255)
-        img = np.uint8(img).transpose(1, 2, 0)
-        im = Image.fromarray(img)
-        im.save(os.path.join(output_dirname,str(fn)+".png"))
+
+
+    #epsilons = [10, 1, 0.1, 0.01] #  noise
+    epsilons = [0.4] #  noise 0.4=19.x
+    mIds = range(6)
+
+    # attacking with diff epsilons
+    for eps in epsilons:
+        for mId in mIds:
+            attacker = Attacker(images_dirname, label_ids,mId)
+            imgs = attacker.attack(eps)
+
+            # saving all attacked images
+            for img,fn in zip(imgs,image_filenames):
+                img[img > 1] = 1
+                img[img < 0] = 0
+                img = np.round(img * 255)
+                img = np.uint8(img).transpose(1, 2, 0)
+                im = Image.fromarray(img)
+                dirname = os.path.join(output_dirname,"eps"+str(eps)+"m"+str(mId))
+                if not os.path.exists(dirname): os.makedirs(dirname)
+                im.save(os.path.join(dirname,str(fn)+".png"))
 
     # showing attacking result in different noise tolerance
+    '''
     cnt = 0
     plt.figure(figsize=(30, 8))
     for i in range(len(epsilons)):
@@ -69,3 +71,4 @@ if __name__ == '__main__':
     plt.tight_layout()
     plt.savefig("img/result")
     plt.show()
+    '''
