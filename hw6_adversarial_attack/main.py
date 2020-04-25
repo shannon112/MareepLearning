@@ -11,7 +11,7 @@ if __name__ == '__main__':
     labels_filename = sys.argv[1] #"./data/labels.csv"
     categories_filename = sys.argv[2] #"./data/categories.csv"
     images_dirname = sys.argv[3] #'./data/images'
-    output_dirname = sys.argv[4] #'./data/images'
+    output_dirname = sys.argv[4] #'./submission/images'
 
     # reading labels
     label_ids = pd.read_csv(labels_filename)
@@ -24,7 +24,7 @@ if __name__ == '__main__':
     # create Attacker object
     attacker = Attacker(images_dirname, label_ids)
     #epsilons = [10, 1, 0.1, 0.01] #  noise
-    epsilons = [0.01] #  noise
+    epsilons = [0.4] #  noise
 
     # attacking
     accuracies, examples = [], []
