@@ -66,7 +66,7 @@ class Attacker:
                 continue
             
             # classification right, do the attack
-            loss = F.nll_loss(output, target) #negiative log-likelihood, a.k.a Cross-Entropy cost function
+            loss = F.nll_loss(output, target) #negiative log-likelihood <-> Cross-Entropy (softmax + log + nll_loss)
             self.model.zero_grad()
             loss.backward()
             data_grad = data.grad.data

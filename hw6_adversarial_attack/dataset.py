@@ -8,12 +8,10 @@ class Adverdataset(Dataset):
         self.images_dirname = images_dirname
         self.label_ids = torch.from_numpy(label_ids).long()
         self.transforms = transforms
-        self.image_filenames = [] #000~199
-        for i in range(len(self.label_ids)):
-            self.image_filenames.append("{:03d}".format(i))
+        self.image_filenames = sorted(os.listdir(images_dirname))
 
     def __getitem__(self, idx):
-        img = Image.open(os.path.join(self.images_dirname, self.image_filenames[idx] + '.png'))
+        img = Image.open(os.path.join(self.images_dirname, self.image_filenames[idx]))
         img = self.transforms(img)
         label_ids = self.label_ids[idx]
         return img, label_ids

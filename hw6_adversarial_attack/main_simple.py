@@ -20,9 +20,8 @@ if __name__ == '__main__':
     label_names = pd.read_csv(categories_filename)
     label_names = label_names.loc[:, 'CategoryName'].to_numpy()
     print(len(label_names),label_names[0:5],"...")
-    image_filenames = [] #000~199
-    for i in range(200):
-        image_filenames.append("{:03d}".format(i))
+    image_filenames = sorted(os.listdir(images_dirname))
+    print(len(image_filenames),image_filenames[0:5],"...")
 
     # for hw6 fgsm model
     epsilons = [0.3624] #  with L-inf=19.425
@@ -42,4 +41,4 @@ if __name__ == '__main__':
                 img = np.uint8(img).transpose(1, 2, 0)
                 im = Image.fromarray(img)
                 if not os.path.exists(output_dirname): os.makedirs(output_dirname)
-                im.save(os.path.join(output_dirname,str(fn)+".png"))
+                im.save(os.path.join(output_dirname,str(fn)))

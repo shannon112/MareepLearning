@@ -20,9 +20,8 @@ if __name__ == '__main__':
     label_names = pd.read_csv(categories_filename)
     label_names = label_names.loc[:, 'CategoryName'].to_numpy()
     print(len(label_names),label_names[0:5],"...")
-    image_filenames = [] #000~199
-    for i in range(200):
-        image_filenames.append("{:03d}".format(i))
+    images_dirname = os.path.join(input_dirname,"images")
+    print(len(image_filenames),image_filenames[0:5],"...")
 
     # for finding proper epsilon to minimize L-inf
     epsilons = [0.1875,0.175,0.1625] #  noise
@@ -47,7 +46,7 @@ if __name__ == '__main__':
                 im = Image.fromarray(img)
                 dirname = os.path.join(output_dirname,"eps"+str(eps)+"m"+str(mId))
                 if not os.path.exists(dirname): os.makedirs(dirname)
-                im.save(os.path.join(dirname,str(fn)+".png"))
+                im.save(os.path.join(output_dirname,str(fn)))
 
     # showing attacking result in different noise tolerance
     '''
