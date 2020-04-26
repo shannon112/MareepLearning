@@ -34,8 +34,8 @@ if __name__ == '__main__':
     #model = models.vgg19(pretrained = True)
     #model = models.resnet50(pretrained = True)
     #model = models.resnet101(pretrained = True)
-    #model = models.densenet121(pretrained = True)
-    model = models.densenet169(pretrained = True)
+    model = models.densenet121(pretrained = True)
+    #model = models.densenet169(pretrained = True)
 
     # dataset and dataloader
     device = torch.device("cuda")

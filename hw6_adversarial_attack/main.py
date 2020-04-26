@@ -24,10 +24,13 @@ if __name__ == '__main__':
     for i in range(200):
         image_filenames.append("{:03d}".format(i))
 
+    # for finding proper epsilon to minimize L-inf
+    epsilons = [0.1875,0.175,0.1625] #  noise
+    mIds = [4]
 
-    #epsilons = [10, 1, 0.1, 0.01] #  noise
-    epsilons = [0.4] #  noise 0.4=19.x
-    mIds = range(6)
+    # for finding proper black box to maximize Acc
+    #epsilons = [0.4] #  noise 0.4=19.x
+    #mIds = range(6)
 
     # attacking with diff epsilons
     for eps in epsilons:
