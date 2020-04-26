@@ -8,10 +8,11 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 if __name__ == '__main__':
-    labels_filename = sys.argv[1] #"./data/labels.csv"
-    categories_filename = sys.argv[2] #"./data/categories.csv"
-    images_dirname = sys.argv[3] #'./data/images'
-    output_dirname = sys.argv[4] #'./submission/images'
+    input_dirname = sys.argv[1] #'./submission/images'
+    output_dirname = sys.argv[2] #'~/Download/data'
+    labels_filename = os.path.join(input_dirname,"labels.csv") 
+    categories_filename = os.path.join(input_dirname,"categories.csv") 
+    images_dirname = os.path.join(input_dirname,"images")
 
     # reading labels
     label_ids = pd.read_csv(labels_filename)
