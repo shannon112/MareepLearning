@@ -6,6 +6,9 @@ from dataset import Adverdataset
 from torchvision.utils import save_image
 
 device = torch.device("cuda")
+torch.manual_seed(0)
+torch.cuda.manual_seed_all(0)
+torch.backends.cudnn.deterministic = True
 
 class Attacker:
     def __init__(self, img_dir, label,mId):
