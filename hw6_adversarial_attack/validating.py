@@ -124,11 +124,11 @@ if __name__ == '__main__':
         ),loc='left')
         axs[1][i].plot(range(1000),distribution_examples_ref[i])
         sorted_idx = np.argsort(distribution_examples_ref[i])[-3:][::-1]
-        axs[1][i].set_title("id/score/name\n{} {:.2f} {},\n{} {:.2f} {},\n{} {:.2f} {},\n".format(
+        axs[1][i].set_title("{} {:.2f} {},\n{} {:.2f} {},\n{} {:.2f} {},\n".format(
             sorted_idx[0],distribution_examples_ref[i][sorted_idx[0]],label_names[sorted_idx[0]],
             sorted_idx[1],distribution_examples_ref[i][sorted_idx[1]],label_names[sorted_idx[1]],
             sorted_idx[2],distribution_examples_ref[i][sorted_idx[2]],label_names[sorted_idx[2]]
         ),loc='left')
-    plt.setp(axs[0,:], ylabel='attacked',fontsize=20)
-    plt.setp(axs[1,:], ylabel='reference',fontsize=20)
+    plt.setp(axs[0,:], ylabel='attacked')
+    plt.setp(axs[1,:], ylabel='reference')
     plt.show()
