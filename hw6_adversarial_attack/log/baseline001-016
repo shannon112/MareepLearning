@@ -1,0 +1,56 @@
+(robotpower) ➜  hw6_adversarial_attack git:(master) ✗ python validating_all.py ~/Downloads/data ./submission/
+200 [305 883 243 559 438] ...
+1000 ['tench, Tinca tinca' 'goldfish, Carassius auratus'
+ 'great white shark, white shark, man-eater, man-eating shark, Carcharodon carcharias'
+ 'tiger shark, Galeocerdo cuvieri' 'hammerhead, hammerhead shark'] ...
+16 ['eps0.01m4', 'eps0.02m4', 'eps0.03m4', 'eps0.04m4', 'eps0.05m4'] ...
+validating ./submission/eps0.01m4
+classification acc:  0.215 43 200
+L-inf 0.925
+validating ./submission/eps0.02m4
+classification acc:  0.215 43 200
+L-inf 0.925
+validating ./submission/eps0.03m4
+classification acc:  0.12 24 200
+L-inf 1.85
+validating ./submission/eps0.04m4
+classification acc:  0.12 24 200
+L-inf 1.85
+validating ./submission/eps0.05m4
+classification acc:  0.09 18 200
+L-inf 2.775
+validating ./submission/eps0.06m4
+classification acc:  0.09 18 200
+L-inf 3.7
+validating ./submission/eps0.07m4
+classification acc:  0.095 19 200
+L-inf 3.7
+validating ./submission/eps0.08m4
+classification acc:  0.085 17 200
+L-inf 4.625
+validating ./submission/eps0.09m4
+classification acc:  0.085 17 200
+L-inf 4.625
+validating ./submission/eps0.11m4
+classification acc:  0.085 17 200
+L-inf 5.55
+validating ./submission/eps0.12m4
+classification acc:  0.09 18 200
+L-inf 6.475
+validating ./submission/eps0.13m4
+classification acc:  0.09 18 200
+L-inf 7.4
+validating ./submission/eps0.14m4
+classification acc:  0.09 18 200
+L-inf 7.4
+validating ./submission/eps0.15m4
+classification acc:  0.085 17 200
+L-inf 8.325
+validating ./submission/eps0.16m4
+classification acc:  0.085 17 200
+L-inf 8.325
+validating ./submission/eps0.1m4
+classification acc:  0.085 17 200
+L-inf 5.55
+[43, 43, 24, 24, 18, 18, 19, 17, 17, 17, 18, 18, 18, 17, 17, 17]
+[0.925, 0.925, 1.85, 1.85, 2.775, 3.7, 3.7, 4.625, 4.625, 5.55, 6.475, 7.4, 7.4, 8.325, 8.325, 5.55]

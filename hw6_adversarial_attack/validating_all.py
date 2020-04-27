@@ -48,8 +48,12 @@ if __name__ == '__main__':
     # main valid loop
     acc_list = []
     diff_list = []
+    epsilon_list = []
     for dirname in outputs_dirname:
         output_dirname = os.path.join(outputdir_dirname,dirname)
+        print("validating",output_dirname)
+        epsilon = dirname[3:-2]
+        epsilon_list.append(epsilon)
 
         # about accuracy
         transform = transforms.Compose([                
@@ -86,8 +90,8 @@ if __name__ == '__main__':
     print(acc_list)
     print(diff_list)
     fig = plt.figure()
-    plt.bar(X , acc_list, color = 'b', align = "edge", width = 0.25,label="acc")
-    plt.bar(X , diff_list, color = 'g', align = "edge", width = -0.25,label="diff")
+    plt.bar(epsilon_list , acc_list, color = 'b', align = "edge", width = 0.25,label="acc")
+    plt.bar(epsilon_list , diff_list, color = 'g', align = "edge", width = -0.25,label="diff")
     plt.xlabel("epsilon")
     plt.ylabel("correctly classified img / L-inf")
     plt.title("fgsm attack with densenet121 as proxy model")

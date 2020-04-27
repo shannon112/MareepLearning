@@ -1,0 +1,40 @@
+(robotpower) ➜  hw6_adversarial_attack git:(master) ✗ python validating_all.py ~/Downloads/data ./submission/
+200 [305 883 243 559 438] ...
+1000 ['tench, Tinca tinca' 'goldfish, Carassius auratus'
+ 'great white shark, white shark, man-eater, man-eating shark, Carcharodon carcharias'
+ 'tiger shark, Galeocerdo cuvieri' 'hammerhead, hammerhead shark'] ...
+11 ['eps0.01m4', 'eps0.1m4', 'eps0.2m4', 'eps0.3m4', 'eps0.4m4'] ...
+validating ./submission/eps0.01m4
+classification acc:  0.215 43 200
+L-inf 0.925
+validating ./submission/eps0.1m4
+classification acc:  0.085 17 200
+L-inf 5.55
+validating ./submission/eps0.2m4
+classification acc:  0.095 19 200
+L-inf 11.1
+validating ./submission/eps0.3m4
+classification acc:  0.07 14 200
+L-inf 16.65
+validating ./submission/eps0.4m4
+classification acc:  0.065 13 200
+L-inf 21.275
+validating ./submission/eps0.5m4
+classification acc:  0.065 13 200
+L-inf 26.825
+validating ./submission/eps0.6m4
+classification acc:  0.05 10 200
+L-inf 32.375
+validating ./submission/eps0.7m4
+classification acc:  0.05 10 200
+L-inf 37.925
+validating ./submission/eps0.9m4
+classification acc:  0.025 5 200
+L-inf 49.025
+validating ./submission/eps10m4
+classification acc:  0.0 0 200
+L-inf 235.49
+validating ./submission/eps1m4
+classification acc:  0.02 4 200
+L-inf 53.65
+[43, 17, 19, 14, 13, 13, 10, 10, 5, 0, 4]

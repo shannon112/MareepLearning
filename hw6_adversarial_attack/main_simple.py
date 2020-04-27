@@ -9,6 +9,9 @@ from PIL import Image
 if __name__ == '__main__':
     input_dirname = sys.argv[1] #'./submission/images'
     output_dirname = sys.argv[2] #'~/Download/data'
+    epsilon = float(sys.argv[3])
+    epsW  = float(sys.argv[4])
+
     labels_filename = os.path.join(input_dirname,"labels.csv") 
     categories_filename = os.path.join(input_dirname,"categories.csv") 
     images_dirname = os.path.join(input_dirname,"images")
@@ -24,14 +27,14 @@ if __name__ == '__main__':
     print(len(image_filenames),image_filenames[0:5],"...")
 
     # for hw6 fgsm model
-    epsilons = [0.3624] #  with L-inf=19.425
+    epsilons = [epsilon] #  with L-inf=19.425
     mIds = [4] # densenet121
 
     # attacking with diff epsilons
     for eps in epsilons:
         for mId in mIds:
             attacker = Attacker(images_dirname, label_ids,mId)
-            imgs = attacker.attack(eps)
+            imgs = attacker.attack(eps,epsW)
 
             # saving all attacked images
             for img,fn in zip(imgs,image_filenames):

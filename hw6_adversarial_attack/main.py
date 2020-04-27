@@ -21,12 +21,14 @@ if __name__ == '__main__':
     label_names = pd.read_csv(categories_filename)
     label_names = label_names.loc[:, 'CategoryName'].to_numpy()
     print(len(label_names),label_names[0:5],"...")
-    images_dirname = os.path.join(input_dirname,"images")
+    image_filenames = sorted(os.listdir(images_dirname))
     print(len(image_filenames),image_filenames[0:5],"...")
 
     # for finding proper epsilon to minimize L-inf
-    epsilons = [0.1875,0.175,0.1625] #  noise
+    #epsilons = [0.01, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6,0.7,0.7,0.9,1, 10]
+    epsilons = [0.01, 0.02,0.03,0.04,0.05, 0.06,0.07,0.08,0.09,0.10,0.11,0.12,0.13,0.14,0.15,0.16] #  noise
     mIds = [4]
+    epsW = 2.0
 
     # for finding proper black box to maximize Acc
     #epsilons = [0.4] #  noise 0.4=19.x
@@ -36,7 +38,7 @@ if __name__ == '__main__':
     for eps in epsilons:
         for mId in mIds:
             attacker = Attacker(images_dirname, label_ids,mId)
-            imgs = attacker.attack(eps)
+            imgs = attacker.attack(eps,epsW)
 
             # saving all attacked images
             for img,fn in zip(imgs,image_filenames):
@@ -47,7 +49,8 @@ if __name__ == '__main__':
                 im = Image.fromarray(img)
                 dirname = os.path.join(output_dirname,"eps"+str(eps)+"m"+str(mId))
                 if not os.path.exists(dirname): os.makedirs(dirname)
-                im.save(os.path.join(output_dirname,str(fn)))
+                im.save(os.path.join(dirname,str(fn)))
+            print("finished",dirname)
 
     # showing attacking result in different noise tolerance
     '''

@@ -37,14 +37,16 @@ class Attacker:
         self.dataset = Adverdataset(img_dir, label, transform)        
         self.loader = torch.utils.data.DataLoader(self.dataset,batch_size = 1,shuffle = False)
 
-    def fgsm_attack(self, image, epsilon, data_grad):
+    def fgsm_attack(self, image, epsilon, data_grad, epsW):
         # find gradient direction
         sign_data_grad = data_grad.sign()
         # add noise
-        perturbed_image = image + epsilon * sign_data_grad
+        sign_data_grad[sign_data_grad==-1] = -1*epsilon*1.0
+        sign_data_grad[sign_data_grad==1] = 1*epsilon*epsW
+        perturbed_image = image + sign_data_grad#epsilon * sign_data_grad
         return perturbed_image
     
-    def attack(self, epsilon):
+    def attack(self, epsilon, epsW):
         adv_examples = []
         perturbed_datas = []
         wrong, fail, success = 0, 0, 0
@@ -70,7 +72,7 @@ class Attacker:
             self.model.zero_grad()
             loss.backward()
             data_grad = data.grad.data
-            perturbed_data = self.fgsm_attack(data, epsilon, data_grad)
+            perturbed_data = self.fgsm_attack(data, epsilon, data_grad, epsW)
 
             # export attacked img
             adv_ex = perturbed_data * torch.tensor(self.std, device = device).view(3, 1, 1) + torch.tensor(self.mean, device = device).view(3, 1, 1)
