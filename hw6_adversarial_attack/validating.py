@@ -132,21 +132,3 @@ if __name__ == '__main__':
     plt.setp(axs[0,:], ylabel='attacked',fontsize=20)
     plt.setp(axs[1,:], ylabel='reference',fontsize=20)
     plt.show()
-
-    """
-    1 pred fail
-    7 pred fail
-    8 pred fail
-    33 pred fail
-    38 pred fail
-    46 pred fail
-    49 pred fail
-    53 pred fail
-    83 pred fail
-    93 pred fail
-    101 pred fail
-    106 pred fail
-    122 pred fail
-    126 pred fail
-    137 pred fail
-    """
