@@ -53,4 +53,5 @@ if __name__ == '__main__':
                 axs[idx][2].set_title("med"+str(window_size)+"x"+str(window_size))
                 axs[idx][3].imshow(img_bil)
                 axs[idx][3].set_title("bil"+str(window_size)+"x"+str(window_size)+" "+str(sigmas[idx]))
+    fig.suptitle("defense: {}".format(output_dirname),fontsize=24)
     plt.show()
