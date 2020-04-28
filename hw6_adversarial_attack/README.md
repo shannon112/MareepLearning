@@ -2,9 +2,6 @@
 
 Adversarial Attack on CNN Based Black Box Image Classification Network. First, using Fast Gradient Sign Method (FGSM), choosing any proxy network to attack the black box, implement non-targeted FGSM from scratch, tuning your parameter ε, submiting as hw6_fgsm.sh. Second, using any methods you like to attack the model, implementing any methods you prefer from scratch, beating the best performance in hw6_fgsm.sh, beating your classmates with lower L-inf. Norm and higher success rate, submit as hw6_best.sh.  
 Black box possible candidate: VGG-16, VGG-19, ResNet-50, ResNet-101, DenseNet-121, DenseNet-169  
-
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack/img/Screenshot%20from%202020-04-24%2018-31-53.png" width=840/>
-
 image set: 200 * (224*224*3) images, 000.png - 199.png  
 categories.csv: 1000 categories (0 - 999)  
 labels.csv: info of each image  
@@ -15,9 +12,16 @@ examination website: https://reurl.cc/exvR0R
 library limitation: https://reurl.cc/GVkjWD   
 training data: https://reurl.cc/vD3Yr1  
 
-## Fast Gradient Sign Method (FGSM) 
+## Fast Gradient Sign Method (FGSM) Attack
+<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack/img/img_compare.png" width=840/>
+<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack/img/distribution_compare.png" width=840/>
 
-## TBD
+## Passive Defense by Smoothing
+<p align="center">
+<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack/img/defensetable.png" width=640 />
+</p>
+<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack/img/atked_img_blur.png" width=840 />
+
 
 ## Usage
 ```
