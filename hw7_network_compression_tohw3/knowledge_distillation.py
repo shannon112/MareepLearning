@@ -6,6 +6,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 import torchvision.models as models
+from torch.utils.data import DataLoader, Dataset
 
 from model_StudentNet import StudentNet
 from dataset import ImgDataset
@@ -39,8 +40,7 @@ def loss_fn_kd(outputs, labels, teacher_outputs, T=20, alpha=0.5):
     # standard Cross Entropy
     hard_loss = F.cross_entropy(outputs, labels) * (1. - alpha)
     # KL Divergence of soft_label/T
-    soft_loss = nn.KLDivLoss(reduction='batchmean')
-        (F.log_softmax(outputs/T, dim=1),  F.softmax(teacher_outputs/T, dim=1)) * (alpha * T * T)
+    soft_loss = nn.KLDivLoss(reduction='batchmean')(F.log_softmax(outputs/T, dim=1),  F.softmax(teacher_outputs/T, dim=1)) * (alpha * T * T)
     return hard_loss + soft_loss
 
 def run_epoch(dataloader, update=True, alpha=0.5):

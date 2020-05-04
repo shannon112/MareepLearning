@@ -1,3 +1,6 @@
+import os
+import numpy as np
+import cv2
 import torch
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader, Dataset
@@ -29,11 +32,13 @@ normalize = transforms.Normalize(mean=[0.3339, 0.4526, 0.5676],
                                  std=[0.2298, 0.2322, 0.2206])
 
 testTransform = transforms.Compose([
+    transforms.ToPILImage(),
     transforms.CenterCrop(256),
     transforms.ToTensor(),
 ])
 
 trainTransform = transforms.Compose([
+    transforms.ToPILImage(),
     transforms.RandomCrop(256, pad_if_needed=True, padding_mode='symmetric'),
     transforms.RandomHorizontalFlip(),
     transforms.RandomRotation(15),
@@ -42,7 +47,7 @@ trainTransform = transforms.Compose([
 
 # read img, resize img and get label from filename
 def readfile(path, label):    
-    img_size = 128
+    img_size = 512
     image_dir = sorted(os.listdir(path))
     x = np.zeros((len(image_dir), img_size, img_size, 3), dtype=np.uint8)
     y = np.zeros((len(image_dir)), dtype=np.uint8)
