@@ -26,7 +26,7 @@ teacher_net.load_state_dict(torch.load('./model/teacher_resnet18.bin'))
 # student based on Depthwise & Pointwise Convolution Layer instead of regular CNN
 student_net = StudentNet(base=16).cuda() 
 print(student_net)
-student_net.load_state_dict(torch.load('./model/student_model_202ep.bin'))
+#student_net.load_state_dict(torch.load('./model/student_model_202ep.bin'))
 #student_net.load_state_dict(torch.load('./model/student_custom_small.bin'))
 optimizer = optim.Adam(student_net.parameters(), lr=2*1e-3)
 

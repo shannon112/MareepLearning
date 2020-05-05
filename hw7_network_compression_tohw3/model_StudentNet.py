@@ -20,7 +20,7 @@ class StudentNet(nn.Module):
         super(StudentNet, self).__init__()
 
         # bandwidth: each Layer's ch
-        multiplier = [1, 2, 4, 8, 16, 16, 16, 16]
+        multiplier = [1, 2, 4, 8, 8, 8, 16, 16, 16]
         bandwidth = [ base * m for m in multiplier]
 
         # Only pruning the Layer after 3
@@ -65,9 +65,7 @@ class StudentNet(nn.Module):
                 nn.BatchNorm2d(bandwidth[2]),
                 nn.ReLU6(),
                 nn.Conv2d(bandwidth[2], bandwidth[3], 1),
-                nn.MaxPool2d(2, 2, 0),
             ),
-            # 16
             nn.Sequential(
                 nn.Conv2d(bandwidth[3], bandwidth[3], 3, 1, 1, groups=bandwidth[3]),
                 nn.BatchNorm2d(bandwidth[3]),
@@ -78,13 +76,15 @@ class StudentNet(nn.Module):
                 nn.Conv2d(bandwidth[4], bandwidth[4], 3, 1, 1, groups=bandwidth[4]),
                 nn.BatchNorm2d(bandwidth[4]),
                 nn.ReLU6(),
-                nn.Conv2d(bandwidth[5], bandwidth[5], 1),
+                nn.Conv2d(bandwidth[4], bandwidth[5], 1),
+                nn.MaxPool2d(2, 2, 0),
             ),
+            # 16
             nn.Sequential(
                 nn.Conv2d(bandwidth[5], bandwidth[5], 3, 1, 1, groups=bandwidth[5]),
                 nn.BatchNorm2d(bandwidth[5]),
                 nn.ReLU6(),
-                nn.Conv2d(bandwidth[6], bandwidth[6], 1),
+                nn.Conv2d(bandwidth[5], bandwidth[6], 1),
             ),
             nn.Sequential(
                 nn.Conv2d(bandwidth[6], bandwidth[6], 3, 1, 1, groups=bandwidth[6]),
@@ -92,16 +92,26 @@ class StudentNet(nn.Module):
                 nn.ReLU6(),
                 nn.Conv2d(bandwidth[6], bandwidth[7], 1),
             ),
+            nn.Sequential(
+                nn.Conv2d(bandwidth[7], bandwidth[7], 3, 1, 1, groups=bandwidth[7]),
+                nn.BatchNorm2d(bandwidth[7]),
+                nn.ReLU6(),
+                nn.Conv2d(bandwidth[7], bandwidth[8], 1),
+            ),
 
             # Global Average Pooling
             # if images size are inconsistent, it can be uniform to the same, so that it can be used to FC
             nn.AdaptiveAvgPool2d((1, 1)),
         )
         self.fc = nn.Sequential(
-            nn.Linear(bandwidth[7], 11),
+            nn.Linear(bandwidth[8], 11),
         )
 
     def forward(self, x):
         out = self.cnn(x)
         out = out.view(out.size()[0], -1)
         return self.fc(out)
+
+if __name__ == "__main__":
+    student_net = StudentNet(base=16).cuda() 
+    print(student_net)
