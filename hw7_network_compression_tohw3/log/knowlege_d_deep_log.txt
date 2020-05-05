@@ -278,3 +278,41 @@ epoch   4: train loss: 2.9347, acc 0.8950 valid loss: 3.6298, acc 0.8286
 epoch   5: train loss: 2.9152, acc 0.8919 valid loss: 3.6029, acc 0.8268
 epoch   6: train loss: 2.8724, acc 0.8974 valid loss: 3.7105, acc 0.8321
 epoch   7: train loss: 2.8634, acc 0.9009 valid loss: 3.7098, acc 0.8254
+
+Adam lr = 0.5*10e-3
+epoch   0: train loss: 2.7907, acc 0.8962 valid loss: 3.4393, acc 0.8408
+epoch   1: train loss: 2.7188, acc 0.9001 valid loss: 3.3400, acc 0.8429
+epoch   2: train loss: 2.7670, acc 0.8999 valid loss: 3.5267, acc 0.8347
+epoch   3: train loss: 2.7137, acc 0.9044 valid loss: 3.5187, acc 0.8370
+epoch   4: train loss: 2.7590, acc 0.8997 valid loss: 3.6329, acc 0.8306
+epoch   5: train loss: 2.7222, acc 0.8997 valid loss: 3.4632, acc 0.8402
+epoch   6: train loss: 2.7142, acc 0.9028 valid loss: 3.5100, acc 0.8332
+epoch   7: train loss: 2.7078, acc 0.9054 valid loss: 3.4253, acc 0.8350
+epoch   8: train loss: 2.7314, acc 0.9014 valid loss: 3.6450, acc 0.8426
+epoch   9: train loss: 2.6928, acc 0.9083 valid loss: 3.5034, acc 0.8327
+epoch  10: train loss: 2.7554, acc 0.9028 valid loss: 3.7477, acc 0.8347
+epoch  11: train loss: 2.7290, acc 0.9082 valid loss: 3.6349, acc 0.8353
+epoch  12: train loss: 2.7129, acc 0.9062 valid loss: 3.5884, acc 0.8405
+epoch  13: train loss: 2.6998, acc 0.9083 valid loss: 3.4199, acc 0.8341
+epoch  14: train loss: 2.6970, acc 0.9075 valid loss: 3.4215, acc 0.8324
+epoch  15: train loss: 2.6680, acc 0.9077 valid loss: 3.5087, acc 0.8408
+epoch  16: train loss: 2.6952, acc 0.9075 valid loss: 3.5254, acc 0.8347
+epoch  17: train loss: 2.6817, acc 0.9024 valid loss: 3.5374, acc 0.8402
+epoch  18: train loss: 2.6701, acc 0.9101 valid loss: 3.5297, acc 0.8399
+epoch  19: train loss: 2.6821, acc 0.9054 valid loss: 3.4843, acc 0.8362
+
+Adam lr = 0.25*10e-3 from 0.5
+epoch   0: train loss: 2.7185, acc 0.9040 valid loss: 3.4234, acc 0.8426
+epoch   1: train loss: 2.6382, acc 0.9072 valid loss: 3.3586, acc 0.8388
+epoch   2: train loss: 2.7196, acc 0.9018 valid loss: 3.3697, acc 0.8367
+epoch   3: train loss: 2.6594, acc 0.9062 valid loss: 3.3801, acc 0.8399
+epoch   4: train loss: 2.7008, acc 0.9058 valid loss: 3.4407, acc 0.8391
+epoch   5: train loss: 2.6951, acc 0.9072 valid loss: 3.3539, acc 0.8405
+epoch   6: train loss: 2.6347, acc 0.9087 valid loss: 3.4014, acc 0.8382
+
+Adam lr = 0.1*10e-3 from 0.5
+epoch   0: train loss: 2.7221, acc 0.9020 valid loss: 3.3697, acc 0.8414
+epoch   1: train loss: 2.6731, acc 0.9050 valid loss: 3.3750, acc 0.8411
+epoch   2: train loss: 2.6509, acc 0.9063 valid loss: 3.4660, acc 0.8364
+epoch   3: train loss: 2.6392, acc 0.9047 valid loss: 3.4598, acc 0.8399
+epoch   4: train loss: 2.6591, acc 0.9040 valid loss: 3.4041, acc 0.8359
