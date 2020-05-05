@@ -200,3 +200,21 @@ epoch 197: train loss: 2.9827, acc 0.8907 valid loss: 3.8591, acc 0.8111
 epoch 198: train loss: 2.9295, acc 0.8972 valid loss: 4.2059, acc 0.7959
 epoch 199: train loss: 2.9711, acc 0.8956 valid loss: 4.2849, acc 0.8067
 
+
+(robotpower) ➜  hw7_network_compression_tohw3 git:(master) ✗ python knowledge_distillation.py ~/Downloads/food-11
+Reading data
+loading training 9866 32
+loading validation 3430 32
+epoch   0: train loss: 3.0797, acc 0.8898 valid loss: 4.2637, acc 0.7950
+epoch   1: train loss: 3.0237, acc 0.8895 valid loss: 4.2537, acc 0.8047
+epoch   2: train loss: 3.0146, acc 0.8957 valid loss: 3.7787, acc 0.8207
+epoch   3: train loss: 3.0053, acc 0.8940 valid loss: 4.0437, acc 0.8131
+epoch   4: train loss: 3.0193, acc 0.8934 valid loss: 4.1868, acc 0.8064
+epoch   5: train loss: 3.0240, acc 0.8924 valid loss: 4.0279, acc 0.8067
+epoch   6: train loss: 3.0094, acc 0.8937 valid loss: 3.9703, acc 0.8082
+epoch   7: train loss: 3.0185, acc 0.8926 valid loss: 3.9917, acc 0.8146
+epoch   8: train loss: 2.9725, acc 0.8934 valid loss: 4.0630, acc 0.8000
+epoch   9: train loss: 2.9923, acc 0.8910 valid loss: 3.9595, acc 0.8122
+epoch  10: train loss: 3.0101, acc 0.8929 valid loss: 4.1836, acc 0.8009
+epoch  11: train loss: 2.9560, acc 0.8879 valid loss: 3.7648, acc 0.8152
+epoch  12: train loss: 2.9673, acc 0.8902 valid loss: 4.1118, acc 0.8079
