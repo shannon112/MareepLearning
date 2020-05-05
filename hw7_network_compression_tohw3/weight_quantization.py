@@ -4,40 +4,24 @@ import numpy as np
 import pickle
 
 def encode16(params, fname):
-    '''將params壓縮成16-bit後輸出到fname。
-
-    Args:
-      params: model的state_dict。
-      fname: 壓縮後輸出的檔名。
-    '''
-
     custom_dict = {}
     for (name, param) in params.items():
         param = np.float64(param.cpu().numpy())
-        # 有些東西不屬於ndarray，只是一個數字，這個時候我們就不用壓縮。
+        # there are something not ndarray，just a digit do not need to compress
         if type(param) == np.ndarray:
             custom_dict[name] = np.float16(param)
         else:
             custom_dict[name] = param
-
     pickle.dump(custom_dict, open(fname, 'wb'))
 
 
 def decode16(fname):
-    '''從fname讀取各個params，將其從16-bit還原回torch.tensor後存進state_dict內。
-
-    Args:
-      fname: 壓縮後的檔名。
-    '''
-
     params = pickle.load(open(fname, 'rb'))
     custom_dict = {}
     for (name, param) in params.items():
         param = torch.tensor(param)
         custom_dict[name] = param
-
     return custom_dict
-
 
 def encode8(params, fname):
     custom_dict = {}
@@ -51,9 +35,7 @@ def encode8(params, fname):
             custom_dict[name] = (min_val, max_val, param)
         else:
             custom_dict[name] = param
-
     pickle.dump(custom_dict, open(fname, 'wb'))
-
 
 def decode8(fname):
     params = pickle.load(open(fname, 'rb'))
@@ -68,15 +50,18 @@ def decode8(fname):
             param = torch.tensor(param)
 
         custom_dict[name] = param
-
     return custom_dict
 
 if __name__=="__main__":
-    print("original cost: {} bytes.".format(os.stat('model/student_custom_small.bin').st_size))
-    params = torch.load('model/student_custom_small.bin')
+    model_filename = sys.argv[1]
+    output_dirname = sys.argv[2]
+    print("original cost: {} bytes.".format(os.stat(model_filename).st_size))
+    params = torch.load(model_filename)
 
-    encode16(params, '16_bit_model.pkl')
-    print("16-bit cost: {} bytes.".format(os.stat('model/16_bit_model.pkl').st_size))
+    model_filename_16 = os.path.join(output_dirname,'16_bit_model.pkl')
+    encode16(params, os.path.join(model_filename_16))
+    print("16-bit cost: {} bytes.".format(os.stat(model_filename_16).st_size))
 
-    encode8(params, '8_bit_model.pkl')
-    print("8-bit cost: {} bytes.".format(os.stat('model/8_bit_model.pkl').st_size))
+    model_filename_8 = os.path.join(output_dirname,'8_bit_model.pkl')
+    encode8(params, os.path.join(model_filename_8))
+    print("8-bit cost: {} bytes.".format(os.stat(model_filename_8).st_size))
