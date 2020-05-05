@@ -8,10 +8,8 @@ from torch.utils.data import DataLoader, Dataset
 torch.manual_seed(0)
 
 import re
-import torch
 from glob import glob
 from PIL import Image
-import torchvision.transforms as transforms
 
 class MyDataset(torch.utils.data.Dataset):
     def __init__(self, folderName, transform=None):
@@ -60,6 +58,7 @@ def get_dataloader(workspace_dir, mode='training', batch_size=32):
     assert mode in ['training', 'testing', 'validation']
     dataset = MyDataset(os.path.join(workspace_dir,mode),
         transform=trainTransform if mode == 'training' else testTransform)
+    print("loading",mode,len(dataset),batch_size)
     dataloader = torch.utils.data.DataLoader(
         dataset,
         batch_size=batch_size,

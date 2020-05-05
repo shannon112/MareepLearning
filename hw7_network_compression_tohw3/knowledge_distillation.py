@@ -6,34 +6,31 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 import torchvision.models as models
-from torch.utils.data import DataLoader, Dataset
 
+from dataset import MyDataset
+from dataset import get_dataloader
 from model_StudentNet import StudentNet
-from dataset import ImgDataset
-from dataset import testTransform
-from dataset import trainTransform
-from dataset import readfile
 
 torch.manual_seed(0)
+
+import re
+from glob import glob
+from PIL import Image
+
 workspace_dir = sys.argv[1] #'/home/shannon/Downloads/food-11'
 
 print("Reading data")
-batch_size = 48
-train_x, train_y = readfile(os.path.join(workspace_dir, "training"), True)
-val_x, val_y = readfile(os.path.join(workspace_dir, "validation"), True)
-train_set = ImgDataset(train_x, train_y, trainTransform)
-val_set = ImgDataset(val_x, val_y, testTransform)
-train_dataloader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
-valid_dataloader = DataLoader(val_set, batch_size=batch_size, shuffle=False)
-print("Size of training data = {}".format(len(train_x)))
-print("Size of training data = {}".format(len(val_x)))
+train_dataloader = get_dataloader(workspace_dir,'training', batch_size=32)
+valid_dataloader = get_dataloader(workspace_dir,'validation', batch_size=32)
 
 # teacher CNN model with acc=88.4, size=47.2MB
 teacher_net = models.resnet18(pretrained=False, num_classes=11).cuda()
-teacher_net.load_state_dict(torch.load('./teacher_resnet18.bin'))
+teacher_net.load_state_dict(torch.load('./model/teacher_resnet18.bin'))
 
 # student based on Depthwise & Pointwise Convolution Layer instead of regular CNN
 student_net = StudentNet(base=16).cuda() 
+student_net.load_state_dict(torch.load('./model/student_model_200ep_512.bin'))
+#student_net.load_state_dict(torch.load('./model/student_custom_small.bin'))
 optimizer = optim.Adam(student_net.parameters(), lr=1e-3)
 
 def loss_fn_kd(outputs, labels, teacher_outputs, T=20, alpha=0.5):
