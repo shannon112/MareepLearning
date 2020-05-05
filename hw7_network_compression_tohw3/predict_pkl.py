@@ -14,7 +14,7 @@ output_filename = sys.argv[2]
 model_filename = sys.argv[3]
 
 # get dataloader
-test_loader = get_dataloader(workspace_dir,'validation', batch_size=32)
+test_loader = get_dataloader(workspace_dir,'testing', batch_size=32)
 
 # testing configuration
 model_dict = decode8(model_filename)
