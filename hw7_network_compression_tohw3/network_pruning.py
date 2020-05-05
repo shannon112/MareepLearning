@@ -9,21 +9,21 @@ import torch.nn.functional as F
 import torchvision.models as models
 from torch.utils.data import DataLoader, Dataset
 
+from dataset import MyDataset
+from dataset import get_dataloader
 from model_StudentNet import StudentNet
-from dataset import ImgDataset
-from dataset import testTransform
-from dataset import trainTransform
-from dataset import readfile
 
+workspace_dir = sys.argv[1] #'/home/shannon/Downloads/food-11'
+model_filename = sys.argv[2]
 
 def network_slimming(old_model, new_model):
     params = old_model.state_dict()
     new_params = new_model.state_dict()
     
-    # selected_idx: 每一層所選擇的neuron index
+    # selected_idx: choosed neuron index in each layer
     selected_idx = []
     # 我們總共有7層CNN，因此逐一抓取選擇的neuron index們。
-    for i in range(8):
+    for i in range(9):
         # 根據上表，我們要抓的gamma係數在cnn.{i}.1.weight內。
         importance = params[f'cnn.{i}.1.weight']
         # 抓取總共要篩選幾個neuron。
@@ -61,21 +61,11 @@ def network_slimming(old_model, new_model):
     new_model.load_state_dict(new_params)
     return new_model
 
-workspace_dir = sys.argv[1] #'/home/shannon/Downloads/food-11'
-
-print("Reading data")
-batch_size = 48
-train_x, train_y = readfile(os.path.join(workspace_dir, "training"), True)
-val_x, val_y = readfile(os.path.join(workspace_dir, "validation"), True)
-train_set = ImgDataset(train_x, train_y, trainTransform)
-val_set = ImgDataset(val_x, val_y, testTransform)
-train_dataloader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
-valid_dataloader = DataLoader(val_set, batch_size=batch_size, shuffle=False)
-print("Size of training data = {}".format(len(train_x)))
-print("Size of training data = {}".format(len(val_x)))
+valid_dataloader = get_dataloader(workspace_dir,'validation', batch_size=4)
+train_dataloader = get_dataloader(workspace_dir,'training', batch_size=4)
 
 net = StudentNet().cuda()
-net.load_state_dict(torch.load('student_custom_small.bin'))
+net.load_state_dict(torch.load(model_filename))
 
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(net.parameters(), lr=1e-3)
@@ -83,40 +73,37 @@ optimizer = optim.Adam(net.parameters(), lr=1e-3)
 def run_epoch(dataloader, update=True, alpha=0.5):
     total_num, total_hit, total_loss = 0, 0, 0
     for now_step, batch_data in enumerate(dataloader):
-        # 清空 optimizer
         optimizer.zero_grad()
-        # 處理 input
         inputs, labels = batch_data
         inputs = inputs.cuda()
         labels = labels.cuda()
-  
         logits = net(inputs)
         loss = criterion(logits, labels)
         if update:
             loss.backward()
             optimizer.step()
-
         total_hit += torch.sum(torch.argmax(logits, dim=1) == labels).item()
         total_num += len(inputs)
         total_loss += loss.item() * len(inputs)
-
     return total_loss / total_num, total_hit / total_num
 
+# main training loop
+prunning_times = 5
+prunning_percentage = 0.95
 now_width_mult = 1
-for i in range(5):
-    now_width_mult *= 0.95
+for i in range(prunning_times):
+    now_width_mult *= prunning_percentage
     new_net = StudentNet(width_mult=now_width_mult).cuda()
     params = net.state_dict()
     net = network_slimming(net, new_net)
     now_best_acc = 0
-    for epoch in range(5):
+    for epoch in range(5): # each prunning train 5 epoch
         net.train()
         train_loss, train_acc = run_epoch(train_dataloader, update=True)
         net.eval()
         valid_loss, valid_acc = run_epoch(valid_dataloader, update=False)
-        # 在每個width_mult的情況下，存下最好的model。
         if valid_acc > now_best_acc:
             now_best_acc = valid_acc
-            torch.save(net.state_dict(), './student_custom_small_pruned.bin')
+            torch.save(net.state_dict(), './model/student_custom_small_pruned.bin')
         print('rate {:6.4f} epoch {:>3d}: train loss: {:6.4f}, acc {:6.4f} valid loss: {:6.4f}, acc {:6.4f}'.format(now_width_mult, 
             epoch, train_loss, train_acc, valid_loss, valid_acc))

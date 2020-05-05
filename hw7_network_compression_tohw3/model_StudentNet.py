@@ -24,7 +24,7 @@ class StudentNet(nn.Module):
         bandwidth = [ base * m for m in multiplier]
 
         # Only pruning the Layer after 3
-        for i in range(3, 7):
+        for i in range(3, 8):
             bandwidth[i] = int(bandwidth[i] * width_mult)
 
         self.cnn = nn.Sequential(
