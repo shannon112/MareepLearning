@@ -15,7 +15,6 @@ input_filename = sys.argv[2]
 # get dataloader
 test_loader = get_dataloader(workspace_dir,'validation', batch_size=1)
 
-# predict
 ref = []
 with torch.no_grad():
     for i, data in enumerate(test_loader):
@@ -24,7 +23,6 @@ with torch.no_grad():
             ref.append(int(label.item()))
 
 prediction = []
-# Write the result to csv file
 with open(input_filename, 'r') as f:
     f.readline()
     for i, line in  enumerate(f.readlines()):
@@ -34,3 +32,12 @@ with open(input_filename, 'r') as f:
 print(len(prediction),len(ref))
 print(np.sum(np.array(prediction)==np.array(ref)))
 print(np.sum(np.array(prediction)==np.array(ref))/len(prediction))
+
+"""
+# Write the GT to csv file
+with open("GT.csv", 'w') as f:
+    f.write('Id,label\n')
+    for i, y in  enumerate(ref):
+        f.write('{},{}\n'.format(i, y))
+print("saved into","GT.csv")
+"""
