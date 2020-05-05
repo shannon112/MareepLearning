@@ -6,52 +6,52 @@ import torch
 
 class StudentNet(nn.Module):
     '''
-      在這個Net裡面，我們會使用Depthwise & Pointwise Convolution Layer來疊model。
-      你會發現，將原本的Convolution Layer換成Dw & Pw後，Accuracy通常不會降很多。
-
-      另外，取名為StudentNet是因為這個Model等會要做Knowledge Distillation。
+    Using Depthwise & Pointwise Convolution Layer to build model
+    Compare to original Convolution Layer,  Dw&Pw Convolution Layer Accuracy will not drop too many
+    It will be used to Knowledge Distillation as a student model
     '''
 
     def __init__(self, base=16, width_mult=1):
         '''
           Args:
-            base: 這個model一開始的ch數量，每過一層都會*2，直到base*16為止。
-            width_mult: 為了之後的Network Pruning使用，在base*8 chs的Layer上會 * width_mult代表剪枝後的ch數量。        
+            base: the initail model ch (after 3)，and then every layer will base*2，until base*16
+            width_mult: for Network Pruning, on base*8 chs Layer, it will * width_mult = pruned ch number
         '''
         super(StudentNet, self).__init__()
-        multiplier = [1, 2, 4, 8, 16, 16, 16, 16]
 
-        # bandwidth: 每一層Layer所使用的ch數量
+        # bandwidth: each Layer's ch
+        multiplier = [1, 2, 4, 8, 16, 16, 16, 16]
         bandwidth = [ base * m for m in multiplier]
 
-        # 我們只Pruning第三層以後的Layer
+        # Only pruning the Layer after 3
         for i in range(3, 7):
             bandwidth[i] = int(bandwidth[i] * width_mult)
 
         self.cnn = nn.Sequential(
-            # 第一層我們通常不會拆解Convolution Layer。
+            # usually we will not grouping in first layer
+            # 256
             nn.Sequential(
                 nn.Conv2d(3, bandwidth[0], 3, 1, 1),
                 nn.BatchNorm2d(bandwidth[0]),
                 nn.ReLU6(),
                 nn.MaxPool2d(2, 2, 0),
             ),
-            # 接下來每一個Sequential Block都一樣，所以我們只講一個Block
+            # 128
             nn.Sequential(
                 # Depthwise Convolution
                 nn.Conv2d(bandwidth[0], bandwidth[0], 3, 1, 1, groups=bandwidth[0]),
                 # Batch Normalization
                 nn.BatchNorm2d(bandwidth[0]),
-                # ReLU6 是限制Neuron最小只會到0，最大只會到6。 MobileNet系列都是使用ReLU6。
-                # 使用ReLU6的原因是因為如果數字太大，會不好壓到float16 / or further qunatization，因此才給個限制。
+                # ReLU6 restrict Neuron with min=0 to max=6。 MobileNet series also use ReLU6。
+                # it is for the future quantization to float16 / or further qunatization
                 nn.ReLU6(),
                 # Pointwise Convolution
                 nn.Conv2d(bandwidth[0], bandwidth[1], 1),
-                # 過完Pointwise Convolution不需要再做ReLU，經驗上Pointwise + ReLU效果都會變差。
+                # Usually Pointwise Convolution do not need ReLU (or it will be worse)
                 nn.MaxPool2d(2, 2, 0),
-                # 每過完一個Block就Down Sampling
+                # Down Sampling for each block
             ),
-
+            #  64
             nn.Sequential(
                 nn.Conv2d(bandwidth[1], bandwidth[1], 3, 1, 1, groups=bandwidth[1]),
                 nn.BatchNorm2d(bandwidth[1]),
@@ -59,7 +59,7 @@ class StudentNet(nn.Module):
                 nn.Conv2d(bandwidth[1], bandwidth[2], 1),
                 nn.MaxPool2d(2, 2, 0),
             ),
-
+            # 32
             nn.Sequential(
                 nn.Conv2d(bandwidth[2], bandwidth[2], 3, 1, 1, groups=bandwidth[2]),
                 nn.BatchNorm2d(bandwidth[2]),
@@ -67,29 +67,25 @@ class StudentNet(nn.Module):
                 nn.Conv2d(bandwidth[2], bandwidth[3], 1),
                 nn.MaxPool2d(2, 2, 0),
             ),
-
-            # 到這邊為止因為圖片已經被Down Sample很多次了，所以就不做MaxPool
+            # 16
             nn.Sequential(
                 nn.Conv2d(bandwidth[3], bandwidth[3], 3, 1, 1, groups=bandwidth[3]),
                 nn.BatchNorm2d(bandwidth[3]),
                 nn.ReLU6(),
                 nn.Conv2d(bandwidth[3], bandwidth[4], 1),
             ),
-
             nn.Sequential(
                 nn.Conv2d(bandwidth[4], bandwidth[4], 3, 1, 1, groups=bandwidth[4]),
                 nn.BatchNorm2d(bandwidth[4]),
                 nn.ReLU6(),
                 nn.Conv2d(bandwidth[5], bandwidth[5], 1),
             ),
-
             nn.Sequential(
                 nn.Conv2d(bandwidth[5], bandwidth[5], 3, 1, 1, groups=bandwidth[5]),
                 nn.BatchNorm2d(bandwidth[5]),
                 nn.ReLU6(),
                 nn.Conv2d(bandwidth[6], bandwidth[6], 1),
             ),
-
             nn.Sequential(
                 nn.Conv2d(bandwidth[6], bandwidth[6], 3, 1, 1, groups=bandwidth[6]),
                 nn.BatchNorm2d(bandwidth[6]),
@@ -97,12 +93,11 @@ class StudentNet(nn.Module):
                 nn.Conv2d(bandwidth[6], bandwidth[7], 1),
             ),
 
-            # 這邊我們採用Global Average Pooling。
-            # 如果輸入圖片大小不一樣的話，就會因為Global Average Pooling壓成一樣的形狀，這樣子接下來做FC就不會對不起來。
+            # Global Average Pooling
+            # if images size are inconsistent, it can be uniform to the same, so that it can be used to FC
             nn.AdaptiveAvgPool2d((1, 1)),
         )
         self.fc = nn.Sequential(
-            # 這邊我們直接Project到11維輸出答案。
             nn.Linear(bandwidth[7], 11),
         )
 

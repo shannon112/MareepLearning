@@ -13,10 +13,6 @@ from model_StudentNet import StudentNet
 
 torch.manual_seed(0)
 
-import re
-from glob import glob
-from PIL import Image
-
 workspace_dir = sys.argv[1] #'/home/shannon/Downloads/food-11'
 
 print("Reading data")
@@ -29,9 +25,10 @@ teacher_net.load_state_dict(torch.load('./model/teacher_resnet18.bin'))
 
 # student based on Depthwise & Pointwise Convolution Layer instead of regular CNN
 student_net = StudentNet(base=16).cuda() 
-student_net.load_state_dict(torch.load('./model/student_model_200ep_512.bin'))
+print(student_net)
+student_net.load_state_dict(torch.load('./model/student_model_202ep.bin'))
 #student_net.load_state_dict(torch.load('./model/student_custom_small.bin'))
-optimizer = optim.Adam(student_net.parameters(), lr=1e-3)
+optimizer = optim.Adam(student_net.parameters(), lr=2*1e-3)
 
 def loss_fn_kd(outputs, labels, teacher_outputs, T=20, alpha=0.5):
     # standard Cross Entropy
