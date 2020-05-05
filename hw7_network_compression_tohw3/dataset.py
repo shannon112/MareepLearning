@@ -7,58 +7,61 @@ from torch.utils.data import DataLoader, Dataset
 
 torch.manual_seed(0)
 
-# pytorch dataset
-class ImgDataset(Dataset):
-    def __init__(self, x, y=None, transform=None):
-        self.x = x
-        # label is required to be a LongTensor
-        self.y = y
-        if y is not None:
-            self.y = torch.LongTensor(y)
+import re
+import torch
+from glob import glob
+from PIL import Image
+import torchvision.transforms as transforms
+
+class MyDataset(torch.utils.data.Dataset):
+    def __init__(self, folderName, transform=None):
         self.transform = transform
+        self.data = []
+        self.label = []
+        for img_path in sorted(glob(folderName + '/*.jpg')):
+            try:
+                # Get classIdx by parsing image path
+                class_idx = int(re.findall(re.compile(r'\d+'), img_path)[1])
+            except:
+                # if inference mode (there's no answer), class_idx default 0
+                class_idx = 0
+            image = Image.open(img_path)
+            # Get File Descriptor
+            image_fp = image.fp
+            image.load()
+            # Close File Descriptor (or it'll reach OPEN_MAX)
+            image_fp.close()
+            self.data.append(image)
+            self.label.append(class_idx)
+
     def __len__(self):
-        return len(self.x)
-    def __getitem__(self, index):
-        X = self.x[index]
-        if self.transform is not None:
-            X = self.transform(X)
-        if self.y is not None:
-            Y = self.y[index]
-            return X, Y
-        else:
-            return X
+        return len(self.data)
 
-normalize = transforms.Normalize(mean=[0.3339, 0.4526, 0.5676],
-                                 std=[0.2298, 0.2322, 0.2206])
-
-testTransform = transforms.Compose([
-    transforms.ToPILImage(),
-    transforms.CenterCrop(256),
-    transforms.ToTensor(),
-])
+    def __getitem__(self, idx):
+        if torch.is_tensor(idx):
+            idx = idx.tolist()
+        image = self.data[idx]
+        if self.transform:
+            image = self.transform(image)
+        return image, self.label[idx]
 
 trainTransform = transforms.Compose([
-    transforms.ToPILImage(),
     transforms.RandomCrop(256, pad_if_needed=True, padding_mode='symmetric'),
     transforms.RandomHorizontalFlip(),
     transforms.RandomRotation(15),
     transforms.ToTensor(),
 ])
+testTransform = transforms.Compose([
+    transforms.CenterCrop(256),
+    transforms.ToTensor(),
+])
 
-# read img, resize img and get label from filename
-def readfile(path, label):    
-    img_size = 512
-    image_dir = sorted(os.listdir(path))
-    x = np.zeros((len(image_dir), img_size, img_size, 3), dtype=np.uint8)
-    y = np.zeros((len(image_dir)), dtype=np.uint8)
-    for i, file in enumerate(image_dir):
-        img = cv2.imread(os.path.join(path, file))
-        x[i, :, :] = cv2.resize(img,(img_size, img_size))
-        if label:
-          y[i] = int(file.split("_")[0])
-    # if label=true: train&valid
-    if label:
-      return x, y
-    # if label=false: test
-    else:
-      return x
+def get_dataloader(workspace_dir, mode='training', batch_size=32):
+    assert mode in ['training', 'testing', 'validation']
+    dataset = MyDataset(os.path.join(workspace_dir,mode),
+        transform=trainTransform if mode == 'training' else testTransform)
+    dataloader = torch.utils.data.DataLoader(
+        dataset,
+        batch_size=batch_size,
+        shuffle=(mode == 'training'))
+    return dataloader

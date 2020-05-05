@@ -1,9 +1,5 @@
 import os
 import torch
-
-print("original cost: {} bytes.".format(os.stat('student_custom_small.bin').st_size))
-params = torch.load('student_custom_small.bin')
-
 import numpy as np
 import pickle
 
@@ -43,9 +39,6 @@ def decode16(fname):
     return custom_dict
 
 
-encode16(params, '16_bit_model.pkl')
-print("16-bit cost: {} bytes.".format(os.stat('16_bit_model.pkl').st_size))
-
 def encode8(params, fname):
     custom_dict = {}
     for (name, param) in params.items():
@@ -78,5 +71,12 @@ def decode8(fname):
 
     return custom_dict
 
-encode8(params, '8_bit_model.pkl')
-print("8-bit cost: {} bytes.".format(os.stat('8_bit_model.pkl').st_size))
+if __name__=="__main__":
+    print("original cost: {} bytes.".format(os.stat('model/student_custom_small.bin').st_size))
+    params = torch.load('model/student_custom_small.bin')
+
+    encode16(params, '16_bit_model.pkl')
+    print("16-bit cost: {} bytes.".format(os.stat('model/16_bit_model.pkl').st_size))
+
+    encode8(params, '8_bit_model.pkl')
+    print("8-bit cost: {} bytes.".format(os.stat('model/8_bit_model.pkl').st_size))
