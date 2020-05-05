@@ -20,8 +20,8 @@ model_filename = sys.argv[3]
 test_loader = get_dataloader(workspace_dir,'validation', batch_size=32)
 
 # testing configuration
-#model_best = StudentNet(base=16).cuda() 
-model_best = models.resnet18(pretrained=False, num_classes=11).cuda()
+model_best = StudentNet(base=16).cuda() 
+#model_best = models.resnet18(pretrained=False, num_classes=11).cuda()
 model_best.load_state_dict(torch.load(model_filename))
 
 # predict
