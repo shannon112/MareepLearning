@@ -8,13 +8,15 @@ import sys
 # model
 from model_StudentNet import StudentNet
 from model_StudentNet_default import StudentNet
+from model_TeacherNet_lite import TeacherNet
 
 #filename
 #model_filename = sys.argv[1]
 
 # testing configuration
-model = StudentNet()
-model.load_state_dict(torch.load("./model/student_custom_small.bin"))
+#model = StudentNet()
+model = TeacherNet()
+#model.load_state_dict(torch.load("./model/student_custom_small.bin"))
 
 global_sum = 0
 params = model.parameters()

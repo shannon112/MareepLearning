@@ -9,6 +9,7 @@ import torchvision.models as models
 
 from dataset import MyDataset
 from dataset import get_dataloader
+from model_TeacherNet_lite import TeacherNet
 from model_StudentNet_default import StudentNet
 
 torch.manual_seed(0)
@@ -19,12 +20,14 @@ print("Reading data")
 train_dataloader = get_dataloader(workspace_dir,'training', batch_size=32)
 valid_dataloader = get_dataloader(workspace_dir,'validation', batch_size=32)
 
-student_net = StudentNet(base=16).cuda() 
+#student_net = models.vgg11(pretrained=False, num_classes=11).cuda() 
+#student_net = models.resnet18(pretrained=False, num_classes=11).cuda()
+#student_net = StudentNet(base=16).cuda() 
+student_net = TeacherNet().cuda() 
 print(student_net)
 #student_net.load_state_dict(torch.load('./model/student_model_deeper_205ep.bin'))
 #student_net.load_state_dict(torch.load('./model/student_custom_small.bin'))
 optimizer = optim.Adam(student_net.parameters(), lr=1*1e-3)
-#loss = nn.CrossEntropyLoss()
 
 def run_epoch(dataloader, update=True, alpha=0.5):
     total_num, total_hit, total_loss = 0, 0, 0
