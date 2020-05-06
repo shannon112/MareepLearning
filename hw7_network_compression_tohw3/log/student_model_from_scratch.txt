@@ -1,0 +1,263 @@
+(robotpower) ➜  hw7_network_compression_tohw3 git:(master) ✗ python knowledge_distillation.py ~/Downloads/food-11
+Reading data
+loading training 9866 32
+loading validation 3430 32
+StudentNet(
+  (cnn): Sequential(
+    (0): Sequential(
+      (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU6()
+      (3): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    )
+    (1): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=16)
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU6()
+      (3): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1))
+      (4): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    )
+    (2): Sequential(
+      (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32)
+      (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU6()
+      (3): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1))
+      (4): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    )
+    (3): Sequential(
+      (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64)
+      (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU6()
+      (3): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1))
+      (4): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+    )
+    (4): Sequential(
+      (0): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=128)
+      (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU6()
+      (3): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (5): Sequential(
+      (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+      (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU6()
+      (3): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (6): Sequential(
+      (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+      (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU6()
+      (3): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (7): Sequential(
+      (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+      (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU6()
+      (3): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (8): AdaptiveAvgPool2d(output_size=(1, 1))
+  )
+  (fc): Sequential(
+    (0): Linear(in_features=256, out_features=11, bias=True)
+  )
+)
+epoch   0: train loss: 8.8551, acc 0.2933 valid loss: 8.7977, acc 0.3531
+epoch   1: train loss: 7.6923, acc 0.3930 valid loss: 7.9094, acc 0.4233
+epoch   2: train loss: 7.1382, acc 0.4381 valid loss: 8.6456, acc 0.3691
+epoch   3: train loss: 6.7211, acc 0.4691 valid loss: 6.9080, acc 0.4761
+epoch   4: train loss: 6.3378, acc 0.5043 valid loss: 6.2409, acc 0.5429
+epoch   5: train loss: 6.0296, acc 0.5233 valid loss: 6.4737, acc 0.5207
+epoch   6: train loss: 5.7140, acc 0.5533 valid loss: 5.8591, acc 0.5595
+epoch   7: train loss: 5.4253, acc 0.5674 valid loss: 5.2184, acc 0.6047
+epoch   8: train loss: 5.1887, acc 0.5882 valid loss: 4.8276, acc 0.6332
+epoch   9: train loss: 4.9821, acc 0.5991 valid loss: 5.0988, acc 0.6087
+epoch  10: train loss: 4.8017, acc 0.6125 valid loss: 4.5154, acc 0.6563
+epoch  11: train loss: 4.5895, acc 0.6255 valid loss: 4.2102, acc 0.6671
+epoch  12: train loss: 4.4402, acc 0.6342 valid loss: 4.3385, acc 0.6408
+epoch  13: train loss: 4.3847, acc 0.6450 valid loss: 4.1978, acc 0.6746
+epoch  14: train loss: 4.2029, acc 0.6508 valid loss: 4.3811, acc 0.6595
+epoch  15: train loss: 4.1540, acc 0.6570 valid loss: 4.1933, acc 0.6580
+epoch  16: train loss: 4.0185, acc 0.6724 valid loss: 3.9135, acc 0.6822
+epoch  17: train loss: 3.9451, acc 0.6714 valid loss: 4.2173, acc 0.6758
+epoch  18: train loss: 3.8225, acc 0.6808 valid loss: 4.9126, acc 0.6341
+epoch  19: train loss: 3.7936, acc 0.6799 valid loss: 3.8483, acc 0.6761
+epoch  20: train loss: 3.7011, acc 0.6889 valid loss: 4.4914, acc 0.6376
+epoch  21: train loss: 3.6199, acc 0.7003 valid loss: 3.7760, acc 0.6752
+epoch  22: train loss: 3.5924, acc 0.6959 valid loss: 3.5477, acc 0.6983
+epoch  23: train loss: 3.5226, acc 0.7093 valid loss: 3.4635, acc 0.7058
+epoch  24: train loss: 3.4518, acc 0.7123 valid loss: 3.8782, acc 0.6927
+epoch  25: train loss: 3.3916, acc 0.7097 valid loss: 3.8405, acc 0.6936
+epoch  26: train loss: 3.3631, acc 0.7151 valid loss: 3.5048, acc 0.6907
+epoch  27: train loss: 3.3209, acc 0.7213 valid loss: 3.3356, acc 0.7052
+epoch  28: train loss: 3.2104, acc 0.7294 valid loss: 3.1108, acc 0.7286
+epoch  29: train loss: 3.1996, acc 0.7316 valid loss: 3.4495, acc 0.7248
+epoch  30: train loss: 3.1554, acc 0.7334 valid loss: 3.6165, acc 0.6997
+epoch  31: train loss: 3.1093, acc 0.7386 valid loss: 3.3073, acc 0.7047
+epoch  32: train loss: 3.0565, acc 0.7470 valid loss: 3.0517, acc 0.7303
+epoch  33: train loss: 3.0559, acc 0.7396 valid loss: 3.1271, acc 0.7286
+epoch  34: train loss: 3.0177, acc 0.7427 valid loss: 3.0968, acc 0.7292
+epoch  35: train loss: 2.9319, acc 0.7511 valid loss: 3.2215, acc 0.7032
+epoch  36: train loss: 2.9274, acc 0.7518 valid loss: 2.8498, acc 0.7440
+epoch  37: train loss: 2.8754, acc 0.7596 valid loss: 2.7995, acc 0.7472
+epoch  38: train loss: 2.8391, acc 0.7640 valid loss: 3.1770, acc 0.7426
+epoch  39: train loss: 2.8250, acc 0.7564 valid loss: 2.7590, acc 0.7437
+epoch  40: train loss: 2.7775, acc 0.7663 valid loss: 3.3238, acc 0.7120
+epoch  41: train loss: 2.7775, acc 0.7672 valid loss: 3.0845, acc 0.7397
+epoch  42: train loss: 2.7721, acc 0.7655 valid loss: 3.2272, acc 0.7198
+epoch  43: train loss: 2.7258, acc 0.7696 valid loss: 2.9811, acc 0.7417
+epoch  44: train loss: 2.6999, acc 0.7729 valid loss: 2.7649, acc 0.7458
+epoch  45: train loss: 2.6931, acc 0.7780 valid loss: 3.0657, acc 0.7324
+epoch  46: train loss: 2.6790, acc 0.7769 valid loss: 2.7677, acc 0.7367
+epoch  47: train loss: 2.6364, acc 0.7741 valid loss: 2.7971, acc 0.7496
+epoch  48: train loss: 2.6289, acc 0.7812 valid loss: 2.7221, acc 0.7478
+epoch  49: train loss: 2.6150, acc 0.7800 valid loss: 3.1923, acc 0.7105
+epoch  50: train loss: 2.6049, acc 0.7823 valid loss: 2.7980, acc 0.7452
+epoch  51: train loss: 2.5355, acc 0.7867 valid loss: 3.1141, acc 0.7353
+epoch  52: train loss: 2.5458, acc 0.7834 valid loss: 2.8449, acc 0.7446
+epoch  53: train loss: 2.5427, acc 0.7825 valid loss: 2.7453, acc 0.7458
+epoch  54: train loss: 2.5245, acc 0.7893 valid loss: 2.9895, acc 0.7353
+epoch  55: train loss: 2.4477, acc 0.7954 valid loss: 3.1227, acc 0.7385
+epoch  56: train loss: 2.4952, acc 0.7885 valid loss: 2.5829, acc 0.7618
+epoch  57: train loss: 2.4912, acc 0.7955 valid loss: 2.9090, acc 0.7294
+epoch  58: train loss: 2.4224, acc 0.7996 valid loss: 3.0041, acc 0.7219
+epoch  59: train loss: 2.4140, acc 0.8037 valid loss: 2.4282, acc 0.7542
+epoch  60: train loss: 2.3829, acc 0.8020 valid loss: 2.6360, acc 0.7490
+epoch  61: train loss: 2.3513, acc 0.8030 valid loss: 3.2157, acc 0.7452
+epoch  62: train loss: 2.3538, acc 0.8045 valid loss: 2.8942, acc 0.7522
+epoch  63: train loss: 2.3429, acc 0.8049 valid loss: 3.1541, acc 0.7184
+epoch  64: train loss: 2.3570, acc 0.8087 valid loss: 2.7253, acc 0.7601
+epoch  65: train loss: 2.3170, acc 0.8037 valid loss: 2.4453, acc 0.7668
+epoch  66: train loss: 2.3285, acc 0.8117 valid loss: 2.3992, acc 0.7697
+epoch  67: train loss: 2.3027, acc 0.8109 valid loss: 2.5608, acc 0.7449
+epoch  68: train loss: 2.2637, acc 0.8113 valid loss: 2.7387, acc 0.7554
+epoch  69: train loss: 2.2489, acc 0.8126 valid loss: 2.4943, acc 0.7703
+epoch  70: train loss: 2.2408, acc 0.8106 valid loss: 2.7605, acc 0.7577
+epoch  71: train loss: 2.2081, acc 0.8146 valid loss: 2.6516, acc 0.7525
+epoch  72: train loss: 2.2045, acc 0.8189 valid loss: 2.6509, acc 0.7484
+epoch  73: train loss: 2.1998, acc 0.8188 valid loss: 2.6698, acc 0.7455
+epoch  74: train loss: 2.1998, acc 0.8159 valid loss: 2.6237, acc 0.7665
+epoch  75: train loss: 2.1833, acc 0.8255 valid loss: 2.4066, acc 0.7834
+epoch  76: train loss: 2.1835, acc 0.8165 valid loss: 2.6910, acc 0.7411
+epoch  77: train loss: 2.1741, acc 0.8190 valid loss: 2.7115, acc 0.7618
+epoch  78: train loss: 2.1499, acc 0.8213 valid loss: 2.6536, acc 0.7711
+epoch  79: train loss: 2.1532, acc 0.8234 valid loss: 2.4483, acc 0.7641
+epoch  80: train loss: 2.1263, acc 0.8247 valid loss: 2.6336, acc 0.7528
+epoch  81: train loss: 2.1434, acc 0.8257 valid loss: 2.4144, acc 0.7694
+epoch  82: train loss: 2.1197, acc 0.8306 valid loss: 2.3971, acc 0.7708
+epoch  83: train loss: 2.0905, acc 0.8288 valid loss: 2.7161, acc 0.7694
+epoch  84: train loss: 2.0642, acc 0.8330 valid loss: 2.4645, acc 0.7563
+epoch  85: train loss: 2.0790, acc 0.8287 valid loss: 2.5736, acc 0.7720
+epoch  86: train loss: 2.0774, acc 0.8296 valid loss: 2.6132, acc 0.7668
+epoch  87: train loss: 2.0862, acc 0.8345 valid loss: 2.4706, acc 0.7545
+epoch  88: train loss: 2.1076, acc 0.8323 valid loss: 2.7816, acc 0.7574
+epoch  89: train loss: 2.0305, acc 0.8393 valid loss: 2.3980, acc 0.7598
+epoch  90: train loss: 2.0390, acc 0.8373 valid loss: 2.4136, acc 0.7726
+epoch  91: train loss: 2.0013, acc 0.8401 valid loss: 2.4932, acc 0.7685
+epoch  92: train loss: 1.9984, acc 0.8388 valid loss: 2.3754, acc 0.7714
+epoch  93: train loss: 2.0161, acc 0.8351 valid loss: 2.5000, acc 0.7688
+epoch  94: train loss: 1.9441, acc 0.8509 valid loss: 2.3652, acc 0.7743
+epoch  95: train loss: 1.9803, acc 0.8386 valid loss: 2.5308, acc 0.7735
+epoch  96: train loss: 2.0186, acc 0.8363 valid loss: 2.5506, acc 0.7563
+epoch  97: train loss: 2.0070, acc 0.8367 valid loss: 2.4863, acc 0.7676
+epoch  98: train loss: 1.9873, acc 0.8488 valid loss: 2.2696, acc 0.7729
+epoch  99: train loss: 1.9861, acc 0.8437 valid loss: 2.4048, acc 0.7755
+epoch 100: train loss: 1.9709, acc 0.8386 valid loss: 2.6618, acc 0.7624
+epoch 101: train loss: 1.9240, acc 0.8486 valid loss: 2.2681, acc 0.7714
+epoch 102: train loss: 1.9298, acc 0.8442 valid loss: 2.6144, acc 0.7580
+epoch 103: train loss: 1.9150, acc 0.8482 valid loss: 2.4178, acc 0.7729
+epoch 104: train loss: 1.9367, acc 0.8452 valid loss: 2.5394, acc 0.7659
+epoch 105: train loss: 1.9339, acc 0.8401 valid loss: 2.3576, acc 0.7822
+epoch 106: train loss: 1.9431, acc 0.8477 valid loss: 2.5768, acc 0.7653
+epoch 107: train loss: 1.8955, acc 0.8502 valid loss: 2.4436, acc 0.7682
+epoch 108: train loss: 1.9083, acc 0.8531 valid loss: 2.2963, acc 0.7810
+epoch 109: train loss: 1.9009, acc 0.8532 valid loss: 2.6483, acc 0.7440
+epoch 110: train loss: 1.9048, acc 0.8443 valid loss: 2.5012, acc 0.7784
+epoch 111: train loss: 1.8797, acc 0.8511 valid loss: 2.3672, acc 0.7735
+epoch 112: train loss: 1.8754, acc 0.8515 valid loss: 2.1884, acc 0.7950
+epoch 113: train loss: 1.8699, acc 0.8534 valid loss: 2.2640, acc 0.7889
+epoch 114: train loss: 1.9043, acc 0.8531 valid loss: 2.1069, acc 0.7828
+epoch 115: train loss: 1.8466, acc 0.8554 valid loss: 2.4923, acc 0.7472
+epoch 116: train loss: 1.8634, acc 0.8572 valid loss: 2.3453, acc 0.7796
+epoch 117: train loss: 1.8365, acc 0.8569 valid loss: 2.2443, acc 0.7816
+epoch 118: train loss: 1.8428, acc 0.8531 valid loss: 2.2607, acc 0.7875
+epoch 119: train loss: 1.8098, acc 0.8575 valid loss: 2.4083, acc 0.7697
+epoch 120: train loss: 1.8050, acc 0.8640 valid loss: 2.6321, acc 0.7615
+epoch 121: train loss: 1.8383, acc 0.8567 valid loss: 2.2914, acc 0.7764
+epoch 122: train loss: 1.8058, acc 0.8638 valid loss: 2.4163, acc 0.7735
+epoch 123: train loss: 1.7888, acc 0.8599 valid loss: 2.2874, acc 0.7743
+epoch 124: train loss: 1.7809, acc 0.8599 valid loss: 2.3617, acc 0.7717
+epoch 125: train loss: 1.7596, acc 0.8652 valid loss: 2.4233, acc 0.7706
+epoch 126: train loss: 1.8295, acc 0.8595 valid loss: 2.4123, acc 0.7673
+epoch 127: train loss: 1.7856, acc 0.8602 valid loss: 2.2407, acc 0.7749
+epoch 128: train loss: 1.8132, acc 0.8585 valid loss: 2.1211, acc 0.7746
+epoch 129: train loss: 1.7835, acc 0.8602 valid loss: 2.2119, acc 0.7738
+epoch 130: train loss: 1.7891, acc 0.8562 valid loss: 2.2314, acc 0.7886
+epoch 131: train loss: 1.8102, acc 0.8584 valid loss: 2.2760, acc 0.7878
+epoch 132: train loss: 1.7544, acc 0.8638 valid loss: 2.2197, acc 0.7717
+epoch 133: train loss: 1.7552, acc 0.8618 valid loss: 2.3212, acc 0.7706
+epoch 134: train loss: 1.7560, acc 0.8580 valid loss: 2.4498, acc 0.7761
+epoch 135: train loss: 1.7573, acc 0.8615 valid loss: 2.3539, acc 0.7749
+epoch 136: train loss: 1.7408, acc 0.8652 valid loss: 2.2294, acc 0.7892
+epoch 137: train loss: 1.7519, acc 0.8679 valid loss: 2.2076, acc 0.7703
+epoch 138: train loss: 1.7318, acc 0.8664 valid loss: 2.7770, acc 0.7694
+epoch 139: train loss: 1.7536, acc 0.8618 valid loss: 2.1321, acc 0.7848
+epoch 140: train loss: 1.7310, acc 0.8705 valid loss: 2.2217, acc 0.7889
+epoch 141: train loss: 1.7306, acc 0.8707 valid loss: 2.2004, acc 0.7834
+epoch 142: train loss: 1.7352, acc 0.8684 valid loss: 2.3359, acc 0.7764
+epoch 143: train loss: 1.7185, acc 0.8714 valid loss: 2.2353, acc 0.7776
+epoch 144: train loss: 1.6840, acc 0.8719 valid loss: 2.2240, acc 0.7845
+epoch 145: train loss: 1.7172, acc 0.8687 valid loss: 2.2085, acc 0.7828
+epoch 146: train loss: 1.6807, acc 0.8741 valid loss: 2.1316, acc 0.7985
+epoch 147: train loss: 1.7012, acc 0.8742 valid loss: 2.2295, acc 0.7784
+epoch 148: train loss: 1.7153, acc 0.8635 valid loss: 2.7052, acc 0.7443
+epoch 149: train loss: 1.6922, acc 0.8693 valid loss: 2.3294, acc 0.7743
+epoch 150: train loss: 1.6938, acc 0.8787 valid loss: 2.1841, acc 0.7910
+epoch 151: train loss: 1.6674, acc 0.8788 valid loss: 2.4252, acc 0.7778
+epoch 152: train loss: 1.6568, acc 0.8771 valid loss: 2.2668, acc 0.7813
+epoch 153: train loss: 1.6843, acc 0.8719 valid loss: 2.1876, acc 0.7805
+epoch 154: train loss: 1.6965, acc 0.8689 valid loss: 2.1206, acc 0.7872
+epoch 155: train loss: 1.6747, acc 0.8760 valid loss: 2.0811, acc 0.7942
+epoch 156: train loss: 1.6525, acc 0.8734 valid loss: 2.1687, acc 0.7822
+epoch 157: train loss: 1.6782, acc 0.8740 valid loss: 2.2985, acc 0.7752
+epoch 158: train loss: 1.6655, acc 0.8768 valid loss: 2.2617, acc 0.7825
+epoch 159: train loss: 1.6560, acc 0.8797 valid loss: 2.3198, acc 0.7749
+epoch 160: train loss: 1.6646, acc 0.8742 valid loss: 2.1740, acc 0.7886
+epoch 161: train loss: 1.6654, acc 0.8754 valid loss: 2.3921, acc 0.7708
+epoch 162: train loss: 1.6743, acc 0.8714 valid loss: 2.1901, acc 0.7793
+epoch 163: train loss: 1.6344, acc 0.8762 valid loss: 2.1662, acc 0.7729
+epoch 164: train loss: 1.6043, acc 0.8831 valid loss: 2.1368, acc 0.7860
+epoch 165: train loss: 1.6233, acc 0.8781 valid loss: 2.2396, acc 0.7764
+epoch 166: train loss: 1.6436, acc 0.8797 valid loss: 2.3427, acc 0.7831
+epoch 167: train loss: 1.6399, acc 0.8801 valid loss: 2.0389, acc 0.7924
+epoch 168: train loss: 1.6236, acc 0.8821 valid loss: 2.2494, acc 0.7872
+epoch 169: train loss: 1.6047, acc 0.8836 valid loss: 2.0578, acc 0.7956
+epoch 170: train loss: 1.6115, acc 0.8817 valid loss: 2.2058, acc 0.7939
+epoch 171: train loss: 1.6089, acc 0.8813 valid loss: 2.2361, acc 0.7796
+epoch 172: train loss: 1.5874, acc 0.8842 valid loss: 2.0842, acc 0.7758
+epoch 173: train loss: 1.6029, acc 0.8826 valid loss: 2.0734, acc 0.7869
+epoch 174: train loss: 1.5980, acc 0.8795 valid loss: 2.1550, acc 0.7851
+epoch 175: train loss: 1.6281, acc 0.8788 valid loss: 2.1704, acc 0.7828
+epoch 176: train loss: 1.6024, acc 0.8805 valid loss: 2.2415, acc 0.7936
+epoch 177: train loss: 1.5808, acc 0.8850 valid loss: 2.1527, acc 0.7939
+epoch 178: train loss: 1.5987, acc 0.8825 valid loss: 2.2599, acc 0.7927
+epoch 179: train loss: 1.5813, acc 0.8863 valid loss: 2.1019, acc 0.7974
+epoch 180: train loss: 1.5759, acc 0.8841 valid loss: 2.1240, acc 0.7875
+epoch 181: train loss: 1.5821, acc 0.8862 valid loss: 2.1794, acc 0.7980
+epoch 182: train loss: 1.5803, acc 0.8825 valid loss: 2.2209, acc 0.7793
+epoch 183: train loss: 1.5642, acc 0.8817 valid loss: 2.1405, acc 0.7948
+epoch 184: train loss: 1.5705, acc 0.8824 valid loss: 2.1865, acc 0.7813
+epoch 185: train loss: 1.5565, acc 0.8858 valid loss: 2.2354, acc 0.7863
+epoch 186: train loss: 1.5513, acc 0.8881 valid loss: 2.2283, acc 0.7822
+epoch 187: train loss: 1.5937, acc 0.8852 valid loss: 2.4597, acc 0.7525
+epoch 188: train loss: 1.5793, acc 0.8847 valid loss: 2.0775, acc 0.7845
+epoch 189: train loss: 1.5836, acc 0.8854 valid loss: 2.2646, acc 0.7822
+epoch 190: train loss: 1.5529, acc 0.8912 valid loss: 2.1149, acc 0.7898
+epoch 191: train loss: 1.5396, acc 0.8873 valid loss: 2.2772, acc 0.7790
+epoch 192: train loss: 1.5535, acc 0.8888 valid loss: 2.1569, acc 0.7913
+epoch 193: train loss: 1.5520, acc 0.8901 valid loss: 2.1454, acc 0.7907
+epoch 194: train loss: 1.5325, acc 0.8892 valid loss: 2.1024, acc 0.7907
+epoch 195: train loss: 1.5417, acc 0.8924 valid loss: 2.0861, acc 0.7994
+epoch 196: train loss: 1.5514, acc 0.8865 valid loss: 2.2291, acc 0.7991
+epoch 197: train loss: 1.5397, acc 0.8868 valid loss: 2.1418, acc 0.7869
+epoch 198: train loss: 1.5245, acc 0.8892 valid loss: 2.0509, acc 0.7898
+epoch 199: train loss: 1.5460, acc 0.8882 valid loss: 2.0707, acc 0.7980
