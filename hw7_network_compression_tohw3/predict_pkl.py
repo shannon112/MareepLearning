@@ -6,7 +6,7 @@ import torch
 
 from dataset import MyDataset
 from dataset import get_dataloader
-from model_StudentNet import StudentNet
+from model_StudentNet_deeper import StudentNet
 from model_TeacherNet_lite import TeacherNet
 from weight_quantization import decode8
 
