@@ -10,6 +10,7 @@ import torchvision.models as models
 from dataset import MyDataset
 from dataset import get_dataloader
 from model_StudentNet_default import StudentNet
+from model_TeacherNet_lite import TeacherNet
 
 torch.manual_seed(0)
 
@@ -20,15 +21,17 @@ train_dataloader = get_dataloader(workspace_dir,'training', batch_size=32)
 valid_dataloader = get_dataloader(workspace_dir,'validation', batch_size=32)
 
 # teacher CNN model with acc=88.4, size=47.2MB
-teacher_net = models.resnet18(pretrained=False, num_classes=11).cuda()
+#teacher_net = models.resnet18(pretrained=False, num_classes=11).cuda()
+teacher_net = TeacherNet().cuda()
 #teacher_net.load_state_dict(torch.load('./model/teacher_resnet18.bin'))
-teacher_net.load_state_dict(torch.load('./model/teacher_resnet18_from_scratch.bin'))
+#teacher_net.load_state_dict(torch.load('./model/teacher_resnet18_from_scratch.bin'))
+teacher_net.load_state_dict(torch.load('./model/teacher_model_lite.bin'))
 
 # student based on Depthwise & Pointwise Convolution Layer instead of regular CNN
 student_net = StudentNet(base=16).cuda() 
-print(student_net)
 #student_net.load_state_dict(torch.load('./model/student_model_deeper_205ep.bin'))
 #student_net.load_state_dict(torch.load('./model/student_custom_small.bin'))
+print(student_net)
 optimizer = optim.Adam(student_net.parameters(), lr=1*1e-3)
 
 def loss_fn_kd(outputs, labels, teacher_outputs, T=20, alpha=0.5):
