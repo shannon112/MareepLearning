@@ -6,16 +6,18 @@ import pandas as pd
 import sys
 
 # model
-from model_StudentNet import StudentNet
+from model_StudentNet_deeper import StudentNet
 from model_StudentNet_default import StudentNet
 from model_TeacherNet_lite import TeacherNet
+from model_FullCnnNet import FullCnnNet
+from model_StudentNet_group import StudentNet
 
 #filename
 #model_filename = sys.argv[1]
 
 # testing configuration
-#model = StudentNet()
-model = TeacherNet()
+model = StudentNet()
+#model = FullCnnNet()
 #model.load_state_dict(torch.load("./model/student_custom_small.bin"))
 
 global_sum = 0
