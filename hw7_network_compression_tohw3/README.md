@@ -29,4 +29,4 @@ bash  hw7_test.sh  <data directory>  <prediction file>
 ```
 
 ## Homework version
-https://github.com/NTU-speech-lab/hw6-shannon112
+https://github.com/NTU-speech-lab/hw7-shannon112
