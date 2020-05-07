@@ -19,20 +19,9 @@ The encoder mapping function is:
 <img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw7_network_compression_tohw3/img/Quantization.png" width=340/>
 
 ## Resource
-homework video: https://www.youtube.com/watch?v=Y-a3CZI-wrM&feature=youtu.be
-kaggle: https://www.kaggle.com/c/ml2020spring-hw7/
+homework video: https://www.youtube.com/watch?v=Y-a3CZI-wrM&feature=youtu.be  
+kaggle: https://www.kaggle.com/c/ml2020spring-hw7/  
 library limitation: https://reurl.cc/GVkjWD   
-
-## Fast Gradient Sign Method (FGSM) Attack
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack/img/img_compare.png" width=840/>
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack/img/distribution_compare.png" width=840/>
-
-## Passive Defense by Smoothing
-<p align="center">
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack/img/defensetable.png" width=640 />
-</p>
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack/img/atked_img_blur.png" width=840 />
-
 
 ## Usage
 ```
