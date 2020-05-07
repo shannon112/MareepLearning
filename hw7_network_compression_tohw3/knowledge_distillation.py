@@ -32,6 +32,7 @@ student_net = StudentNet(base=16).cuda()
 #student_net.load_state_dict(torch.load('./model/student_model_deeper_205ep.bin'))
 #student_net.load_state_dict(torch.load('./model/student_custom_small.bin'))
 print(student_net)
+
 optimizer = optim.Adam(student_net.parameters(), lr=1*1e-3)
 
 def loss_fn_kd(outputs, labels, teacher_outputs, T=20, alpha=0.5):

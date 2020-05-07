@@ -15,7 +15,6 @@ def encode16(params, fname):
             custom_dict[name] = param
     pickle.dump(custom_dict, open(fname, 'wb'))
 
-
 def decode16(fname):
     params = pickle.load(open(fname, 'rb'))
     custom_dict = {}

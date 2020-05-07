@@ -9,6 +9,7 @@ import torchvision.models as models
 
 from dataset import MyDataset
 from dataset import get_dataloader
+
 from model_TeacherNet_lite import TeacherNet
 #from model_StudentNet_default import StudentNet
 from model_FullCnnNet import FullCnnNet
@@ -29,6 +30,7 @@ student_net = StudentNet(base=16).cuda()
 print(student_net)
 #student_net.load_state_dict(torch.load('./model/student_model_deeper_205ep.bin'))
 #student_net.load_state_dict(torch.load('./model/student_custom_small.bin'))
+
 optimizer = optim.Adam(student_net.parameters(), lr=1*1e-3)
 
 def run_epoch(dataloader, update=True, alpha=0.5):

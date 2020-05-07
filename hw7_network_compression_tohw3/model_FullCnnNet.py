@@ -10,40 +10,40 @@ class FullCnnNet(nn.Module):
         super(FullCnnNet, self).__init__()
 
         self.cnn = nn.Sequential(
-            nn.Conv2d(3, 16, 3, 1, 1),  # [64, 128, 128]
+            nn.Conv2d(3, 16, 3, 1, 1),  
             nn.BatchNorm2d(16),
             nn.ReLU(),
-            nn.MaxPool2d(2, 2, 0),      # [64, 64, 64]
+            nn.MaxPool2d(2, 2, 0),      
             #128
 
-            nn.Conv2d(16, 32, 3, 1, 1), # [128, 64, 64]
+            nn.Conv2d(16, 32, 3, 1, 1), 
             nn.BatchNorm2d(32),
             nn.ReLU(),
-            nn.MaxPool2d(2, 2, 0),      # [128, 32, 32]
+            nn.MaxPool2d(2, 2, 0),     
             #64
 
-            nn.Conv2d(32, 32, 3, 1, 1), # [256, 32, 32]
+            nn.Conv2d(32, 32, 3, 1, 1), 
             nn.BatchNorm2d(32),
             nn.ReLU(),
-            nn.MaxPool2d(2, 2, 0),      # [256, 16, 16]
+            nn.MaxPool2d(2, 2, 0),     
             #32
 
-            nn.Conv2d(32, 64, 3, 1, 1), # [512, 16, 16]
+            nn.Conv2d(32, 64, 3, 1, 1),
             nn.BatchNorm2d(64),
             nn.ReLU(),
-            nn.MaxPool2d(2, 2, 0),       # [512, 8, 8]
+            nn.MaxPool2d(2, 2, 0),    
             #16
 
-            nn.Conv2d(64, 128, 3, 1, 1), # [512, 8, 8]
+            nn.Conv2d(64, 128, 3, 1, 1),
             nn.BatchNorm2d(128),
             nn.ReLU(),
-            nn.MaxPool2d(2, 2, 0),       # [512, 4, 4]
+            nn.MaxPool2d(2, 2, 0),       
             #8
             
-            nn.Conv2d(128, 128, 3, 1, 1), # [512, 8, 8]
+            nn.Conv2d(128, 128, 3, 1, 1), 
             nn.BatchNorm2d(128),
             nn.ReLU(),
-            nn.MaxPool2d(2, 2, 0),       # [512, 4, 4]
+            nn.MaxPool2d(2, 2, 0),     
             #4
         )
         self.fc = nn.Sequential(

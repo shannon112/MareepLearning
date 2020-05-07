@@ -12,9 +12,6 @@ from model_TeacherNet_lite import TeacherNet
 from model_FullCnnNet import FullCnnNet
 from model_StudentNet_group import StudentNet
 
-#filename
-#model_filename = sys.argv[1]
-
 # testing configuration
 model = StudentNet()
 #model = FullCnnNet()
