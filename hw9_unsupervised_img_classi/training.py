@@ -28,13 +28,15 @@ criterion = nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-5, weight_decay=1e-5)
 
 model.train()
-n_epoch = 100
+n_epoch = 200
 
 # 準備 dataloader, model, loss criterion 和 optimizer
 img_dataloader = DataLoader(img_dataset, batch_size=64, shuffle=True)
 
 
 # 主要的訓練過程
+loss_min = 1
+best_model = None
 for epoch in range(n_epoch):
     for data in img_dataloader:
         img = data
@@ -46,10 +48,14 @@ for epoch in range(n_epoch):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        if (epoch+1) % 10 == 0:
-            torch.save(model.state_dict(), os.path.join(output_modeldir,'checkpoint_{}.pth'.format(epoch+1)))
+    if (epoch+1) % 10 == 0:
+        torch.save(model.state_dict(), os.path.join(output_modeldir,'checkpoint_{}.pth'.format(epoch+1)))
+    if loss.data < loss_min:
+        best_model = model.state_dict()
+        loss_min = loss.data
+        print("save best")
             
     print('epoch [{}/{}], loss:{:.5f}'.format(epoch+1, n_epoch, loss.data))
 
 # 訓練完成後儲存 model
-torch.save(model.state_dict(), os.path.join(output_modeldir,'last_checkpoint.pth'))
+torch.save(best_model, os.path.join(output_modeldir,'last_checkpoint.pth'))

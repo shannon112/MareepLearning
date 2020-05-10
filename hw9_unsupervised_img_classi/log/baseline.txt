@@ -1,0 +1,234 @@
+(robotpower) ➜  hw9_unsupervised_img_classi git:(master) ✗ python training.py ~/Downloads/dataset/trainX.npy ./model
+save best
+epoch [1/200], loss:0.20793
+save best
+epoch [2/200], loss:0.16024
+save best
+epoch [3/200], loss:0.13918
+save best
+epoch [4/200], loss:0.11817
+save best
+epoch [5/200], loss:0.10845
+epoch [6/200], loss:0.11521
+save best
+epoch [7/200], loss:0.10108
+save best
+epoch [8/200], loss:0.08738
+epoch [9/200], loss:0.11070
+save best
+epoch [10/200], loss:0.08273
+save best
+epoch [11/200], loss:0.08270
+epoch [12/200], loss:0.08482
+epoch [13/200], loss:0.09425
+save best
+epoch [14/200], loss:0.07320
+epoch [15/200], loss:0.08494
+epoch [16/200], loss:0.07906
+epoch [17/200], loss:0.08087
+epoch [18/200], loss:0.07988
+epoch [19/200], loss:0.08036
+epoch [20/200], loss:0.08642
+save best
+epoch [21/200], loss:0.06668
+epoch [22/200], loss:0.08177
+epoch [23/200], loss:0.07573
+epoch [24/200], loss:0.07411
+save best
+epoch [25/200], loss:0.06246
+epoch [26/200], loss:0.07051
+epoch [27/200], loss:0.07525
+epoch [28/200], loss:0.07081
+epoch [29/200], loss:0.07145
+epoch [30/200], loss:0.06274
+epoch [31/200], loss:0.06395
+epoch [32/200], loss:0.06842
+epoch [33/200], loss:0.06516
+save best
+epoch [34/200], loss:0.06126
+epoch [35/200], loss:0.06453
+epoch [36/200], loss:0.06270
+epoch [37/200], loss:0.06905
+epoch [38/200], loss:0.06212
+epoch [39/200], loss:0.07107
+epoch [40/200], loss:0.07019
+save best
+epoch [41/200], loss:0.05611
+save best
+epoch [42/200], loss:0.05481
+epoch [43/200], loss:0.05674
+epoch [44/200], loss:0.05580
+epoch [45/200], loss:0.05861
+epoch [46/200], loss:0.06874
+epoch [47/200], loss:0.05593
+epoch [48/200], loss:0.06614
+epoch [49/200], loss:0.06290
+epoch [50/200], loss:0.05873
+epoch [51/200], loss:0.05753
+epoch [52/200], loss:0.06597
+epoch [53/200], loss:0.06188
+epoch [54/200], loss:0.05743
+epoch [55/200], loss:0.05958
+epoch [56/200], loss:0.05725
+epoch [57/200], loss:0.05554
+save best
+epoch [58/200], loss:0.05251
+epoch [59/200], loss:0.05722
+epoch [60/200], loss:0.05872
+epoch [61/200], loss:0.06033
+epoch [62/200], loss:0.05342
+epoch [63/200], loss:0.05563
+epoch [64/200], loss:0.05996
+epoch [65/200], loss:0.05452
+save best
+epoch [66/200], loss:0.05166
+save best
+epoch [67/200], loss:0.05133
+epoch [68/200], loss:0.05791
+epoch [69/200], loss:0.05133
+save best
+epoch [70/200], loss:0.04965
+epoch [71/200], loss:0.05136
+epoch [72/200], loss:0.05350
+epoch [73/200], loss:0.05105
+epoch [74/200], loss:0.05179
+epoch [75/200], loss:0.05743
+save best
+epoch [76/200], loss:0.04874
+save best
+epoch [77/200], loss:0.04766
+epoch [78/200], loss:0.04938
+save best
+epoch [79/200], loss:0.04633
+epoch [80/200], loss:0.05687
+epoch [81/200], loss:0.05192
+epoch [82/200], loss:0.04839
+epoch [83/200], loss:0.04825
+save best
+epoch [84/200], loss:0.04540
+epoch [85/200], loss:0.04715
+save best
+epoch [86/200], loss:0.04285
+epoch [87/200], loss:0.04557
+epoch [88/200], loss:0.04620
+epoch [89/200], loss:0.05583
+epoch [90/200], loss:0.04608
+save best
+epoch [91/200], loss:0.04176
+epoch [92/200], loss:0.04716
+epoch [93/200], loss:0.04570
+epoch [94/200], loss:0.04773
+epoch [95/200], loss:0.04288
+epoch [96/200], loss:0.04510
+epoch [97/200], loss:0.04884
+epoch [98/200], loss:0.04627
+epoch [99/200], loss:0.04645
+epoch [100/200], loss:0.04671
+epoch [101/200], loss:0.04567
+epoch [102/200], loss:0.04203
+epoch [103/200], loss:0.04883
+epoch [104/200], loss:0.04752
+epoch [105/200], loss:0.04597
+epoch [106/200], loss:0.05184
+epoch [107/200], loss:0.05101
+epoch [108/200], loss:0.04304
+epoch [109/200], loss:0.04201
+epoch [110/200], loss:0.04473
+epoch [111/200], loss:0.04439
+epoch [112/200], loss:0.04626
+epoch [113/200], loss:0.04778
+epoch [114/200], loss:0.04322
+epoch [115/200], loss:0.04413
+save best
+epoch [116/200], loss:0.03999
+epoch [117/200], loss:0.04864
+epoch [118/200], loss:0.04686
+epoch [119/200], loss:0.04544
+epoch [120/200], loss:0.04119
+epoch [121/200], loss:0.04402
+epoch [122/200], loss:0.04500
+epoch [123/200], loss:0.04407
+epoch [124/200], loss:0.04226
+epoch [125/200], loss:0.04815
+epoch [126/200], loss:0.04697
+epoch [127/200], loss:0.04272
+epoch [128/200], loss:0.04377
+epoch [129/200], loss:0.04514
+epoch [130/200], loss:0.04225
+save best
+epoch [131/200], loss:0.03928
+save best
+epoch [132/200], loss:0.03569
+epoch [133/200], loss:0.04350
+epoch [134/200], loss:0.04492
+epoch [135/200], loss:0.03830
+epoch [136/200], loss:0.04142
+epoch [137/200], loss:0.04003
+epoch [138/200], loss:0.04422
+epoch [139/200], loss:0.04102
+epoch [140/200], loss:0.04272
+epoch [141/200], loss:0.03769
+epoch [142/200], loss:0.04578
+epoch [143/200], loss:0.04523
+epoch [144/200], loss:0.04084
+epoch [145/200], loss:0.04083
+epoch [146/200], loss:0.03977
+epoch [147/200], loss:0.03930
+epoch [148/200], loss:0.04368
+epoch [149/200], loss:0.03816
+epoch [150/200], loss:0.03941
+epoch [151/200], loss:0.04231
+epoch [152/200], loss:0.03720
+epoch [153/200], loss:0.03672
+epoch [154/200], loss:0.03994
+epoch [155/200], loss:0.04356
+epoch [156/200], loss:0.04021
+epoch [157/200], loss:0.04227
+epoch [158/200], loss:0.03920
+epoch [159/200], loss:0.04240
+epoch [160/200], loss:0.04154
+epoch [161/200], loss:0.04115
+epoch [162/200], loss:0.04441
+epoch [163/200], loss:0.03924
+epoch [164/200], loss:0.03936
+epoch [165/200], loss:0.03692
+epoch [166/200], loss:0.04253
+epoch [167/200], loss:0.03792
+save best
+epoch [168/200], loss:0.02983
+epoch [169/200], loss:0.03810
+epoch [170/200], loss:0.04028
+epoch [171/200], loss:0.03974
+epoch [172/200], loss:0.03676
+epoch [173/200], loss:0.04088
+epoch [174/200], loss:0.03786
+epoch [175/200], loss:0.03896
+epoch [176/200], loss:0.03296
+epoch [177/200], loss:0.03602
+epoch [178/200], loss:0.03701
+epoch [179/200], loss:0.03753
+epoch [180/200], loss:0.03591
+epoch [181/200], loss:0.03316
+epoch [182/200], loss:0.03866
+epoch [183/200], loss:0.03700
+epoch [184/200], loss:0.03888
+epoch [185/200], loss:0.03972
+epoch [186/200], loss:0.03401
+epoch [187/200], loss:0.03632
+epoch [188/200], loss:0.04288
+epoch [189/200], loss:0.04265
+epoch [190/200], loss:0.03988
+epoch [191/200], loss:0.03860
+epoch [192/200], loss:0.03435
+epoch [193/200], loss:0.03707
+epoch [194/200], loss:0.04239
+epoch [195/200], loss:0.03335
+epoch [196/200], loss:0.03367
+epoch [197/200], loss:0.04142
+epoch [198/200], loss:0.03108
+epoch [199/200], loss:0.03480
+epoch [200/200], loss:0.03698
+
+
+baseline_inv 0.75600
+baseline 0.24400
