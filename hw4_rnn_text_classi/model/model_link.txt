@@ -1,2 +1,0 @@
-model/w2v_labeled.model https://www.dropbox.com/s/othu4mqfjq65qb0/w2v_labeled.model?dl=0
-model/last_semi_82.38.model https://www.dropbox.com/s/jl43lpa7tvy5vj8/last_semi_82.38.model?dl=0
