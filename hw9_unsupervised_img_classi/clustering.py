@@ -7,21 +7,23 @@ import sys
 import os
 import numpy as np
 
-from model import AE
+from model_strong import AE
+#from model_baseline import AE
+
 from dataset import preprocess
 from dataset import Image_Dataset
+from dataset import test_transform
 
 input_filename = sys.argv[1] # ~/Downloads/dataset/trainX.npy
-input_modeldir = sys.argv[2]  # ./model
+model_filename = sys.argv[2]  # ./model
 output_predir = sys.argv[3] # ./submission
 
 def inference(X, model, batch_size=256):
     X = preprocess(X)
-    dataset = Image_Dataset(X)
+    dataset = Image_Dataset(X,test_transform)
     dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=False)
     latents = []
     for i, x in enumerate(dataloader):
-        x = torch.FloatTensor(x)
         vec, img = model(x.cuda())
         if i == 0:
             latents = vec.view(img.size()[0], -1).cpu().detach().numpy()
@@ -31,16 +33,16 @@ def inference(X, model, batch_size=256):
     return latents
 
 def predict(latents):
-    # First Dimension Reduction
+    # First Dimension Reduction to 200
     transformer = KernelPCA(n_components=200, kernel='rbf', n_jobs=-1)
     kpca = transformer.fit_transform(latents)
-    print('First Reduction Shape:', kpca.shape)
+    print('PCA for First Reduction Shape:', kpca.shape)
 
-    # # Second Dimesnion Reduction
+    # Second Dimesnion Reduction to 2
     X_embedded = TSNE(n_components=2).fit_transform(kpca)
-    print('Second Reduction Shape:', X_embedded.shape)
+    print('TSNE for Second Reduction Shape:', X_embedded.shape)
 
-    # Clustering
+    # Clustering to 2 Class
     pred = MiniBatchKMeans(n_clusters=2, random_state=0).fit(X_embedded)
     pred = [int(i) for i in pred.labels_]
     pred = np.array(pred)
@@ -58,19 +60,18 @@ def save_prediction(pred, out_csv):
 
 # load model
 model = AE().cuda()
-model.load_state_dict(torch.load(os.path.join(input_modeldir,'last_checkpoint.pth')))
+model.load_state_dict(torch.load(os.path.join(model_filename)))
 model.eval()
 
-# 準備 data
+# load training data
 trainX = np.load(input_filename)
 
-# 預測答案
+# extract latent vector
 latents = inference(X=trainX, model=model)
+
+# two step dimesion reduction and clustering 
 pred, X_embedded = predict(latents)
 
-# 將預測結果存檔，上傳 kaggle
+# binary classification result
 save_prediction(pred, os.path.join(output_predir,'prediction.csv'))
-
-# 由於是 unsupervised 的二分類問題，我們只在乎有沒有成功將圖片分成兩群
-# 如果上面的檔案上傳 kaggle 後正確率不足 0.5，只要將 label 反過來就行了
 save_prediction(invert(pred), os.path.join(output_predir,'inverse_prediction.csv'))

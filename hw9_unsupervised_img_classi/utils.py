@@ -30,7 +30,7 @@ def cal_acc(gt, pred):
     # Calculate Correct predictions
     correct = np.sum(gt == pred)
     acc = correct / gt.shape[0]
-    # 因為是 binary unsupervised clustering，因此取 max(acc, 1-acc)
+    # due to binary unsupervised clustering, it might be inverse
     return max(acc, 1-acc)
 
 def plot_scatter(feat, label, savefig=None):

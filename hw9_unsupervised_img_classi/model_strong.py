@@ -5,19 +5,23 @@ class AE(nn.Module):
         super(AE, self).__init__()
         
         self.encoder = nn.Sequential(
+            #32
             nn.Conv2d(3, 64, 3, stride=1, padding=1),
             nn.ReLU(True),
             nn.MaxPool2d(2),
+            #16
             nn.Conv2d(64, 128, 3, stride=1, padding=1),
             nn.ReLU(True),
             nn.MaxPool2d(2),
-            nn.Conv2d(128, 256, 3, stride=1, padding=1),
+            #8
+            nn.Conv2d(128, 512, 3, stride=1, padding=1),
             nn.ReLU(True),
-            nn.MaxPool2d(2)
+            nn.MaxPool2d(2),
+            #4
         )
  
         self.decoder = nn.Sequential(
-            nn.ConvTranspose2d(256, 128, 5, stride=1),
+            nn.ConvTranspose2d(512, 128, 5, stride=1),
             nn.ReLU(True),
             nn.ConvTranspose2d(128, 64, 9, stride=1),
             nn.ReLU(True),
