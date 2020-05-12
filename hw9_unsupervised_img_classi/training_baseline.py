@@ -13,8 +13,8 @@ from model_baseline import AE
 
 same_seeds(0)
 input_filename = sys.argv[1] # ~/Downloads/dataset/trainX.npy
-output_modeldir = sys.argv[2] # ./model
-#output_filename = sys.argv[2] # ./chekpoints/baseline.pth
+#output_modeldir = sys.argv[2] # ./model
+output_filename = sys.argv[2] # ./chekpoints/baseline.pth
 
 # dataset
 trainX = np.load(sys.argv[1])
@@ -50,15 +50,15 @@ for epoch in range(n_epoch):
 
     # save mid-model
     if (epoch+1) % 10 == 0:
-        torch.save(model.state_dict(), os.path.join(output_modeldir,'checkpoint_{}.pth'.format(epoch+1)))
+        #torch.save(model.state_dict(), os.path.join(output_modeldir,'checkpoint_{}.pth'.format(epoch+1)))
         pass
     if loss.data < loss_min:
         best_model = model.state_dict()
         loss_min = loss.data
         print("save best")           
-        torch.save(model.state_dict(), os.path.join(output_modeldir,'checkpoint_{}.pth'.format(epoch+1)))
+        #torch.save(model.state_dict(), os.path.join(output_modeldir,'checkpoint_{}.pth'.format(epoch+1)))
     print('epoch [{}/{}], loss:{:.5f}'.format(epoch+1, n_epoch, loss.data))
 
 # save best model
-torch.save(best_model, os.path.join(output_modeldir,'last_checkpoint.pth'))
-#torch.save(best_model, os.path.join(output_filename))
+#torch.save(best_model, os.path.join(output_modeldir,'last_checkpoint.pth'))
+torch.save(best_model, os.path.join(output_filename))
