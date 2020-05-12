@@ -1,4 +1,5 @@
 # TODO: create shell script
-echo $1 #: <data directory> 
-echo $2 #: <prediction file>
-python3 predict_pkl.py $1 $2 model.bin
+# bash train_baseline.sh <trainX_npy> <checkpoint>
+echo $1 #: <trainX_npy>
+echo $2 #: <checkpoint>
+python3 training_strong.py $1 $2 

@@ -7,19 +7,17 @@ import sys
 import os
 import numpy as np
 
+from utils import same_seeds
 from model_strong import AE
-#from model_baseline import AE
-
-from dataset import preprocess
-from dataset import Image_Dataset
-from dataset import test_transform
+from dataset_strong import Image_Dataset
+from dataset_strong import test_transform
 
 input_filename = sys.argv[1] # ~/Downloads/dataset/trainX.npy
 model_filename = sys.argv[2]  # ./model
 output_predir = sys.argv[3] # ./submission
+same_seeds(0)
 
 def inference(X, model, batch_size=256):
-    X = preprocess(X)
     dataset = Image_Dataset(X,test_transform)
     dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=False)
     latents = []
