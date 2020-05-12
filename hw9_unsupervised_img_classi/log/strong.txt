@@ -249,3 +249,307 @@ epoch [197/400], loss:0.02055
 epoch [198/400], loss:0.02255
 epoch [199/400], loss:0.02094
 epoch [200/400], loss:0.02154
+
+
+(robotpower) ➜  hw9_unsupervised_img_classi git:(master) ✗ python prob3_LossvsAcc.py ~/Downloads/dataset/trainX.npy ~/Downloads/dataset/valX.npy ~/Downloads/dataset/valY.npy
+['checkpoints/strong_model/checkpoint_1.pth', 'checkpoints/strong_model/checkpoint_10.pth', 'checkpoints/strong_model/checkpoint_100.pth', 'checkpoints/strong_model/checkpoint_105.pth', 'checkpoints/strong_model/checkpoint_11.pth', 'checkpoints/strong_model/checkpoint_110.pth', 'checkpoints/strong_model/checkpoint_113.pth', 'checkpoints/strong_model/checkpoint_120.pth', 'checkpoints/strong_model/checkpoint_130.pth', 'checkpoints/strong_model/checkpoint_135.pth', 'checkpoints/strong_model/checkpoint_138.pth', 'checkpoints/strong_model/checkpoint_140.pth', 'checkpoints/strong_model/checkpoint_150.pth', 'checkpoints/strong_model/checkpoint_16.pth', 'checkpoints/strong_model/checkpoint_160.pth', 'checkpoints/strong_model/checkpoint_168.pth', 'checkpoints/strong_model/checkpoint_169.pth', 'checkpoints/strong_model/checkpoint_17.pth', 'checkpoints/strong_model/checkpoint_170.pth', 'checkpoints/strong_model/checkpoint_180.pth', 'checkpoints/strong_model/checkpoint_190.pth', 'checkpoints/strong_model/checkpoint_192.pth', 'checkpoints/strong_model/checkpoint_2.pth', 'checkpoints/strong_model/checkpoint_20.pth', 'checkpoints/strong_model/checkpoint_200.pth', 'checkpoints/strong_model/checkpoint_25.pth', 'checkpoints/strong_model/checkpoint_26.pth', 'checkpoints/strong_model/checkpoint_28.pth', 'checkpoints/strong_model/checkpoint_3.pth', 'checkpoints/strong_model/checkpoint_30.pth', 'checkpoints/strong_model/checkpoint_32.pth', 'checkpoints/strong_model/checkpoint_33.pth', 'checkpoints/strong_model/checkpoint_37.pth', 'checkpoints/strong_model/checkpoint_4.pth', 'checkpoints/strong_model/checkpoint_40.pth', 'checkpoints/strong_model/checkpoint_41.pth', 'checkpoints/strong_model/checkpoint_48.pth', 'checkpoints/strong_model/checkpoint_50.pth', 'checkpoints/strong_model/checkpoint_55.pth', 'checkpoints/strong_model/checkpoint_57.pth', 'checkpoints/strong_model/checkpoint_6.pth', 'checkpoints/strong_model/checkpoint_60.pth', 'checkpoints/strong_model/checkpoint_7.pth', 'checkpoints/strong_model/checkpoint_70.pth', 'checkpoints/strong_model/checkpoint_8.pth', 'checkpoints/strong_model/checkpoint_80.pth', 'checkpoints/strong_model/checkpoint_82.pth', 'checkpoints/strong_model/checkpoint_84.pth', 'checkpoints/strong_model/checkpoint_90.pth']
+[1/49] checkpoints/strong_model/checkpoint_1.pth
+Reconstruction error (MSE): 0.15349065994515138
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.512
+[2/49] checkpoints/strong_model/checkpoint_10.pth
+Reconstruction error (MSE): 0.0799886224900975
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.756
+[3/49] checkpoints/strong_model/checkpoint_100.pth
+Reconstruction error (MSE): 0.028104781173169613
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.784
+[4/49] checkpoints/strong_model/checkpoint_105.pth
+Reconstruction error (MSE): 0.027451519306529972
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.77
+[5/49] checkpoints/strong_model/checkpoint_11.pth
+Reconstruction error (MSE): 0.07766131158260738
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.55
+[6/49] checkpoints/strong_model/checkpoint_110.pth
+Reconstruction error (MSE): 0.026726414394729277
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.8
+[7/49] checkpoints/strong_model/checkpoint_113.pth
+Reconstruction error (MSE): 0.026481422705247122
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.798
+[8/49] checkpoints/strong_model/checkpoint_120.pth
+Reconstruction error (MSE): 0.02578378830324201
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.816
+[9/49] checkpoints/strong_model/checkpoint_130.pth
+Reconstruction error (MSE): 0.024498955730129692
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.79
+[10/49] checkpoints/strong_model/checkpoint_135.pth
+Reconstruction error (MSE): 0.02410588490174097
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.798
+[11/49] checkpoints/strong_model/checkpoint_138.pth
+Reconstruction error (MSE): 0.02379262973280514
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.814
+[12/49] checkpoints/strong_model/checkpoint_140.pth
+Reconstruction error (MSE): 0.023577325484331918
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.762
+[13/49] checkpoints/strong_model/checkpoint_150.pth
+Reconstruction error (MSE): 0.02280438006581629
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.76
+[14/49] checkpoints/strong_model/checkpoint_16.pth
+Reconstruction error (MSE): 0.0683865801376455
+Latents Shape: (500, 8192)
+/home/shannon/miniconda2/envs/robotpower/lib/python3.6/site-packages/sklearn/utils/extmath.py:530: RuntimeWarning: invalid value encountered in multiply
+  v *= signs[:, np.newaxis]
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.558
+[15/49] checkpoints/strong_model/checkpoint_160.pth
+Reconstruction error (MSE): 0.021924588884062627
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.784
+[16/49] checkpoints/strong_model/checkpoint_168.pth
+Reconstruction error (MSE): 0.02145824028069482
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.798
+[17/49] checkpoints/strong_model/checkpoint_169.pth
+Reconstruction error (MSE): 0.02129421224269797
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.818
+[18/49] checkpoints/strong_model/checkpoint_17.pth
+Reconstruction error (MSE): 0.0664717722684145
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.786
+[19/49] checkpoints/strong_model/checkpoint_170.pth
+Reconstruction error (MSE): 0.021251217078636673
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.682
+[20/49] checkpoints/strong_model/checkpoint_180.pth
+Reconstruction error (MSE): 0.02052165973274147
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.778
+[21/49] checkpoints/strong_model/checkpoint_190.pth
+Reconstruction error (MSE): 0.019911983214757022
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.762
+[22/49] checkpoints/strong_model/checkpoint_192.pth
+Reconstruction error (MSE): 0.019873372553025976
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.816
+[23/49] checkpoints/strong_model/checkpoint_2.pth
+Reconstruction error (MSE): 0.12963364141828873
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.544
+[24/49] checkpoints/strong_model/checkpoint_20.pth
+Reconstruction error (MSE): 0.06316505887490861
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.758
+[25/49] checkpoints/strong_model/checkpoint_200.pth
+Reconstruction error (MSE): 0.019556916647535914
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.746
+[26/49] checkpoints/strong_model/checkpoint_25.pth
+Reconstruction error (MSE): 0.057261606897501385
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.78
+[27/49] checkpoints/strong_model/checkpoint_26.pth
+Reconstruction error (MSE): 0.055974144488573074
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.776
+[28/49] checkpoints/strong_model/checkpoint_28.pth
+Reconstruction error (MSE): 0.05354894401834292
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.776
+[29/49] checkpoints/strong_model/checkpoint_3.pth
+Reconstruction error (MSE): 0.11494212970137596
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.736
+[30/49] checkpoints/strong_model/checkpoint_30.pth
+Reconstruction error (MSE): 0.05200762959087596
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.77
+[31/49] checkpoints/strong_model/checkpoint_32.pth
+Reconstruction error (MSE): 0.05018472682465525
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.738
+[32/49] checkpoints/strong_model/checkpoint_33.pth
+Reconstruction error (MSE): 0.049786940107450765
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.744
+[33/49] checkpoints/strong_model/checkpoint_37.pth
+Reconstruction error (MSE): 0.04658881399561377
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.582
+[34/49] checkpoints/strong_model/checkpoint_4.pth
+Reconstruction error (MSE): 0.10804709068992559
+Latents Shape: (500, 8192)
+/home/shannon/miniconda2/envs/robotpower/lib/python3.6/site-packages/sklearn/utils/extmath.py:530: RuntimeWarning: invalid value encountered in multiply
+  v *= signs[:, np.newaxis]
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.7
+[35/49] checkpoints/strong_model/checkpoint_40.pth
+Reconstruction error (MSE): 0.04479203526588047
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.734
+[36/49] checkpoints/strong_model/checkpoint_41.pth
+Reconstruction error (MSE): 0.0441438945777276
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.66
+[37/49] checkpoints/strong_model/checkpoint_48.pth
+Reconstruction error (MSE): 0.040563955464783835
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.776
+[38/49] checkpoints/strong_model/checkpoint_50.pth
+Reconstruction error (MSE): 0.039747342029038596
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.762
+[39/49] checkpoints/strong_model/checkpoint_55.pth
+Reconstruction error (MSE): 0.038170677664525365
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.654
+[40/49] checkpoints/strong_model/checkpoint_57.pth
+Reconstruction error (MSE): 0.03739501316757763
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.756
+[41/49] checkpoints/strong_model/checkpoint_6.pth
+Reconstruction error (MSE): 0.09591669085271218
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.692
+[42/49] checkpoints/strong_model/checkpoint_60.pth
+Reconstruction error (MSE): 0.03657841233207899
+Latents Shape: (500, 8192)
+/home/shannon/miniconda2/envs/robotpower/lib/python3.6/site-packages/sklearn/utils/extmath.py:530: RuntimeWarning: invalid value encountered in multiply
+  v *= signs[:, np.newaxis]
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.782
+[43/49] checkpoints/strong_model/checkpoint_7.pth
+Reconstruction error (MSE): 0.0903148258871892
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.736
+[44/49] checkpoints/strong_model/checkpoint_70.pth
+Reconstruction error (MSE): 0.03365398373673944
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.754
+[45/49] checkpoints/strong_model/checkpoint_8.pth
+Reconstruction error (MSE): 0.08663178366773269
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.704
+[46/49] checkpoints/strong_model/checkpoint_80.pth
+Reconstruction error (MSE): 0.03147993434001418
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.756
+[47/49] checkpoints/strong_model/checkpoint_82.pth
+Reconstruction error (MSE): 0.03106229527689078
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.766
+[48/49] checkpoints/strong_model/checkpoint_84.pth
+Reconstruction error (MSE): 0.030767486704623
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.802
+[49/49] checkpoints/strong_model/checkpoint_90.pth
+Reconstruction error (MSE): 0.029510242316652748
+Latents Shape: (500, 8192)
+PCA for First Reduction Shape: (500, 200)
+TSNE for Second Reduction Shape: (500, 2)
+Accuracy: 0.766

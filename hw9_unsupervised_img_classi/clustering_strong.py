@@ -12,9 +12,6 @@ from model_strong import AE
 from dataset_strong import Image_Dataset
 from dataset_strong import test_transform
 
-input_filename = sys.argv[1] # ~/Downloads/dataset/trainX.npy
-model_filename = sys.argv[2]  # ./model
-output_predir = sys.argv[3] # ./submission
 same_seeds(0)
 
 def inference(X, model, batch_size=256):
@@ -56,20 +53,25 @@ def save_prediction(pred, out_csv):
             f.write(f'{i},{p}\n')
     print(f'Save prediction to {out_csv}.')
 
-# load model
-model = AE().cuda()
-model.load_state_dict(torch.load(os.path.join(model_filename)))
-model.eval()
+if __name__ == "__main__":
+    input_filename = sys.argv[1] # ~/Downloads/dataset/trainX.npy
+    model_filename = sys.argv[2]  # ./model
+    output_predir = sys.argv[3] # ./submission
 
-# load training data
-trainX = np.load(input_filename)
+    # load model
+    model = AE().cuda()
+    model.load_state_dict(torch.load(os.path.join(model_filename)))
+    model.eval()
 
-# extract latent vector
-latents = inference(X=trainX, model=model)
+    # load training data
+    trainX = np.load(input_filename)
 
-# two step dimesion reduction and clustering 
-pred, X_embedded = predict(latents)
+    # extract latent vector
+    latents = inference(X=trainX, model=model)
 
-# binary classification result
-save_prediction(pred, os.path.join(output_predir,'prediction.csv'))
-save_prediction(invert(pred), os.path.join(output_predir,'inverse_prediction.csv'))
+    # two step dimesion reduction and clustering 
+    pred, X_embedded = predict(latents)
+
+    # binary classification result
+    save_prediction(pred, os.path.join(output_predir,'prediction.csv'))
+    save_prediction(invert(pred), os.path.join(output_predir,'inverse_prediction.csv'))
