@@ -24,14 +24,17 @@ Training Loss v.s. validation accuracy: (baseline/improved)
 <img src="https://github.com/shannon112/MareepLearning/blob/master/hw9_unsupervised_img_classi/img/p3_baseline.png" height=320/> <img src="https://github.com/shannon112/MareepLearning/blob/master/hw9_unsupervised_img_classi/img/p3_strong.png" height=320/>  
 
 ## Resource
-homework video: https://www.youtube.com/watch?v=Y-a3CZI-wrM&feature=youtu.be  
-kaggle: https://www.kaggle.com/c/ml2020spring-hw7/  
+homework video: https://www.youtube.com/watch?v=2g5VmgRBiM0&feature=youtu.be  
+kaggle: https://www.kaggle.com/c/ml2020spring-hw9/  
 library limitation: https://reurl.cc/GVkjWD   
 
 ## Usage
 ```
-bash  hw7_test.sh  <data directory>  <prediction file>
+bash hw9_best.sh <trainX_npy> <checkpoint> <prediction_path>
+bash train_baseline.sh <trainX_npy> <checkpoint>
+bash train_best.sh <trainX_npy> <checkpoint>
+bash train_improved.sh <trainX_npy> <checkpoint>
 ```
 
 ## Homework version
-https://github.com/NTU-speech-lab/hw7-shannon112
+https://github.com/NTU-speech-lab/hw9-shannon112
