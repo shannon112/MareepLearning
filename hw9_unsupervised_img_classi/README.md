@@ -1,22 +1,27 @@
-# hw7_network_compression: Network Compression on HW3 CNN Based Image Classification Network
+# hw9_unsupervised_img_classi: Unsupervised Image Classification
+Classify 8500 unlabeled images (32x32x3), see if it is scenery or not.  
+trainX = (8500, 32, 32, 3)  
+valX = (500, 32, 32, 3)  
+valY = (500, 32, 32, 3)  
 
-Network Compression on HW3 CNN Based Image Classification Network based on Knowledge Distillation, Network Pruning(not complete), Weight Quantiztion, Design Architecture. Dataset is as same as HW3 (Food-11).  
+# Pipeline
+image (32, 32, 3) -> Auto Encoder ->  
+latent vector (8192) -> PCA-rbf-kernal ->  
+reduced vector (200) -> tSNE ->  
+reduecd vector (2) -> Mini-Batch-KMeans ->  
+two classes  
 
-# Depthwise & Pointwise Convolution Layer (MobileNet)
-Design Architecture based on Depthwise & Pointwise Convolution Layer, constructing small model.
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw7_network_compression_tohw3/img/Low_Rank_Approximation_Model1.png" width=640/>
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw7_network_compression_tohw3/img/Low_Rank_Approximation_Model2.png" width=640/>
+# Auto Encoder
+<img src="https://github.com/shannon112/MareepLearning/blob/master/hw9_unsupervised_img_classi/img/model.png" width=640/>
 
-# Knowledge Distillation
-Teacher model is ResNet18 with ImageNet pretrained & fine-tune.  
-Student model is D&P model above.  
-Loss function is:  
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw7_network_compression_tohw3/img/Knowledge_Distillation_Loss.png" width=440/>
-
-# Weight Quantiztion
-Compress model from default float32 to unit8.  
-The encoder mapping function is:  
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw7_network_compression_tohw3/img/Quantization.png" width=340/>
+# Result
+Clustering result: (baseline/improved)  
+<img src="https://github.com/shannon112/MareepLearning/blob/master/hw9_unsupervised_img_classi/img/p1_baseline.png" width=320/> <img src="https://github.com/shannon112/MareepLearning/blob/master/hw9_unsupervised_img_classi/img/p1_strong.png" width=320/>  
+Decoded images from latent vectors: (baseline/improved)  
+<img src="https://github.com/shannon112/MareepLearning/blob/master/hw9_unsupervised_img_classi/img/p2_baseline.png" width=640/>
+<img src="https://github.com/shannon112/MareepLearning/blob/master/hw9_unsupervised_img_classi/img/p2_strong.png" width=640/>  
+Training Loss v.s. validation accuracy: (baseline/improved)  
+<img src="https://github.com/shannon112/MareepLearning/blob/master/hw9_unsupervised_img_classi/img/p3_baseline.png" height=320/> <img src="https://github.com/shannon112/MareepLearning/blob/master/hw9_unsupervised_img_classi/img/p3_strong.png" height=320/>  
 
 ## Resource
 homework video: https://www.youtube.com/watch?v=Y-a3CZI-wrM&feature=youtu.be  
