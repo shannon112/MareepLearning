@@ -10,17 +10,17 @@ import torch.nn as nn
 from utils import same_seeds
 from utils import cal_acc
 
-from model_baseline import AE
-from dataset_baseline import Image_Dataset
-from dataset_baseline import preprocess
-from clustering_baseline import predict
-from clustering_baseline import inference
-
 from model_strong import AE
 from dataset_strong import Image_Dataset
 from dataset_strong import test_transform
 from clustering_strong import predict
 from clustering_strong import inference
+
+from model_baseline import AE
+from dataset_baseline import Image_Dataset
+from dataset_baseline import preprocess
+from clustering_baseline import predict
+from clustering_baseline import inference
 
 same_seeds(0)
 
@@ -28,9 +28,9 @@ same_seeds(0)
 input_filename = sys.argv[1] # ~/Downloads/dataset/trainX.npy
 input_filename2 = sys.argv[2] # ~/Downloads/dataset/valX.npy
 input_filename3 = sys.argv[3] # ~/Downloads/dataset/valY.npy
-checkpoints_list = sorted(glob.glob('checkpoints/checkpoint_*.pth'))
+#checkpoints_list = sorted(glob.glob('checkpoints/checkpoint_*.pth'))
 #checkpoints_list = sorted(glob.glob('checkpoints/strong_model/checkpoint_*.pth'))
-#checkpoints_list = sorted(glob.glob('checkpoints/baseline_model/checkpoint_*.pth'))
+checkpoints_list = sorted(glob.glob('checkpoints/baseline_model/checkpoint_*.pth'))
 print(checkpoints_list)
 
 # load data
@@ -39,13 +39,13 @@ valX = np.load(input_filename2)
 valY = np.load(input_filename3)
 
 # baseline
-#trainX_preprocessed = preprocess(trainX)
-#dataset = Image_Dataset(trainX_preprocessed)
-#dataloader = DataLoader(dataset, batch_size=64, shuffle=True)
+trainX_preprocessed = preprocess(trainX)
+dataset = Image_Dataset(trainX_preprocessed)
+dataloader = DataLoader(dataset, batch_size=64, shuffle=True)
 
 # strong
-dataset = Image_Dataset(trainX,test_transform)
-dataloader = DataLoader(dataset, batch_size=256, shuffle=False)
+#dataset = Image_Dataset(trainX,test_transform)
+#dataloader = DataLoader(dataset, batch_size=256, shuffle=False)
 
 # model
 model = AE().cuda()

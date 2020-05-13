@@ -232,3 +232,131 @@ epoch [200/200], loss:0.03698
 
 baseline_inv 0.75600
 baseline 0.24400
+
+
+(robotpower) ➜  hw9_unsupervised_img_classi git:(master) ✗ python prob3_LossvsAcc.py ~/Downloads/dataset/trainX.npy ~/Downloads/dataset/valX.npy ~/Downloads/dataset/valY.npy
+['checkpoints/baseline_model/checkpoint_10.pth', 'checkpoints/baseline_model/checkpoint_100.pth', 'checkpoints/baseline_model/checkpoint_110.pth', 'checkpoints/baseline_model/checkpoint_120.pth', 'checkpoints/baseline_model/checkpoint_130.pth', 'checkpoints/baseline_model/checkpoint_140.pth', 'checkpoints/baseline_model/checkpoint_150.pth', 'checkpoints/baseline_model/checkpoint_160.pth', 'checkpoints/baseline_model/checkpoint_170.pth', 'checkpoints/baseline_model/checkpoint_180.pth', 'checkpoints/baseline_model/checkpoint_190.pth', 'checkpoints/baseline_model/checkpoint_20.pth', 'checkpoints/baseline_model/checkpoint_200.pth', 'checkpoints/baseline_model/checkpoint_30.pth', 'checkpoints/baseline_model/checkpoint_40.pth', 'checkpoints/baseline_model/checkpoint_50.pth', 'checkpoints/baseline_model/checkpoint_60.pth', 'checkpoints/baseline_model/checkpoint_70.pth', 'checkpoints/baseline_model/checkpoint_80.pth', 'checkpoints/baseline_model/checkpoint_90.pth']
+[1/20] checkpoints/baseline_model/checkpoint_10.pth
+Reconstruction error (MSE): 0.09162501195319613
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.5680000000000001
+[2/20] checkpoints/baseline_model/checkpoint_100.pth
+Reconstruction error (MSE): 0.0467794848451937
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.75
+[3/20] checkpoints/baseline_model/checkpoint_110.pth
+Reconstruction error (MSE): 0.045400472091776986
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.67
+[4/20] checkpoints/baseline_model/checkpoint_120.pth
+Reconstruction error (MSE): 0.04401103115843651
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.736
+[5/20] checkpoints/baseline_model/checkpoint_130.pth
+Reconstruction error (MSE): 0.04263725845997495
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.792
+[6/20] checkpoints/baseline_model/checkpoint_140.pth
+Reconstruction error (MSE): 0.041604176779886835
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.568
+[7/20] checkpoints/baseline_model/checkpoint_150.pth
+Reconstruction error (MSE): 0.04060487339931323
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.754
+[8/20] checkpoints/baseline_model/checkpoint_160.pth
+Reconstruction error (MSE): 0.03973049684462691
+Latents Shape: (500, 4096)
+/home/shannon/miniconda2/envs/robotpower/lib/python3.6/site-packages/sklearn/utils/extmath.py:530: RuntimeWarning: invalid value encountered in multiply
+  v *= signs[:, np.newaxis]
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.772
+[9/20] checkpoints/baseline_model/checkpoint_170.pth
+Reconstruction error (MSE): 0.03911659233552173
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.736
+[10/20] checkpoints/baseline_model/checkpoint_180.pth
+Reconstruction error (MSE): 0.03828882248161879
+Latents Shape: (500, 4096)
+/home/shannon/miniconda2/envs/robotpower/lib/python3.6/site-packages/sklearn/utils/extmath.py:530: RuntimeWarning: invalid value encountered in multiply
+  v *= signs[:, np.newaxis]
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.584
+[11/20] checkpoints/baseline_model/checkpoint_190.pth
+Reconstruction error (MSE): 0.03757435406901335
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.772
+[12/20] checkpoints/baseline_model/checkpoint_20.pth
+Reconstruction error (MSE): 0.07608519872664508
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.578
+[13/20] checkpoints/baseline_model/checkpoint_200.pth
+Reconstruction error (MSE): 0.03688839119964076
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.768
+[14/20] checkpoints/baseline_model/checkpoint_30.pth
+Reconstruction error (MSE): 0.06807272127808485
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.602
+[15/20] checkpoints/baseline_model/checkpoint_40.pth
+Reconstruction error (MSE): 0.06231858326416267
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.686
+[16/20] checkpoints/baseline_model/checkpoint_50.pth
+Reconstruction error (MSE): 0.058397299897177776
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.58
+[17/20] checkpoints/baseline_model/checkpoint_60.pth
+Reconstruction error (MSE): 0.05535683329952391
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.66
+[18/20] checkpoints/baseline_model/checkpoint_70.pth
+Reconstruction error (MSE): 0.052814357346834095
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.72
+[19/20] checkpoints/baseline_model/checkpoint_80.pth
+Reconstruction error (MSE): 0.05105024800264746
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.62
+[20/20] checkpoints/baseline_model/checkpoint_90.pth
+Reconstruction error (MSE): 0.04863201493495389
+Latents Shape: (500, 4096)
+First Reduction Shape: (500, 200)
+Second Reduction Shape: (500, 2)
+Accuracy: 0.686
