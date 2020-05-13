@@ -12,12 +12,10 @@ from dataset_baseline import Image_Dataset
 from clustering_baseline import predict
 from clustering_baseline import inference
 
-"""
 from model_strong import AE
 from dataset_strong import Image_Dataset
 from clustering_strong import predict
 from clustering_strong import inference
-"""
 
 same_seeds(0)
 
