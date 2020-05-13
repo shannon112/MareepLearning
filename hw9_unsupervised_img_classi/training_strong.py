@@ -53,6 +53,9 @@ for epoch in range(n_epoch):
         loss_min = loss.data
         print("save best")           
         #torch.save(model.state_dict(), os.path.join(output_modeldir,'checkpoint_{}.pth'.format(epoch+1)))
+    if (epoch+1) == 180:
+        best_model = model.state_dict()
+        break
     print('epoch [{}/{}], loss:{:.5f}'.format(epoch+1, n_epoch, loss.data))
 
 # save best model

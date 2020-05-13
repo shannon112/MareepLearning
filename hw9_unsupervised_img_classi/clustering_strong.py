@@ -73,5 +73,6 @@ if __name__ == "__main__":
     pred, X_embedded = predict(latents)
 
     # binary classification result
-    save_prediction(pred, os.path.join(output_predir,'prediction.csv'))
-    save_prediction(invert(pred), os.path.join(output_predir,'inverse_prediction.csv'))
+    #save_prediction(pred, os.path.join(output_predir,'prediction.csv'))
+    #save_prediction(invert(pred), os.path.join(output_predir,'inverse_prediction.csv'))
+    save_prediction(invert(pred), os.path.join(output_predir))
