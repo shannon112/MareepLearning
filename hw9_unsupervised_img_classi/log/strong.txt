@@ -215,8 +215,8 @@ epoch [167/400], loss:0.02291
 save best
 epoch [168/400], loss:0.02243
 save best
-epoch [169/400], loss:0.02123
-epoch [170/400], loss:0.02362
+epoch [169/400], loss:0.02123 V
+epoch [170/400], loss:0.02362 V
 epoch [171/400], loss:0.02461
 epoch [172/400], loss:0.03101
 epoch [173/400], loss:0.02375
@@ -226,7 +226,7 @@ epoch [176/400], loss:0.02695
 epoch [177/400], loss:0.02441
 epoch [178/400], loss:0.03145
 epoch [179/400], loss:0.02491
-epoch [180/400], loss:0.02878
+epoch [180/400], loss:0.02878 V
 epoch [181/400], loss:0.02779
 epoch [182/400], loss:0.02605
 epoch [183/400], loss:0.02463
@@ -237,10 +237,10 @@ epoch [187/400], loss:0.02687
 epoch [188/400], loss:0.02980
 epoch [189/400], loss:0.02267
 save best
-epoch [190/400], loss:0.02083
+epoch [190/400], loss:0.02083 V
 epoch [191/400], loss:0.02365
 save best
-epoch [192/400], loss:0.02026
+epoch [192/400], loss:0.02026 V
 epoch [193/400], loss:0.02359
 epoch [194/400], loss:0.02518
 epoch [195/400], loss:0.02897
@@ -248,7 +248,7 @@ epoch [196/400], loss:0.02305
 epoch [197/400], loss:0.02055
 epoch [198/400], loss:0.02255
 epoch [199/400], loss:0.02094
-epoch [200/400], loss:0.02154
+epoch [200/400], loss:0.02154 V
 
 
 (robotpower) ➜  hw9_unsupervised_img_classi git:(master) ✗ python prob3_LossvsAcc.py ~/Downloads/dataset/trainX.npy ~/Downloads/dataset/valX.npy ~/Downloads/dataset/valY.npy
@@ -553,3 +553,10 @@ Latents Shape: (500, 8192)
 PCA for First Reduction Shape: (500, 200)
 TSNE for Second Reduction Shape: (500, 2)
 Accuracy: 0.766
+
+kaggle:
+160ep 0.76753
+169ep 0.77176
+180ep 0.77600
+192ep 0.76894
+200ep 0.76941
