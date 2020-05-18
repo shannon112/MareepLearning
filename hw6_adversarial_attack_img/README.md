@@ -13,14 +13,14 @@ library limitation: https://reurl.cc/GVkjWD
 training data: https://reurl.cc/vD3Yr1  
 
 ## Fast Gradient Sign Method (FGSM) Attack
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack/img/img_compare.png" width=840/>
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack/img/distribution_compare.png" width=840/>
+<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack_img/img/img_compare.png" width=840/>
+<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack_img/img/distribution_compare.png" width=840/>
 
 ## Passive Defense by Smoothing
 <p align="center">
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack/img/defensetable.png" width=640 />
+<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack_img/img/defensetable.png" width=640 />
 </p>
-<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack/img/atked_img_blur.png" width=840 />
+<img src="https://raw.githubusercontent.com/shannon112/MareepLearning/master/hw6_adversarial_attack_img/img/atked_img_blur.png" width=840 />
 
 
 ## Usage
