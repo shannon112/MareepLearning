@@ -2,29 +2,38 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 from torch.autograd import Variable
+from utils import same_seeds
 
+same_seeds(0)
 
 class fcn_autoencoder(nn.Module):
     def __init__(self):
         super(fcn_autoencoder, self).__init__()
         self.encoder = nn.Sequential(
-            nn.Linear(32 * 32 * 3, 128),
+            nn.Linear(32 * 32 * 3, 256),
             nn.ReLU(True),
-            nn.Linear(128, 64),
-            nn.ReLU(True), nn.Linear(64, 12), nn.ReLU(True), nn.Linear(12, 3))
+            nn.Linear(256, 64),
+            nn.ReLU(True), 
+            nn.Linear(64, 16), 
+            nn.ReLU(True), 
+            nn.Linear(16, 3)
+        )
+
         self.decoder = nn.Sequential(
-            nn.Linear(3, 12),
+            nn.Linear(3, 16),
             nn.ReLU(True),
-            nn.Linear(12, 64),
+            nn.Linear(16, 64),
             nn.ReLU(True),
-            nn.Linear(64, 128),
-            nn.ReLU(True), nn.Linear(128, 32 * 32 * 3
-            ), nn.Tanh())
+            nn.Linear(64, 256),
+            nn.ReLU(True), 
+            nn.Linear(256, 32 * 32 * 3), 
+            nn.Tanh()
+        )
 
     def forward(self, x):
-        x = self.encoder(x)
-        x = self.decoder(x)
-        return x
+        x_latent = self.encoder(x)
+        x = self.decoder(x_latent)
+        return x_latent, x
 
 
 class conv_autoencoder(nn.Module):
@@ -35,26 +44,57 @@ class conv_autoencoder(nn.Module):
             nn.ReLU(),
             nn.Conv2d(12, 24, 4, stride=2, padding=1),           # [batch, 24, 8, 8]
             nn.ReLU(),
-			      nn.Conv2d(24, 48, 4, stride=2, padding=1),           # [batch, 48, 4, 4]
+			nn.Conv2d(24, 48, 4, stride=2, padding=1),           # [batch, 48, 4, 4]
             nn.ReLU(),
-    # 			nn.Conv2d(48, 96, 4, stride=2, padding=1),           # [batch, 96, 2, 2]
+    # 		nn.Conv2d(48, 96, 4, stride=2, padding=1),           # [batch, 96, 2, 2]
     #       nn.ReLU(),
         )
         self.decoder = nn.Sequential(
-#             nn.ConvTranspose2d(96, 48, 4, stride=2, padding=1),  # [batch, 48, 4, 4]
-#             nn.ReLU(),
-			      nn.ConvTranspose2d(48, 24, 4, stride=2, padding=1),  # [batch, 24, 8, 8]
+#           nn.ConvTranspose2d(96, 48, 4, stride=2, padding=1),  # [batch, 48, 4, 4]
+#           nn.ReLU(),
+			nn.ConvTranspose2d(48, 24, 4, stride=2, padding=1),  # [batch, 24, 8, 8]
             nn.ReLU(),
-			      nn.ConvTranspose2d(24, 12, 4, stride=2, padding=1),  # [batch, 12, 16, 16]
+			nn.ConvTranspose2d(24, 12, 4, stride=2, padding=1),  # [batch, 12, 16, 16]
             nn.ReLU(),
             nn.ConvTranspose2d(12, 3, 4, stride=2, padding=1),   # [batch, 3, 32, 32]
             nn.Tanh(),
         )
 
     def forward(self, x):
-        x = self.encoder(x)
-        x = self.decoder(x)
-        return x
+        x_latent = self.encoder(x)
+        x = self.decoder(x_latent)
+        return x_latent, x
+
+
+class conv_autoencoder_hw9(nn.Module):
+    def __init__(self):
+        super(conv_autoencoder_hw9, self).__init__()
+        
+        self.encoder = nn.Sequential(
+            nn.Conv2d(3, 64, 3, stride=1, padding=1),
+            nn.ReLU(True),
+            nn.MaxPool2d(2),
+            nn.Conv2d(64, 128, 3, stride=1, padding=1),
+            nn.ReLU(True),
+            nn.MaxPool2d(2),
+            nn.Conv2d(128, 256, 3, stride=1, padding=1),
+            nn.ReLU(True),
+            nn.MaxPool2d(2)
+        )
+ 
+        self.decoder = nn.Sequential(
+            nn.ConvTranspose2d(256, 128, 5, stride=1),
+            nn.ReLU(True),
+            nn.ConvTranspose2d(128, 64, 9, stride=1),
+            nn.ReLU(True),
+            nn.ConvTranspose2d(64, 3, 17, stride=1),
+            nn.Tanh()
+        )
+
+    def forward(self, x):
+        x_latent = self.encoder(x)
+        x = self.decoder(x_latent)
+        return x_latent, x
 
 
 class VAE(nn.Module):
@@ -88,7 +128,6 @@ class VAE(nn.Module):
         mu, logvar = self.encode(x)
         z = self.reparametrize(mu, logvar)
         return self.decode(z), mu, logvar
-
 
 def loss_vae(recon_x, x, mu, logvar, criterion):
     """
