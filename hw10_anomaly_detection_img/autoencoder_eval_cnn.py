@@ -20,15 +20,13 @@ test_filename = sys.argv[1]
 model_filename = sys.argv[2]
 batch_size = 128
 same_seeds(0)
-
-# load data
 test = np.load(test_filename, allow_pickle=True)
-print("data", test.shape)
-# input shape
-y = test
+print(test.shape)
+test = np.transpose(test, (0,3,1,2))
+print(test.shape)
 
 # make dataset
-data = torch.tensor(y, dtype=torch.float)
+data = torch.tensor(test, dtype=torch.float)
 test_dataset = TensorDataset(data)
 test_sampler = SequentialSampler(test_dataset)
 test_dataloader = DataLoader(test_dataset, sampler=test_sampler, batch_size=batch_size)
@@ -39,18 +37,31 @@ model.eval()
 
 # extract latent vector
 latents = []
+reconstructed = []
 for i, data in enumerate(test_dataloader): 
-    img = data[0].transpose(3, 1).cuda()
+    img = data[0].cuda()
     vec, output = model(img)
     if i == 0: latents = vec.view(img.size()[0], -1).cpu().detach().numpy()
     else: latents = np.concatenate((latents, vec.view(img.size()[0], -1).cpu().detach().numpy()), axis = 0)
+    reconstructed.append(output.cpu().detach().numpy())
+
+# Method 0: reconstruction rmse error
+reconstructed = np.concatenate(reconstructed, axis=0)
+print(reconstructed.shape, test.shape)
+anomality = np.sqrt(np.sum(np.square(reconstructed - test).reshape(len(test), -1), axis=1))
+y_pred_1 = anomality
+# outout result
+with open('submission/prediction_cnn_recon.csv', 'w') as f:
+    f.write('id,anomaly\n')
+    for i in range(len(y_pred_1)):
+        f.write('{},{}\n'.format(i+1, y_pred_1[i]))
 
 # Method 1: Clustering to 20 Class
 for n in range(20):
     pred = MiniBatchKMeans(n_clusters=n+1, random_state=0).fit(latents)
     pred_cluster = pred.predict(latents)
     pred_dist = np.sum(np.square(pred.cluster_centers_[pred_cluster] - latents), axis=1)
-    y_pred = pred_dist
+    y_pred_2 = pred_dist
 
     # plot clustering result
     X_embedded = TSNE(n_components=2).fit_transform(latents)
@@ -60,15 +71,22 @@ for n in range(20):
     plt.scatter(X, Y, c=pred_cluster, s=1)
     plt.legend()
     plt.title("n_clusters = {}".format(n+1))
-    plt.savefig("img/cnn_clustered_tsne_result_{}.png".format(n+1))
+    plt.savfig("img/cnn_clustered_tsne_result_{}.png".format(n+1))
     #plt.show()
+    y_pred = (y_pred_1*150 + y_pred_2)/2
 
-    # output result
+    # fusion output result
     with open('submission/prediction_cnn_{}.csv'.format(n+1), 'w') as f:
+        f.write('id,anomaly\n')
+        for i in range(len(y_pred_2)):
+            f.write('{},{}\n'.format(i+1, y_pred_2[i]))
+    """
+    # fusion output result
+    with open('submission/prediction_cnn_{}_fusion.csv'.format(n+1), 'w') as f:
         f.write('id,anomaly\n')
         for i in range(len(y_pred)):
             f.write('{},{}\n'.format(i+1, y_pred[i]))
-
+    """
 """
 # Method 2: PCA to 2D
 pca = PCA(n_components=2).fit(latents)

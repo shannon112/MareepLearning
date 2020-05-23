@@ -27,8 +27,7 @@ print(testX.shape)
 # make dataset
 data = torch.tensor(testX, dtype=torch.float)
 test_dataset = TensorDataset(data)
-test_sampler = RandomSampler(test_dataset)
-test_dataloader = DataLoader(test_dataset, sampler=test_sampler, batch_size=1)
+test_dataloader = DataLoader(test_dataset, batch_size=1)
 
 # model
 model = fcn_autoencoder().cuda()

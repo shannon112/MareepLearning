@@ -19,22 +19,24 @@ train_filename = sys.argv[1]
 model_filename = sys.argv[2]
 train = np.load(train_filename, allow_pickle=True)
 print(train.shape)
+train = np.transpose(train, (0,3,1,2))
+print(train.shape)
 
 # parameters
 num_epochs = 200
 batch_size = 128
-learning_rate = 1e-3
+learning_rate = 1e-5
 
 # make dataset
 data = torch.tensor(train, dtype=torch.float)
-data = (data + 1) / 2
+#data = (data + 1) / 2
 train_dataset = TensorDataset(data)
 train_sampler = RandomSampler(train_dataset)
 train_dataloader = DataLoader(train_dataset, sampler=train_sampler, batch_size=batch_size)
 
 # model
 model = conv_autoencoder().cuda()
-criterion = nn.BCELoss() #nn.MSELoss() #
+criterion = nn.MSELoss() #nn.BCELoss() #
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 # main traning loop
@@ -43,7 +45,7 @@ model.train()
 for epoch in range(num_epochs):
     for data in train_dataloader:
         # transform input X
-        img = data[0].transpose(3, 1).cuda()
+        img = data[0].cuda()
         # ===================forward=====================
         _,output = model(img)
         # loss
