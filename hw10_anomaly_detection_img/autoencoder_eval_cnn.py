@@ -15,6 +15,9 @@ from sklearn.cluster import MiniBatchKMeans
 from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt
 
+from dataset_strong import Image_Dataset
+from dataset_strong import test_transform
+
 
 test_filename = sys.argv[1]
 model_filename = sys.argv[2]
@@ -22,16 +25,11 @@ batch_size = 128
 same_seeds(0)
 
 # load data
-test = np.load(test_filename, allow_pickle=True)
-print("data", test.shape)
-# input shape
-y = test
+testX = np.load(test_filename, allow_pickle=True)
+testX = torch.tensor(testX, dtype=torch.float) #-1~1
+img_dataset = Image_Dataset(testX, test_transform)
+img_dataloader = DataLoader(img_dataset, batch_size=1, shuffle=True)
 
-# make dataset
-data = torch.tensor(y, dtype=torch.float)
-test_dataset = TensorDataset(data)
-test_sampler = SequentialSampler(test_dataset)
-test_dataloader = DataLoader(test_dataset, sampler=test_sampler, batch_size=batch_size)
 
 # load model
 model = torch.load(model_filename, map_location='cuda')
@@ -39,8 +37,8 @@ model.eval()
 
 # extract latent vector
 latents = []
-for i, data in enumerate(test_dataloader): 
-    img = data[0].transpose(3, 1).cuda()
+for i, data in enumerate(img_dataloader): 
+    img = data.cuda()
     vec, output = model(img)
     if i == 0: latents = vec.view(img.size()[0], -1).cpu().detach().numpy()
     else: latents = np.concatenate((latents, vec.view(img.size()[0], -1).cpu().detach().numpy()), axis = 0)
