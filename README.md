@@ -6,5 +6,5 @@
 - Kaggle: https://www.kaggle.com/c/ml2020spring-hw[1~15]/
 - Homework: https://docs.google.com/spreadsheets/d/1nHixDtBX3LOWm9BwwbiC6XE9y4XAP-L_Q4dYZjKbiR8/
 
-hw1=9, hw2=10, hw4=10, hw5=10, hw6=10      
+hw1=9 (kaggle strongline overfit), hw2=10, hw3=10, hw4=10, hw5=10, hw6=10      
 <img src="https://media.giphy.com/media/pgXyEzYTdmUqk/giphy.gif" width="640">
