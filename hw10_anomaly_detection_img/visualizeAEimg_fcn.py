@@ -32,6 +32,7 @@ test_dataloader = DataLoader(test_dataset, sampler=test_sampler, batch_size=1)
 
 # model
 model = fcn_autoencoder().cuda()
+model = torch.load(model_filename, map_location='cuda')
 criterion = nn.MSELoss() #
 
 # eval
@@ -73,6 +74,6 @@ for i, img in enumerate(recs):
     img = img.reshape(32,32,3)
     img = (img + 1 )/2 
     plt.imshow(img)
-    
+
 plt.tight_layout()
 plt.show()
