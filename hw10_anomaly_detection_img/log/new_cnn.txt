@@ -1,0 +1,249 @@
+(robotpower) ➜  hw10_anomaly_detection_img git:(master) ✗ python autoencoder_train_cnn.py ~/Downloads/dataset/train.npy model.pt
+(40000, 32, 32, 3)
+save
+epoch [1/200], loss:0.1765
+save
+epoch [2/200], loss:0.1478
+save
+epoch [3/200], loss:0.1071
+save
+epoch [4/200], loss:0.0920
+save
+epoch [5/200], loss:0.0773
+epoch [6/200], loss:0.0792
+save
+epoch [7/200], loss:0.0604
+save
+epoch [8/200], loss:0.0536
+save
+epoch [9/200], loss:0.0526
+save
+epoch [10/200], loss:0.0504
+save
+epoch [11/200], loss:0.0495
+save
+epoch [12/200], loss:0.0486
+save
+epoch [13/200], loss:0.0428
+save
+epoch [14/200], loss:0.0416
+epoch [15/200], loss:0.0432
+epoch [16/200], loss:0.0441
+epoch [17/200], loss:0.0434
+save
+epoch [18/200], loss:0.0364
+epoch [19/200], loss:0.0369
+save
+epoch [20/200], loss:0.0333
+save
+epoch [21/200], loss:0.0329
+epoch [22/200], loss:0.0336
+epoch [23/200], loss:0.0356
+epoch [24/200], loss:0.0335
+save
+epoch [25/200], loss:0.0318
+epoch [26/200], loss:0.0339
+save
+epoch [27/200], loss:0.0297
+epoch [28/200], loss:0.0299
+epoch [29/200], loss:0.0339
+save
+epoch [30/200], loss:0.0251
+epoch [31/200], loss:0.0287
+epoch [32/200], loss:0.0279
+epoch [33/200], loss:0.0292
+epoch [34/200], loss:0.0292
+epoch [35/200], loss:0.0289
+save
+epoch [36/200], loss:0.0249
+save
+epoch [37/200], loss:0.0238
+epoch [38/200], loss:0.0255
+epoch [39/200], loss:0.0258
+epoch [40/200], loss:0.0240
+epoch [41/200], loss:0.0266
+epoch [42/200], loss:0.0260
+epoch [43/200], loss:0.0242
+save
+epoch [44/200], loss:0.0226
+epoch [45/200], loss:0.0242
+epoch [46/200], loss:0.0237
+save
+epoch [47/200], loss:0.0226
+epoch [48/200], loss:0.0228
+epoch [49/200], loss:0.0230
+epoch [50/200], loss:0.0227
+save
+epoch [51/200], loss:0.0207
+epoch [52/200], loss:0.0247
+save
+epoch [53/200], loss:0.0195
+epoch [54/200], loss:0.0208
+epoch [55/200], loss:0.0219
+epoch [56/200], loss:0.0199
+epoch [57/200], loss:0.0211
+epoch [58/200], loss:0.0207
+epoch [59/200], loss:0.0200
+epoch [60/200], loss:0.0213
+epoch [61/200], loss:0.0196
+save
+epoch [62/200], loss:0.0178
+epoch [63/200], loss:0.0190
+epoch [64/200], loss:0.0193
+save
+epoch [65/200], loss:0.0170
+epoch [66/200], loss:0.0195
+epoch [67/200], loss:0.0171
+epoch [68/200], loss:0.0191
+save
+epoch [69/200], loss:0.0157
+epoch [70/200], loss:0.0188
+epoch [71/200], loss:0.0180
+epoch [72/200], loss:0.0167
+epoch [73/200], loss:0.0179
+epoch [74/200], loss:0.0170
+epoch [75/200], loss:0.0169
+epoch [76/200], loss:0.0187
+epoch [77/200], loss:0.0166
+epoch [78/200], loss:0.0169
+epoch [79/200], loss:0.0185
+epoch [80/200], loss:0.0173
+epoch [81/200], loss:0.0161
+save
+epoch [82/200], loss:0.0141
+epoch [83/200], loss:0.0166
+epoch [84/200], loss:0.0167
+epoch [85/200], loss:0.0160
+epoch [86/200], loss:0.0149
+epoch [87/200], loss:0.0156
+epoch [88/200], loss:0.0162
+epoch [89/200], loss:0.0144
+epoch [90/200], loss:0.0145
+save
+epoch [91/200], loss:0.0140
+epoch [92/200], loss:0.0151
+epoch [93/200], loss:0.0145
+epoch [94/200], loss:0.0152
+epoch [95/200], loss:0.0145
+epoch [96/200], loss:0.0158
+epoch [97/200], loss:0.0147
+epoch [98/200], loss:0.0146
+epoch [99/200], loss:0.0141
+save
+epoch [100/200], loss:0.0139
+epoch [101/200], loss:0.0148
+epoch [102/200], loss:0.0142
+epoch [103/200], loss:0.0151
+epoch [104/200], loss:0.0162
+save
+epoch [105/200], loss:0.0137
+save
+epoch [106/200], loss:0.0136
+epoch [107/200], loss:0.0144
+save
+epoch [108/200], loss:0.0122
+epoch [109/200], loss:0.0122
+epoch [110/200], loss:0.0135
+epoch [111/200], loss:0.0144
+epoch [112/200], loss:0.0147
+epoch [113/200], loss:0.0126
+save
+epoch [114/200], loss:0.0111
+epoch [115/200], loss:0.0128
+epoch [116/200], loss:0.0135
+epoch [117/200], loss:0.0126
+epoch [118/200], loss:0.0146
+epoch [119/200], loss:0.0131
+epoch [120/200], loss:0.0129
+epoch [121/200], loss:0.0123
+epoch [122/200], loss:0.0126
+epoch [123/200], loss:0.0121
+epoch [124/200], loss:0.0125
+epoch [125/200], loss:0.0114
+epoch [126/200], loss:0.0116
+epoch [127/200], loss:0.0117
+epoch [128/200], loss:0.0115
+epoch [129/200], loss:0.0118
+epoch [130/200], loss:0.0118
+epoch [131/200], loss:0.0119
+epoch [132/200], loss:0.0132
+epoch [133/200], loss:0.0112
+epoch [134/200], loss:0.0118
+epoch [135/200], loss:0.0129
+epoch [136/200], loss:0.0118
+epoch [137/200], loss:0.0122
+epoch [138/200], loss:0.0120
+epoch [139/200], loss:0.0112
+save
+epoch [140/200], loss:0.0108
+epoch [141/200], loss:0.0133
+epoch [142/200], loss:0.0111
+epoch [143/200], loss:0.0132
+epoch [144/200], loss:0.0111
+epoch [145/200], loss:0.0111
+epoch [146/200], loss:0.0117
+epoch [147/200], loss:0.0115
+epoch [148/200], loss:0.0121
+epoch [149/200], loss:0.0109
+epoch [150/200], loss:0.0117
+epoch [151/200], loss:0.0109
+save
+epoch [152/200], loss:0.0105
+save
+epoch [153/200], loss:0.0101
+epoch [154/200], loss:0.0102
+epoch [155/200], loss:0.0109
+epoch [156/200], loss:0.0121
+epoch [157/200], loss:0.0106
+epoch [158/200], loss:0.0121
+epoch [159/200], loss:0.0114
+epoch [160/200], loss:0.0121
+save
+epoch [161/200], loss:0.0101
+epoch [162/200], loss:0.0107
+save
+epoch [163/200], loss:0.0094
+epoch [164/200], loss:0.0100
+epoch [165/200], loss:0.0124
+epoch [166/200], loss:0.0116
+epoch [167/200], loss:0.0111
+epoch [168/200], loss:0.0101
+epoch [169/200], loss:0.0108
+epoch [170/200], loss:0.0099
+epoch [171/200], loss:0.0096
+epoch [172/200], loss:0.0102
+epoch [173/200], loss:0.0108
+epoch [174/200], loss:0.0112
+save
+epoch [175/200], loss:0.0094
+save
+epoch [176/200], loss:0.0092
+epoch [177/200], loss:0.0094
+epoch [178/200], loss:0.0093
+epoch [179/200], loss:0.0097
+epoch [180/200], loss:0.0099
+epoch [181/200], loss:0.0107
+epoch [182/200], loss:0.0106
+epoch [183/200], loss:0.0093
+save
+epoch [184/200], loss:0.0088
+epoch [185/200], loss:0.0093
+epoch [186/200], loss:0.0090
+epoch [187/200], loss:0.0091
+epoch [188/200], loss:0.0095
+epoch [189/200], loss:0.0090
+epoch [190/200], loss:0.0097
+epoch [191/200], loss:0.0099
+epoch [192/200], loss:0.0103
+save
+epoch [193/200], loss:0.0085
+epoch [194/200], loss:0.0114
+epoch [195/200], loss:0.0096
+epoch [196/200], loss:0.0090
+epoch [197/200], loss:0.0103
+epoch [198/200], loss:0.0094
+save
+epoch [199/200], loss:0.0085
+epoch [200/200], loss:0.0104
+(robotpower) ➜  hw10_anomaly_detection_img git:(master) ✗ python autoencoder_train_cnn.py ~/Downloads/dataset/train.npy model.pt
+(40000, 32, 32, 3)
