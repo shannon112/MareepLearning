@@ -1,15 +1,13 @@
 import sys
 import os
 import numpy as np
-import torch
 import matplotlib.pyplot as plt
+
+import torch
 from torch.autograd import Variable
-from torch.utils.data import DataLoader
 from torch.optim import Adam
 from torch import nn
-import torch.nn.functional as F
 from torch.utils.data import (DataLoader, RandomSampler, SequentialSampler, TensorDataset)
-import torchvision.transforms as transforms
 
 from utils import same_seeds
 from autoencoder_model import conv_autoencoder
@@ -47,11 +45,13 @@ for data in test_dataloader:
 loss_list = np.array(loss_list)
 idx_loss_list = np.argsort(loss_list)
 
+# get top n min & max indexes
+n_idx = 2
 indexes = []
-for i in range(10):
+for i in range(n_idx):
     print("min", idx_loss_list[i], loss_list[idx_loss_list[i]])
     indexes.append(idx_loss_list[i])
-for i in range(10)[::-1]:
+for i in range(n_idx)[::-1]:
     print("max", idx_loss_list[-(i+1)], loss_list[idx_loss_list[-(i+1)]])
     indexes.append(idx_loss_list[-(i+1)])
 
@@ -61,7 +61,7 @@ imgs = testX[indexes]
 for i, img in enumerate(imgs):
     img = np.transpose(img, (1, 2, 0))
     img = (img+1)/2
-    plt.subplot(2, 20, i+1, xticks=[], yticks=[])
+    plt.subplot(2, n_idx*2, i+1, xticks=[], yticks=[])
     plt.imshow(img)
 
 # plot reconstruct pictures
@@ -69,12 +69,12 @@ recs = np.array(output_list)[indexes]
 for i, img in enumerate(recs):
     img = np.transpose(img, (1, 2, 0))
     img = (img+1)/2
-    plt.subplot(2, 20, 20+i+1, xticks=[], yticks=[])
+    plt.subplot(2, n_idx*2, n_idx*2+i+1, xticks=[], yticks=[])
     plt.imshow(img)
 
-fig.suptitle("{:.4f} {:.4f} {:.4f} {:.4f}".format(loss_list[idx_loss_list[0]],
+fig.suptitle("reconstruction rmse: {:.4f} {:.4f} {:.4f} {:.4f}".format(loss_list[idx_loss_list[0]],
                                             loss_list[idx_loss_list[1]],
                                             loss_list[idx_loss_list[-2]],
                                             loss_list[idx_loss_list[-1]]))
-plt.tight_layout()
+#plt.tight_layout()
 plt.show()
