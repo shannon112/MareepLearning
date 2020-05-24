@@ -46,7 +46,7 @@ loss_list = np.array(loss_list)
 idx_loss_list = np.argsort(loss_list)
 
 # get top n min & max indexes
-n_idx = 10
+n_idx = 2
 indexes = []
 for i in range(n_idx):
     print("min", idx_loss_list[i], loss_list[idx_loss_list[i]])
@@ -74,7 +74,7 @@ for i, img in enumerate(recs):
     img = (img + 1 )/2 
     plt.imshow(img)
 
-fig.suptitle("{:.4f} {:.4f} {:.4f} {:.4f}".format(loss_list[idx_loss_list[0]],
+fig.suptitle("fcn autoencoder reconstruction rmse: {:.4f} {:.4f} {:.4f} {:.4f}".format(loss_list[idx_loss_list[0]],
                                             loss_list[idx_loss_list[1]],
                                             loss_list[idx_loss_list[-2]],
                                             loss_list[idx_loss_list[-1]]))
