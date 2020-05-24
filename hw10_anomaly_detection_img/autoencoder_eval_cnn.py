@@ -50,6 +50,11 @@ reconstructed = np.concatenate(reconstructed, axis=0)
 print(reconstructed.shape, test.shape)
 anomality = np.sqrt(np.sum(np.square(reconstructed - test).reshape(len(test), -1), axis=1))
 y_pred_1 = anomality
+y_mean_1 = np.mean(y_pred_1)
+y_std_1 = np.std(y_pred_1)
+print("mean",y_mean_1)
+print("std",y_std_1)
+
 # outout result
 with open('submission/prediction_cnn_recon.csv', 'w') as f:
     f.write('id,anomaly\n')
@@ -62,7 +67,12 @@ for n in range(20):
     pred_cluster = pred.predict(latents)
     pred_dist = np.sum(np.square(pred.cluster_centers_[pred_cluster] - latents), axis=1)
     y_pred_2 = pred_dist
+    y_mean_2 = np.mean(y_pred_2)
+    y_std_2 = np.std(y_pred_2)
+    print("mean",y_mean_2)
+    print("std",y_std_2)
 
+    """
     # plot clustering result
     X_embedded = TSNE(n_components=2).fit_transform(latents)
     print('TSNE for Second Reduction Shape:', X_embedded.shape)
@@ -71,11 +81,12 @@ for n in range(20):
     plt.scatter(X, Y, c=pred_cluster, s=1)
     plt.legend()
     plt.title("n_clusters = {}".format(n+1))
-    plt.savfig("img/cnn_clustered_tsne_result_{}.png".format(n+1))
+    plt.savefig("img/cnn_clustered_tsne_result_{}.png".format(n+1))
     #plt.show()
-    y_pred = (y_pred_1*150 + y_pred_2)/2
-
-    # fusion output result
+    """
+    y_pred = (y_pred_1*400 + y_pred_2)/2    
+    """    
+    # cluster output result
     with open('submission/prediction_cnn_{}.csv'.format(n+1), 'w') as f:
         f.write('id,anomaly\n')
         for i in range(len(y_pred_2)):
@@ -86,7 +97,6 @@ for n in range(20):
         f.write('id,anomaly\n')
         for i in range(len(y_pred)):
             f.write('{},{}\n'.format(i+1, y_pred[i]))
-    """
 """
 # Method 2: PCA to 2D
 pca = PCA(n_components=2).fit(latents)

@@ -48,18 +48,20 @@ for data in test_dataloader:
     output_list.append(output.cpu().detach().squeeze().numpy())
 loss_list = np.array(loss_list)
 idx_loss_list = np.argsort(loss_list)
-print("min", idx_loss_list[0], loss_list[idx_loss_list[0]])
-print("min", idx_loss_list[1], loss_list[idx_loss_list[1]])
-print("max", idx_loss_list[-2], loss_list[idx_loss_list[-2]])
-print("max", idx_loss_list[-1], loss_list[idx_loss_list[-1]])
-indexes = [idx_loss_list[0], idx_loss_list[1], idx_loss_list[-2], idx_loss_list[-1]]
 
+indexes = []
+for i in range(10):
+    print("min", idx_loss_list[i], loss_list[idx_loss_list[i]])
+    indexes.append(idx_loss_list[i])
+for i in range(10)[::-1]:
+    print("max", idx_loss_list[-(i+1)], loss_list[idx_loss_list[-(i+1)]])
+    indexes.append(idx_loss_list[-(i+1)])
 
 # plot original pictures
-plt.figure(figsize=(10,4))
+fig = plt.figure(figsize=(10,4))
 imgs = testX[indexes]
 for i, img in enumerate(imgs):
-    plt.subplot(2, 4, i+1, xticks=[], yticks=[])
+    plt.subplot(2, 20, i+1, xticks=[], yticks=[])
     img = img.reshape(32,32,3)
     img = (img + 1 )/2 
     plt.imshow(img)
@@ -69,10 +71,14 @@ recs = np.array(output_list)[indexes]
 print(recs.shape)
 print(recs)
 for i, img in enumerate(recs):
-    plt.subplot(2, 4, 4+i+1, xticks=[], yticks=[])
+    plt.subplot(2, 20, 20+i+1, xticks=[], yticks=[])
     img = img.reshape(32,32,3)
     img = (img + 1 )/2 
     plt.imshow(img)
 
+fig.suptitle("{:.4f} {:.4f} {:.4f} {:.4f}".format(loss_list[idx_loss_list[0]],
+                                            loss_list[idx_loss_list[1]],
+                                            loss_list[idx_loss_list[-2]],
+                                            loss_list[idx_loss_list[-1]]))
 plt.tight_layout()
 plt.show()

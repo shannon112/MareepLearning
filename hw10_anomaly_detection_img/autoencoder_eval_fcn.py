@@ -39,19 +39,40 @@ model.eval()
 
 # extract latent vector
 latents = []
+reconstructed = []
 for i, data in enumerate(test_dataloader): 
     img = data[0].cuda()
     vec, output = model(img)
     if i == 0: latents = vec.view(img.size()[0], -1).cpu().detach().numpy()
     else: latents = np.concatenate((latents, vec.view(img.size()[0], -1).cpu().detach().numpy()), axis = 0)
+    reconstructed.append(output.cpu().detach().numpy())
 
-"""
+# Method 0: reconstruction rmse error
+reconstructed = np.concatenate(reconstructed, axis=0)
+print(reconstructed.shape, test.shape)
+anomality = np.sqrt(np.sum(np.square(reconstructed - y).reshape(len(test), -1), axis=1))
+y_pred_1 = anomality
+y_mean_1 = np.mean(y_pred_1)
+y_std_1 = np.std(y_pred_1)
+print("mean",y_mean_1)
+print("std",y_std_1)
+
+# outout result
+with open('submission/prediction_fcn_recon.csv', 'w') as f:
+    f.write('id,anomaly\n')
+    for i in range(len(y_pred_1)):
+        f.write('{},{}\n'.format(i+1, y_pred_1[i]))
+
 # Method 1: Clustering to 20 Class
 for n in range(20):
     pred = MiniBatchKMeans(n_clusters=n+1, random_state=0).fit(latents)
     pred_cluster = pred.predict(latents)
     pred_dist = np.sum(np.square(pred.cluster_centers_[pred_cluster] - latents), axis=1)
-    y_pred = pred_dist
+    y_pred_2 = pred_dist
+    y_mean_2 = np.mean(y_pred_2)
+    y_std_2 = np.std(y_pred_2)
+    print("mean",y_mean_2)
+    print("std",y_std_2)
 
     # plot clustering result
     X_embedded = TSNE(n_components=2).fit_transform(latents)
@@ -64,13 +85,25 @@ for n in range(20):
     plt.savefig("img/fcn_clustered_tsne_result_{}.png".format(n+1))
     #plt.show()
 
-    # output result
+    #y_pred_1t2 = (y_std_2*(y_pred_1-y_mean_1)/y_std_1+y_mean_2)
+    y_pred_1t2 = ((y_pred_1-y_mean_1)+y_mean_2)
+    y_pred_1t2 = ((y_pred_1-y_mean_1)+y_mean_2)
+
+    y_pred = (1.5*y_pred_1t2 + 3*y_pred_2)/2    
+
+    # cluster output result
     with open('submission/prediction_fcn_{}.csv'.format(n+1), 'w') as f:
+        f.write('id,anomaly\n')
+        for i in range(len(y_pred_2)):
+            f.write('{},{}\n'.format(i+1, y_pred_2[i]))
+
+    # fusion output result
+    with open('submission/prediction_fcn_{}_fusion.csv'.format(n+1), 'w') as f:
         f.write('id,anomaly\n')
         for i in range(len(y_pred)):
             f.write('{},{}\n'.format(i+1, y_pred[i]))
-"""
 
+"""
 # Method 2: PCA to 2D
 pca = PCA(n_components=2).fit(latents)
 y_projected = pca.transform(latents)
@@ -101,7 +134,7 @@ with open('submission/prediction_fcn_pca.csv', 'w') as f:
     f.write('id,anomaly\n')
     for i in range(len(y_pred)):
         f.write('{},{}\n'.format(i+1, y_pred[i]))
-
+"""
 
 # score = roc_auc_score(y_label, y_pred, average='micro')
 # score = f1_score(y_label, y_pred, average='micro')
