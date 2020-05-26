@@ -46,7 +46,7 @@ loss_list = np.array(loss_list)
 idx_loss_list = np.argsort(loss_list)
 
 # get top n min & max indexes
-n_idx = 20
+n_idx = 2
 indexes = []
 for i in range(n_idx):
     print("min", idx_loss_list[i], loss_list[idx_loss_list[i]])
