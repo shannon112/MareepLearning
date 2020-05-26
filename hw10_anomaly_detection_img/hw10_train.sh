@@ -1,6 +1,6 @@
 # TODO: create shell script
-#bash hw10_test.sh <test.npy> <model>
-echo $1 #: <test.npy> 
+#bash hw10_train.sh <train.npy> <model>
+echo $1 #: <train.npy> 
 echo $2 #: <model>
 TAR="${2##*/}"
 echo $TAR
