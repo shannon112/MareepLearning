@@ -42,6 +42,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 # main traning loop
 best_loss = np.inf
 model.train()
+best_state = None
 for epoch in range(num_epochs):
     for data in train_dataloader:
         # transform input X
@@ -57,8 +58,12 @@ for epoch in range(num_epochs):
         # ===================save====================
     if loss.item() < best_loss:
         best_loss = loss.item()
-        torch.save(model, model_filename+str(epoch))
+        best_state = model
+        #torch.save(model, model_filename+str(epoch))
         print("save")
     # ===================log========================
     print('epoch [{}/{}], loss:{:.4f}'
             .format(epoch + 1, num_epochs, loss.item()))
+
+torch.save(best_state, model_filename)
+print("save")

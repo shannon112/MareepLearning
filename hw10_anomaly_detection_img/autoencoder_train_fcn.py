@@ -21,7 +21,7 @@ train = train.reshape(len(train), -1)
 print(train.shape)
 
 # parameters
-num_epochs = 200
+num_epochs = 150
 batch_size = 128
 learning_rate = 1e-3
 
@@ -53,7 +53,11 @@ for epoch in range(num_epochs):
         # ===================save====================
     if loss.item() < best_loss:
         best_loss = loss.item()
-        torch.save(model, model_filename+str(epoch))
+        best_state = model
+        #torch.save(model, model_filename+str(epoch))
         print("save")
     # ===================log========================
     print('epoch [{}/{}], loss:{:.4f}'.format(epoch + 1, num_epochs, loss.item()))
+
+torch.save(best_state, model_filename)
+print("save")

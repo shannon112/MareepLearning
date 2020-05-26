@@ -18,13 +18,13 @@ import matplotlib.pyplot as plt
 
 test_filename = sys.argv[1]
 model_filename = sys.argv[2]
+pred_filename = sys.argv[3]
 batch_size = 128
 same_seeds(0)
 
 # load data
 test = np.load(test_filename, allow_pickle=True)
 print("data", test.shape)
-# input shape
 y = test.reshape(len(test), -1)
 
 # make dataset
@@ -58,13 +58,16 @@ print("mean",y_mean_1)
 print("std",y_std_1)
 
 # outout result
+"""
 with open('submission/prediction_fcn_recon.csv', 'w') as f:
     f.write('id,anomaly\n')
     for i in range(len(y_pred_1)):
         f.write('{},{}\n'.format(i+1, y_pred_1[i]))
+"""
 
 # Method 1: Clustering to 20 Class
-for n in range(20):
+#for n in range(20):
+for n in [2]:
     pred = MiniBatchKMeans(n_clusters=n+1, random_state=0).fit(latents)
     pred_cluster = pred.predict(latents)
     pred_dist = np.sum(np.square(pred.cluster_centers_[pred_cluster] - latents), axis=1)
@@ -75,6 +78,7 @@ for n in range(20):
     print("std",y_std_2)
 
     # plot clustering result
+    """
     X_embedded = TSNE(n_components=2).fit_transform(latents)
     print('TSNE for Second Reduction Shape:', X_embedded.shape)
     X = X_embedded[:, 0]
@@ -84,27 +88,37 @@ for n in range(20):
     plt.title("n_clusters = {}".format(n+1))
     plt.savefig("img/fcn_clustered_tsne_result_{}.png".format(n+1))
     #plt.show()
+    """
 
-    #y_pred_1t2 = (y_std_2*(y_pred_1-y_mean_1)/y_std_1+y_mean_2)
-    y_pred_1t2 = ((y_pred_1-y_mean_1)+y_mean_2)
-    y_pred_1t2 = ((y_pred_1-y_mean_1)+y_mean_2)
+    # fusion
+    #y_pred = (y_pred_1 + (y_pred_2*y_mean_1/y_mean_2))/2    
+    y_pred = (1.75*y_pred_1*y_mean_2/y_mean_1 + y_pred_2)/2
+    print("scaling",y_mean_2/y_mean_1)
 
-    y_pred = (1.5*y_pred_1t2 + 3*y_pred_2)/2    
-
-    # cluster output result
-    with open('submission/prediction_fcn_{}.csv'.format(n+1), 'w') as f:
-        f.write('id,anomaly\n')
-        for i in range(len(y_pred_2)):
-            f.write('{},{}\n'.format(i+1, y_pred_2[i]))
-
-    # fusion output result
-    with open('submission/prediction_fcn_{}_fusion.csv'.format(n+1), 'w') as f:
+    # HW output
+    with open(pred_filename, 'w') as f:
         f.write('id,anomaly\n')
         for i in range(len(y_pred)):
             f.write('{},{}\n'.format(i+1, y_pred[i]))
 
-"""
+    # cluster output result
+    """
+    with open('submission/prediction_fcn_{}.csv'.format(n+1), 'w') as f:
+        f.write('id,anomaly\n')
+        for i in range(len(y_pred_2)):
+            f.write('{},{}\n'.format(i+1, y_pred_2[i]))
+    """
+
+    # fusion output result
+    """
+    with open('submission/prediction_fcn_{}_fusion.csv'.format(n+1), 'w') as f:
+        f.write('id,anomaly\n')
+        for i in range(len(y_pred)):
+            f.write('{},{}\n'.format(i+1, y_pred[i]))
+    """
+
 # Method 2: PCA to 2D
+"""
 pca = PCA(n_components=2).fit(latents)
 y_projected = pca.transform(latents)
 
