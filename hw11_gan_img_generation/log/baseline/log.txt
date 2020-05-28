@@ -1,0 +1,33 @@
+  hw11_gan_img_generation git:(master) ✗ python train.py ~/Downloads/faces/ model
+images 71314
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Epoch [1/30] 1115/1115 Loss_D: 0.0973 Loss_G: 4.4554 | Save some samples to ./log/Epoch_001.jpg.
+Epoch [2/30] 1115/1115 Loss_D: 0.0926 Loss_G: 2.6844 | Save some samples to ./log/Epoch_002.jpg.
+Epoch [3/30] 1115/1115 Loss_D: 0.1841 Loss_G: 6.1941 | Save some samples to ./log/Epoch_003.jpg.
+Epoch [4/30] 1115/1115 Loss_D: 0.3587 Loss_G: 5.1868 | Save some samples to ./log/Epoch_004.jpg.
+Epoch [5/30] 1115/1115 Loss_D: 0.1807 Loss_G: 2.9425 | Save some samples to ./log/Epoch_005.jpg.
+Epoch [6/30] 1115/1115 Loss_D: 0.2702 Loss_G: 1.2443 | Save some samples to ./log/Epoch_006.jpg.
+Epoch [7/30] 1115/1115 Loss_D: 0.1369 Loss_G: 2.8113 | Save some samples to ./log/Epoch_007.jpg.
+Epoch [8/30] 1115/1115 Loss_D: 0.1357 Loss_G: 2.7207 | Save some samples to ./log/Epoch_008.jpg.
+Epoch [9/30] 1115/1115 Loss_D: 0.1492 Loss_G: 3.5155 | Save some samples to ./log/Epoch_009.jpg.
+Epoch [10/30] 1115/1115 Loss_D: 0.3213 Loss_G: 5.4090 | Save some samples to ./log/Epoch_010.jpg.
+Epoch [11/30] 1115/1115 Loss_D: 0.1658 Loss_G: 6.1814 | Save some samples to ./log/Epoch_011.jpg.
+Epoch [12/30] 1115/1115 Loss_D: 1.3104 Loss_G: 0.2441 | Save some samples to ./log/Epoch_012.jpg.
+Epoch [13/30] 1115/1115 Loss_D: 0.0693 Loss_G: 3.9375 | Save some samples to ./log/Epoch_013.jpg.
+Epoch [14/30] 1115/1115 Loss_D: 0.0534 Loss_G: 4.7963 | Save some samples to ./log/Epoch_014.jpg.
+Epoch [15/30] 1115/1115 Loss_D: 0.1094 Loss_G: 2.9121 | Save some samples to ./log/Epoch_015.jpg.
+Epoch [16/30] 1115/1115 Loss_D: 0.0768 Loss_G: 4.8949 | Save some samples to ./log/Epoch_016.jpg.
+Epoch [17/30] 1115/1115 Loss_D: 0.0148 Loss_G: 3.5458 | Save some samples to ./log/Epoch_017.jpg.
+Epoch [18/30] 1115/1115 Loss_D: 0.0827 Loss_G: 17.4905 | Save some samples to ./log/Epoch_018.jpg.
+Epoch [19/30] 1115/1115 Loss_D: 0.0207 Loss_G: 4.9818 | Save some samples to ./log/Epoch_019.jpg.
+Epoch [20/30] 1115/1115 Loss_D: 0.0000 Loss_G: 40.7716 | Save some samples to ./log/Epoch_020.jpg.
+Epoch [21/30] 1115/1115 Loss_D: 0.0000 Loss_G: 39.0305 | Save some samples to ./log/Epoch_021.jpg.
+Epoch [22/30] 1115/1115 Loss_D: 0.4333 Loss_G: 10.3572 | Save some samples to ./log/Epoch_022.jpg.
+Epoch [23/30] 1115/1115 Loss_D: 0.0313 Loss_G: 10.2184 | Save some samples to ./log/Epoch_023.jpg.
+Epoch [24/30] 1115/1115 Loss_D: 0.0238 Loss_G: 4.9809 | Save some samples to ./log/Epoch_024.jpg.
+Epoch [25/30] 1115/1115 Loss_D: 0.0038 Loss_G: 6.4722 | Save some samples to ./log/Epoch_025.jpg.
+Epoch [26/30] 1115/1115 Loss_D: 0.1194 Loss_G: 3.0909 | Save some samples to ./log/Epoch_026.jpg.
+Epoch [27/30] 1115/1115 Loss_D: 0.0472 Loss_G: 5.1049 | Save some samples to ./log/Epoch_027.jpg.
+Epoch [28/30] 1115/1115 Loss_D: 0.0001 Loss_G: 18.6362 | Save some samples to ./log/Epoch_028.jpg.
+Epoch [29/30] 1115/1115 Loss_D: 0.1185 Loss_G: 16.7271 | Save some samples to ./log/Epoch_029.jpg.
+Epoch [30/30] 1115/1115 Loss_D: 0.0041 Loss_G: 8.3362 | Save some samples to ./log/Epoch_030.jpg.

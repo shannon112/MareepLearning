@@ -1,5 +1,8 @@
 import torch.nn as nn
 import torch.nn.functional as F
+from utils import same_seeds
+
+same_seeds(0)
 
 def weights_init(m):
     classname = m.__class__.__name__

@@ -1,6 +1,11 @@
+import glob
+import torchvision.transforms as transforms
 from torch.utils.data import Dataset, DataLoader
 import cv2
 import os
+from utils import same_seeds
+
+same_seeds(0)
 
 class FaceDataset(Dataset):
     def __init__(self, fnames, transform):
@@ -19,9 +24,6 @@ class FaceDataset(Dataset):
 
     def BGR2RGB(self,img):
         return cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-
-import glob
-import torchvision.transforms as transforms
 
 def get_dataset(root):
     fnames = sorted(glob.glob(os.path.join(root, '*.jpg')))
