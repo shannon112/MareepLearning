@@ -14,7 +14,6 @@ from preprocess import get_dataset
 from utils import same_seeds
 from model import Generator
 from model import Discriminator
-from model import weights_init
 
 workspace_dir = sys.argv[1] #~/Downloads/faces/
 model_dir = sys.argv[2] #./model
@@ -29,12 +28,16 @@ lr = 1e-4
 n_epoch = 30
 
 # model
-G = Generator(in_dim=z_dim).cuda()
-D = Discriminator(3).cuda()
+G = Generator(in_dim=z_dim).cuda() #latent=100
+print(G)
+D = Discriminator(in_dim=3).cuda() #channel=3
+print(D)
 G.train()
 D.train()
+
 # loss criterion
 criterion = nn.BCELoss()
+
 # optimizer
 opt_D = torch.optim.Adam(D.parameters(), lr=lr, betas=(0.5, 0.999))
 opt_G = torch.optim.Adam(G.parameters(), lr=lr, betas=(0.5, 0.999))
@@ -44,8 +47,8 @@ dataset = get_dataset(os.path.join(workspace_dir))
 dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=4)
 
 # show one image
-plt.imshow(dataset[10].numpy().transpose(1,2,0))
-plt.show()
+#plt.imshow(dataset[10].numpy().transpose(1,2,0))
+#plt.show()
 
 # for logging
 z_sample = Variable(torch.randn(100, z_dim)).cuda()
@@ -55,19 +58,20 @@ for e, epoch in enumerate(range(n_epoch)):
     for i, data in enumerate(dataloader):
         imgs = data
         imgs = imgs.cuda()
-
         bs = imgs.size(0)
 
         """ Train D """
-        z = Variable(torch.randn(bs, z_dim)).cuda()
+        # sample real img from dataset
         r_imgs = Variable(imgs).cuda()
+        # generator generate fake img from sample
+        z = Variable(torch.randn(bs, z_dim)).cuda()
         f_imgs = G(z)
 
-        # label        
+        # label real as 1, fake as  0
         r_label = torch.ones((bs)).cuda()
         f_label = torch.zeros((bs)).cuda()
 
-        # dis
+        # discriminator judging
         r_logit = D(r_imgs.detach())
         f_logit = D(f_imgs.detach())
         
@@ -76,23 +80,23 @@ for e, epoch in enumerate(range(n_epoch)):
         f_loss = criterion(f_logit, f_label)
         loss_D = (r_loss + f_loss) / 2
 
-        # update model
+        # update discriminator model
         D.zero_grad()
         loss_D.backward()
         opt_D.step()
 
         """ train G """
-        # leaf
+        # generator generate fake img from sample
         z = Variable(torch.randn(bs, z_dim)).cuda()
         f_imgs = G(z)
 
-        # dis
+        # discriminator judging
         f_logit = D(f_imgs)
         
         # compute loss
         loss_G = criterion(f_logit, r_label)
 
-        # update model
+        # update generator model
         G.zero_grad()
         loss_G.backward()
         opt_G.step()
