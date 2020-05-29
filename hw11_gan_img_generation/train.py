@@ -29,8 +29,10 @@ n_epoch = 30
 
 # model
 G = Generator(in_dim=z_dim).cuda() #latent=100
+#G.load_state_dict(torch.load('model/baseline/dcgan_g.pth17'))
 print(G)
 D = Discriminator(in_dim=3).cuda() #channel=3
+#D.load_state_dict(torch.load('model/baseline/dcgan_d.pth17'))
 print(D)
 G.train()
 D.train()
@@ -103,6 +105,18 @@ for e, epoch in enumerate(range(n_epoch)):
 
         # log
         print(f'\rEpoch [{epoch+1}/{n_epoch}] {i+1}/{len(dataloader)} Loss_D: {loss_D.item():.4f} Loss_G: {loss_G.item():.4f}', end='')
+
+        """
+        if (i%100 == 0):
+            # save some sample
+            f_imgs_sample = (G(z_sample).data + 1) / 2.0
+            filename = os.path.join(save_dir, f'Epoch_{i+1:03d}.jpg')
+            torchvision.utils.save_image(f_imgs_sample, filename, nrow=10)
+            print(f' | Save some samples to {filename}.')
+            # save model
+            torch.save(G.state_dict(), os.path.join(model_dir, 'dcgan_g.pth'+str(i+1)))
+            torch.save(D.state_dict(), os.path.join(model_dir, 'dcgan_d.pth'+str(i+1)))
+        """
     G.eval()
 
     # save some sample
