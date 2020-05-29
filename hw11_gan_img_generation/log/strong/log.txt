@@ -1,0 +1,130 @@
+lr=10e-4
+lamba = 10
+n_c = 5
+
+(robotpower) ➜  hw11_gan_img_generation git:(master) ✗ python train_wgan_gp.py ~/Downloads/faces/ model
+Generator(
+  (l1): Sequential(
+    (0): Linear(in_features=100, out_features=8192, bias=False)
+    (1): BatchNorm1d(8192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+  )
+  (l2_5): Sequential(
+    (0): Sequential(
+      (0): ConvTranspose2d(512, 256, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2), output_padding=(1, 1), bias=False)
+      (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (1): Sequential(
+      (0): ConvTranspose2d(256, 128, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2), output_padding=(1, 1), bias=False)
+      (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (2): Sequential(
+      (0): ConvTranspose2d(128, 64, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2), output_padding=(1, 1), bias=False)
+      (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (3): ConvTranspose2d(64, 3, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2), output_padding=(1, 1))
+    (4): Tanh()
+  )
+)
+Discriminator_noSigmoid(
+  (ls): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2))
+    (1): LeakyReLU(negative_slope=0.2)
+    (2): Sequential(
+      (0): Conv2d(64, 128, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2))
+      (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2)
+    )
+    (3): Sequential(
+      (0): Conv2d(128, 256, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2))
+      (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2)
+    )
+    (4): Sequential(
+      (0): Conv2d(256, 512, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2))
+      (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): LeakyReLU(negative_slope=0.2)
+    )
+    (5): Conv2d(512, 1, kernel_size=(4, 4), stride=(1, 1))
+  )
+)
+dataset images len 71314
+A sample in dataset torch.Size([3, 64, 64])
+max and min in a image tensor(1.) tensor(-0.8039)
+Epoch [1/30] 1115/1115 Loss_D: -48.5820 Loss_G: 41.6611 | Save some samples to ./log/Epoch_001.jpg.
+Epoch [2/30] 1115/1115 Loss_D: -35.0094 Loss_G: 73.1910 | Save some samples to ./log/Epoch_002.jpg.
+Epoch [3/30] 1115/1115 Loss_D: -15.5187 Loss_G: 101.8469 | Save some samples to ./log/Epoch_003.jpg.
+Epoch [4/30] 1115/1115 Loss_D: -9.5201 Loss_G: 26.2313 | Save some samples to ./log/Epoch_004.jpg.
+Epoch [5/30] 1115/1115 Loss_D: -4.9782 Loss_G: 45.3525 | Save some samples to ./log/Epoch_005.jpg.
+Epoch [6/30] 1115/1115 Loss_D: -22.2437 Loss_G: 57.5533 | Save some samples to ./log/Epoch_006.jpg.
+Epoch [7/30] 1115/1115 Loss_D: -17.7135 Loss_G: 63.2352 | Save some samples to ./log/Epoch_007.jpg.
+Epoch [8/30] 1115/1115 Loss_D: -4.9219 Loss_G: 78.6660 | Save some samples to ./log/Epoch_008.jpg.
+Epoch [9/30] 1115/1115 Loss_D: -6.7669 Loss_G: 84.7197 | Save some samples to ./log/Epoch_009.jpg.
+Epoch [10/30] 1115/1115 Loss_D: -5.3578 Loss_G: 110.1813 | Save some samples to ./log/Epoch_010.jpg.
+Epoch [11/30] 1115/1115 Loss_D: -5.3532 Loss_G: 129.2394 | Save some samples to ./log/Epoch_011.jpg.
+Epoch [12/30] 1115/1115 Loss_D: -10.3914 Loss_G: 131.5365 | Save some samples to ./log/Epoch_012.jpg.
+Epoch [13/30] 1115/1115 Loss_D: -8.0125 Loss_G: 142.6306 | Save some samples to ./log/Epoch_013.jpg.
+Epoch [14/30] 1115/1115 Loss_D: -6.1372 Loss_G: 131.5753 | Save some samples to ./log/Epoch_014.jpg.
+Epoch [15/30] 1115/1115 Loss_D: -1.9691 Loss_G: 130.4669 | Save some samples to ./log/Epoch_015.jpg.
+Epoch [16/30] 1115/1115 Loss_D: -30.7676 Loss_G: 138.7266 | Save some samples to ./log/Epoch_016.jpg.
+Epoch [17/30] 1115/1115 Loss_D: -10.1569 Loss_G: 168.9728 | Save some samples to ./log/Epoch_017.jpg.
+Epoch [18/30] 1115/1115 Loss_D: -1.7800 Loss_G: -32.8850 | Save some samples to ./log/Epoch_018.jpg.
+Epoch [19/30] 1115/1115 Loss_D: -1.2014 Loss_G: -24.1627 | Save some samples to ./log/Epoch_019.jpg.
+Epoch [20/30] 1115/1115 Loss_D: -3.3317 Loss_G: -26.2369 | Save some samples to ./log/Epoch_020.jpg.
+Epoch [21/30] 1115/1115 Loss_D: -2.4196 Loss_G: -23.6469 | Save some samples to ./log/Epoch_021.jpg.
+Epoch [22/30] 1115/1115 Loss_D: -3.0829 Loss_G: -21.3168 | Save some samples to ./log/Epoch_022.jpg.
+Epoch [23/30] 1115/1115 Loss_D: -12.7554 Loss_G: -16.4661 | Save some samples to ./log/Epoch_023.jpg.
+Epoch [24/30] 1115/1115 Loss_D: -19.4873 Loss_G: -5.4531 | Save some samples to ./log/Epoch_024.jpg.
+Epoch [25/30] 1115/1115 Loss_D: -5.8981 Loss_G: -35.5738 | Save some samples to ./log/Epoch_025.jpg.
+Epoch [26/30] 1115/1115 Loss_D: -2.6190 Loss_G: -31.4542 | Save some samples to ./log/Epoch_026.jpg.
+Epoch [27/30] 1115/1115 Loss_D: -1.3592 Loss_G: 36.2935 | Save some samples to ./log/Epoch_027.jpg.
+Epoch [28/30] 1115/1115 Loss_D: 35.3845 Loss_G: 224.4365 | Save some samples to ./log/Epoch_028.jpg.
+Epoch [29/30] 1115/1115 Loss_D: -4.1130 Loss_G: 108.1476 | Save some samples to ./log/Epoch_029.jpg.
+Epoch [30/30] 1115/1115 Loss_D: -8.4791 Loss_G: 111.2305 | Save some samples to ./log/Epoch_030.jpg.
+
+dataset images len 71314
+A sample in dataset torch.Size([3, 64, 64])
+max and min in a image tensor(1.) tensor(-0.8039)
+Epoch [1/40] 1115/1115 Loss_D: -43.5384 Loss_G: 143.7864 | Save some samples to ./log/Epoch_031.jpg.
+Epoch [2/40] 1115/1115 Loss_D: -4.8491 Loss_G: 106.6402 | Save some samples to ./log/Epoch_032.jpg.
+Epoch [3/40] 1115/1115 Loss_D: -9.1922 Loss_G: 97.1932 | Save some samples to ./log/Epoch_033.jpg.
+Epoch [4/40] 1115/1115 Loss_D: -4.2506 Loss_G: 115.1410 | Save some samples to ./log/Epoch_034.jpg.
+Epoch [5/40] 1115/1115 Loss_D: -0.5274 Loss_G: 114.2208 | Save some samples to ./log/Epoch_035.jpg.
+Epoch [6/40] 1115/1115 Loss_D: -4.8919 Loss_G: 101.2537 | Save some samples to ./log/Epoch_036.jpg.
+Epoch [7/40] 1115/1115 Loss_D: -7.2710 Loss_G: 108.1317 | Save some samples to ./log/Epoch_037.jpg.
+Epoch [8/40] 1115/1115 Loss_D: -9.9590 Loss_G: 98.0965 | Save some samples to ./log/Epoch_038.jpg.
+Epoch [9/40] 1115/1115 Loss_D: -4.0233 Loss_G: 116.9987 | Save some samples to ./log/Epoch_039.jpg.
+Epoch [10/40] 1115/1115 Loss_D: -38.6898 Loss_G: 95.5440 | Save some samples to ./log/Epoch_040.jpg.
+Epoch [11/40] 1115/1115 Loss_D: -0.7634 Loss_G: 144.2086 | Save some samples to ./log/Epoch_041.jpg.
+Epoch [12/40] 1115/1115 Loss_D: -2.7881 Loss_G: 144.4467 | Save some samples to ./log/Epoch_042.jpg.
+Epoch [13/40] 1115/1115 Loss_D: -2.3118 Loss_G: 140.9536 | Save some samples to ./log/Epoch_043.jpg.
+Epoch [14/40] 1115/1115 Loss_D: -1.8021 Loss_G: 140.9201 | Save some samples to ./log/Epoch_044.jpg.
+Epoch [15/40] 1115/1115 Loss_D: -3.5694 Loss_G: 143.1498 | Save some samples to ./log/Epoch_045.jpg.
+Epoch [16/40] 1115/1115 Loss_D: -5.7608 Loss_G: 150.6577 | Save some samples to ./log/Epoch_046.jpg.
+Epoch [17/40] 1115/1115 Loss_D: -1.6080 Loss_G: 129.2906 | Save some samples to ./log/Epoch_047.jpg.
+Epoch [18/40] 1115/1115 Loss_D: -8.2313 Loss_G: 145.1755 | Save some samples to ./log/Epoch_048.jpg.
+Epoch [19/40] 1115/1115 Loss_D: -4.8334 Loss_G: 164.9201 | Save some samples to ./log/Epoch_049.jpg.
+Epoch [20/40] 1115/1115 Loss_D: -2.9201 Loss_G: 160.3227 | Save some samples to ./log/Epoch_050.jpg.
+Epoch [21/40] 1115/1115 Loss_D: -10.8849 Loss_G: 161.5984 | Save some samples to ./log/Epoch_051.jpg.
+Epoch [22/40] 1115/1115 Loss_D: -4.7488 Loss_G: 155.8085 | Save some samples to ./log/Epoch_052.jpg.
+Epoch [23/40] 1115/1115 Loss_D: -2.0297 Loss_G: 163.3314 | Save some samples to ./log/Epoch_053.jpg.
+Epoch [24/40] 1115/1115 Loss_D: -1.7417 Loss_G: 156.0585 | Save some samples to ./log/Epoch_054.jpg.
+Epoch [25/40] 1115/1115 Loss_D: -1.0808 Loss_G: 183.9966 | Save some samples to ./log/Epoch_055.jpg.
+Epoch [26/40] 1115/1115 Loss_D: -4.9037 Loss_G: 143.9764 | Save some samples to ./log/Epoch_056.jpg.
+Epoch [27/40] 1115/1115 Loss_D: -3.5797 Loss_G: 153.8222 | Save some samples to ./log/Epoch_057.jpg.
+Epoch [28/40] 1115/1115 Loss_D: -6.4923 Loss_G: 153.4480 | Save some samples to ./log/Epoch_058.jpg.
+Epoch [29/40] 1115/1115 Loss_D: -4.0078 Loss_G: 136.2238 | Save some samples to ./log/Epoch_059.jpg.
+Epoch [30/40] 1115/1115 Loss_D: -6.8304 Loss_G: 139.6808 | Save some samples to ./log/Epoch_060.jpg.
+Epoch [31/40] 1115/1115 Loss_D: -4.4066 Loss_G: 178.0618 | Save some samples to ./log/Epoch_061.jpg.
+Epoch [32/40] 1115/1115 Loss_D: -1.7864 Loss_G: 138.8386 | Save some samples to ./log/Epoch_062.jpg.
+Epoch [33/40] 1115/1115 Loss_D: -6.1605 Loss_G: 126.3245 | Save some samples to ./log/Epoch_063.jpg.
+Epoch [34/40] 1115/1115 Loss_D: -11.7224 Loss_G: 126.7580 | Save some samples to ./log/Epoch_064.jpg.
+Epoch [35/40] 1115/1115 Loss_D: -0.4976 Loss_G: 128.1025 | Save some samples to ./log/Epoch_065.jpg.
+Epoch [36/40] 1115/1115 Loss_D: -1.6750 Loss_G: 132.1041 | Save some samples to ./log/Epoch_066.jpg.
+Epoch [37/40] 1115/1115 Loss_D: -1.9974 Loss_G: 130.7751 | Save some samples to ./log/Epoch_067.jpg.
+Epoch [38/40] 1115/1115 Loss_D: -17.6338 Loss_G: 117.9853 | Save some samples to ./log/Epoch_068.jpg.
+Epoch [39/40] 1115/1115 Loss_D: -10.4967 Loss_G: 156.8122 | Save some samples to ./log/Epoch_069.jpg.
+Epoch [40/40] 1115/1115 Loss_D: -33.0516 Loss_G: 111.7102 | Save some samples to ./log/Epoch_070.jpg.

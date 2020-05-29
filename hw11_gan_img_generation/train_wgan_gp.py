@@ -28,7 +28,7 @@ batch_size = 64
 z_dim = 100
 lr = 20*1e-4
 n_epoch = 40
-lambda_gp = 40
+lambda_gp = 100
 n_critic = 5
 
 # model
