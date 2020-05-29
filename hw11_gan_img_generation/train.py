@@ -12,8 +12,8 @@ import matplotlib.pyplot as plt
 from preprocess import FaceDataset
 from preprocess import get_dataset
 from utils import same_seeds
-from model import Generator
-from model import Discriminator
+from model import Generator_dropout
+from model import Discriminator_dropout
 
 workspace_dir = sys.argv[1] #~/Downloads/faces/
 model_dir = sys.argv[2] #./model
@@ -28,10 +28,12 @@ lr = 1e-4
 n_epoch = 30
 
 # model
-G = Generator(in_dim=z_dim).cuda() #latent=100
+G = Generator_dropout(in_dim=z_dim).cuda() #latent=100
+#G = Generator(in_dim=z_dim).cuda() #latent=100
 #G.load_state_dict(torch.load('model/baseline/dcgan_g.pth17'))
 print(G)
-D = Discriminator(in_dim=3).cuda() #channel=3
+D = Discriminator_dropout(in_dim=3).cuda() #channel=3
+#D = Discriminator(in_dim=3).cuda() #channel=3
 #D.load_state_dict(torch.load('model/baseline/dcgan_d.pth17'))
 print(D)
 G.train()
