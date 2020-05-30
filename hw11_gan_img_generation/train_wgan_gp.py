@@ -28,8 +28,8 @@ batch_size = 64
 z_dim = 100
 lr = 20*1e-4
 n_epoch = 40
-lambda_gp = 100
-n_critic = 5
+lambda_gp = 250
+n_critic = 3
 
 # model
 G = Generator(in_dim=z_dim).cuda() #latent=100
@@ -98,6 +98,7 @@ for e, epoch in enumerate(range(n_epoch)):
 
         # compute loss
         loss_D = - torch.mean(r_logit) + torch.mean(f_logit) + lambda_gp * gradient_penalty
+        #print(torch.mean(r_logit).item() , torch.mean(f_logit).item(), gradient_penalty.item())
 
         # update discriminator model
         D.zero_grad()
