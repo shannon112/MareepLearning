@@ -27,7 +27,7 @@ same_seeds(0)
 batch_size = 64
 z_dim = 100
 lr = 20*1e-4
-n_epoch = 40
+n_epoch = 39
 lambda_gp = 250
 n_critic = 3
 
@@ -127,14 +127,14 @@ for e, epoch in enumerate(range(n_epoch)):
     G.eval()
 
     # save some sample
-    f_imgs_sample = (G(z_sample).data + 1) / 2.0
-    filename = os.path.join(save_dir, f'Epoch_{epoch+1:03d}.jpg')
-    torchvision.utils.save_image(f_imgs_sample, filename, nrow=10)
-    print(f' | Save some samples to {filename}.')
+    #f_imgs_sample = (G(z_sample).data + 1) / 2.0
+    #filename = os.path.join(save_dir, f'Epoch_{epoch+1:03d}.jpg')
+    #torchvision.utils.save_image(f_imgs_sample, filename, nrow=10)
+    #print(f' | Save some samples to {filename}.')
 
-    # save model
-    torch.save(G.state_dict(), os.path.join(model_dir, 'wgangp_g.pth'+str(e+1)))
-    torch.save(D.state_dict(), os.path.join(model_dir, 'wgangp_d.pth'+str(e+1)))
+    # save several models
+    #torch.save(G.state_dict(), os.path.join(model_dir, 'wgangp_g.pth'+str(e+1)))
+    #torch.save(D.state_dict(), os.path.join(model_dir, 'wgangp_d.pth'+str(e+1)))
 
     # show generated image
     #grid_img = torchvision.utils.make_grid(f_imgs_sample.cpu(), nrow=10)
@@ -144,3 +144,5 @@ for e, epoch in enumerate(range(n_epoch)):
 
     G.train()
     
+torch.save(G.state_dict(), os.path.join(model_dir))
+#torch.save(D.state_dict(), os.path.join(model_dir, 'wgangp_d.pth'+str(e+1)))
