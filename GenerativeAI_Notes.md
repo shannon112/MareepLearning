@@ -35,5 +35,19 @@
   - 評估模型(evaluation)困難 不好評估答案之於問題是否完美被解決
   - 要防止說出有害內容
   - Improvement
-    - 改變自己來強化模型 (improving inputs)
+    - 改變自己來強化模型 (improving inputs) - prompt engineering, [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#20240303-%E7%94%9F%E6%88%90%E5%BC%8Fai%E5%B0%8E%E8%AB%96-2024%E7%AC%AC2%E8%AC%9B%E4%BB%8A%E6%97%A5%E7%9A%84%E7%94%9F%E6%88%90%E5%BC%8F%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E5%8E%B2%E5%AE%B3%E5%9C%A8%E5%93%AA%E8%A3%A1%E5%BE%9E%E5%B7%A5%E5%85%B7%E8%AE%8A%E7%82%BA%E5%B7%A5%E5%85%B7%E4%BA%BA)
     - 訓練自己的模型 (improving parameters)
+
+# 2024.03.03【生成式AI導論 2024】第3講：訓練不了人工智慧？你可以訓練你自己 (上) — 神奇咒語與提供更多資訊 
+- video: https://www.youtube.com/watch?v=A3Yx35KrSN0&t=1722s
+- slide: https://drive.google.com/file/d/1JTexyex5hrHmNdrkXy-jOVKZlycODC7Y/view
+- 改變自己來強化模型 (improving inputs) - prompt engineering
+  - <img src="https://i.imgur.com/EekRhP4.png" height=200>
+  - 1.Chain of Thought (CoT) 叫模型思考
+    - i.g. Let's think step by step 叫模型一步一步來
+      - Large Language Models are Zero-Shot Reasoners, https://arxiv.org/abs/2205.11916
+    - i.g. Answer by starting with Analysis 叫模型解釋一下自己的答案
+      - A Closer Look into Automatic Evaluation Using Large Language Models, https://arxiv.org/abs/2310.05657
+      - Can Large Language Models Be an Alternative to Human Evaluations?, https://arxiv.org/abs/2305.01937)
+    - i.g. This is very important to my career 情緒勒索
+      - Large Language Models Understand and Can be Enhanced by Emotional Stimuli, https://arxiv.org/abs/2307.11760
