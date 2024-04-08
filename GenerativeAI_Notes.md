@@ -1,8 +1,9 @@
 # 前言
 快速筆記一下上課內容，以利日後Ctrl+F搜尋keywords和concept
 
-# 2024.02.24【生成式AI導論 2024】第1講：生成式AI是什麼？ 
-- https://www.youtube.com/watch?v=JGtqpQXfJis
+# 2024.02.24 【生成式AI導論 2024】第1講：生成式AI是什麼？ 
+- video: https://www.youtube.com/watch?v=JGtqpQXfJis
+- slide: https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring-course-data/0223/0223_intro_gai.pdf
 - 生成式人工智慧 ⊂ 人工智慧
   - 人工智慧 (Artificial Intelligence, AI): 讓機器展現「智慧」
   - 生成式人工智慧 (Generative AI, GenAI): 機器產生複雜有結構的物件
@@ -21,3 +22,18 @@
     - 原本生文章 可能性 窮盡無盡!
     - 拆解成一連串 文字接龍 or 像素接龍 分類問題 答案有限!
   - 複雜的物件 拆解成較小的單位 依照某種固定的順序依序生成 叫Autoregressive Generation
+
+# 2024.03.03 【生成式AI導論 2024】第2講：今日的生成式人工智慧厲害在哪裡？從「工具」變為「工具人」 
+- video: https://www.youtube.com/watch?v=glBhOQ1_RkE
+- slide: https://drive.google.com/file/d/1Ru6DUX8KrSzCvn2DN1-YluTyx5rw3QD3/view
+- 今日的生成式人工智慧厲害在哪裡? 功能單一 -> 沒有特定功能(通用型)
+  - GPT系列 為OpenAI所開發
+  - Gemini 為Google所開發
+  - Llama系列 為Meta釋出的開源大型語言模型
+  - TAIDE模型為Llama2模型結合臺灣文化與正體中文語料之衍生模型 (來自國科會-推動可信任生成式AI發展先期計畫)
+- 可能的研究方向:
+  - 評估模型(evaluation)困難 不好評估答案之於問題是否完美被解決
+  - 要防止說出有害內容
+  - Improvement
+    - 改變自己來強化模型 (improving inputs)
+    - 訓練自己的模型 (improving parameters)
