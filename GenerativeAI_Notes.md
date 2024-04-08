@@ -35,7 +35,7 @@
   - 評估模型(evaluation)困難 不好評估答案之於問題是否完美被解決
   - 要防止說出有害內容
   - Improvement
-    - 改變自己來強化模型 (improving inputs) - prompt engineering, [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#20240303-%E7%94%9F%E6%88%90%E5%BC%8Fai%E5%B0%8E%E8%AB%96-2024%E7%AC%AC2%E8%AC%9B%E4%BB%8A%E6%97%A5%E7%9A%84%E7%94%9F%E6%88%90%E5%BC%8F%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E5%8E%B2%E5%AE%B3%E5%9C%A8%E5%93%AA%E8%A3%A1%E5%BE%9E%E5%B7%A5%E5%85%B7%E8%AE%8A%E7%82%BA%E5%B7%A5%E5%85%B7%E4%BA%BA)
+    - 改變自己來強化模型 (improving inputs) - prompt engineering, [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#20240303%E7%94%9F%E6%88%90%E5%BC%8Fai%E5%B0%8E%E8%AB%96-2024%E7%AC%AC3%E8%AC%9B%E8%A8%93%E7%B7%B4%E4%B8%8D%E4%BA%86%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E4%BD%A0%E5%8F%AF%E4%BB%A5%E8%A8%93%E7%B7%B4%E4%BD%A0%E8%87%AA%E5%B7%B1-%E4%B8%8A--%E7%A5%9E%E5%A5%87%E5%92%92%E8%AA%9E%E8%88%87%E6%8F%90%E4%BE%9B%E6%9B%B4%E5%A4%9A%E8%B3%87%E8%A8%8A)
     - 訓練自己的模型 (improving parameters)
 
 # 2024.03.03【生成式AI導論 2024】第3講：訓練不了人工智慧？你可以訓練你自己 (上) — 神奇咒語與提供更多資訊 
@@ -43,7 +43,7 @@
 - slide: https://drive.google.com/file/d/1JTexyex5hrHmNdrkXy-jOVKZlycODC7Y/view
 - 改變自己來強化模型 (improving inputs) - prompt engineering
   - <img src="https://i.imgur.com/EekRhP4.png" height=200>
-  - 1.神奇咒語 (不一定對所有模型、所有任務都適用)
+  - 1.神奇咒語 (不一定對所有模型、所有任務都適用) => 最有名: Chain of Thought 
     - 叫模型思考 "Chain of Thought (CoT)"
       - i.g. Let's think step by step, 
       - Large Language Models are Zero-Shot Reasoners, https://arxiv.org/abs/2205.11916
@@ -69,3 +69,11 @@
       - i.g. Let’s work this out in a step by step way to be sure we have the right answer. 
       - i.g. Take a deep breath and work on this problem step-by-step  
       - Large Language Models Are Human-Level Prompt Engineers, https://arxiv.org/abs/2211.01910
+  - 2.把前提講清楚 => 最有名: In-context Learning
+    - 提供生成式AI原本不清楚的資訊
+    - 提供範例 In-context Learning - Language Models are Few-Shot Learners, https://arxiv.org/abs/2005.14165
+      - 提供與嘗試相反的範例，希望語言模型答錯
+        - 無效 Rethinking the Role of Demonstrations: What Makes In-Context Learning Work? https://arxiv.org/abs/2202.12837
+        - 對大的強的 有效 Larger language models do in-context learning differently https://arxiv.org/abs/2303.03846
+      - 提供罕見語言的教科書，希望語言模型能翻譯
+        - 有效 https://storage.googleapis.com/deepmind-media/gemini/gemini_v1_5_report.pdf
