@@ -77,3 +77,10 @@
         - 對大的強的 有效 Larger language models do in-context learning differently https://arxiv.org/abs/2303.03846
       - 提供罕見語言的教科書，希望語言模型能翻譯
         - 有效 https://storage.googleapis.com/deepmind-media/gemini/gemini_v1_5_report.pdf
+
+#2024.03.10 
+- video: 
+- slide: https://drive.google.com/file/d/1eVC4dx77Mba2_yMFe1_w4tXvIdSDTOCO/view?usp=sharing
+- 3.拆解任務
+- e.g. 分段寫長篇小說 Re3 arxiv
+- e.g. 算數學有列式 CoT 
