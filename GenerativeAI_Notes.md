@@ -34,7 +34,7 @@
   - 優化:
     - A1.改變自己來強化模型 (improving inputs) - prompt engineering, [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a1%E6%94%B9%E8%AE%8A%E8%87%AA%E5%B7%B1%E4%BE%86%E5%BC%B7%E5%8C%96%E6%A8%A1%E5%9E%8B-improving-inputs---prompt-engineering)
       - A1.1.神奇咒語 [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a11%E7%A5%9E%E5%A5%87%E5%92%92%E8%AA%9E-%E4%B8%8D%E4%B8%80%E5%AE%9A%E5%B0%8D%E6%89%80%E6%9C%89%E6%A8%A1%E5%9E%8B%E6%89%80%E6%9C%89%E4%BB%BB%E5%8B%99%E9%83%BD%E9%81%A9%E7%94%A8--%E6%9C%80%E6%9C%89%E5%90%8D-chain-of-thought)
-      - A1.2.把前提講清楚 [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a12%E6%8A%8A%E5%89%8D%E6%8F%90%E8%AC%9B%E6%B8%85%E6%A5%9A--%E6%9C%80%E6%9C%89%E5%90%8D-in-context-learning)
+      - A1.2.提供更多資訊 [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a12%E6%8A%8A%E5%89%8D%E6%8F%90%E8%AC%9B%E6%B8%85%E6%A5%9A--%E6%9C%80%E6%9C%89%E5%90%8D-in-context-learning)
       - A1.3.拆解任務 [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a13%E6%8B%86%E8%A7%A3%E4%BB%BB%E5%8B%99)
       - A1.4.使用工具 [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a14%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7)
       - A1.5.模型合作 [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a15%E6%A8%A1%E5%9E%8B%E5%90%88%E4%BD%9C)
@@ -72,7 +72,7 @@
   - i.g. Let’s work this out in a step by step way to be sure we have the right answer. 
   - i.g. Take a deep breath and work on this problem step-by-step  
   - Large Language Models Are Human-Level Prompt Engineers, https://arxiv.org/abs/2211.01910
-#### A1.2.把前提講清楚 => 最有名: In-context Learning
+#### A1.2.提供更多資訊 => 最有名: In-context Learning
 - 提供生成式AI原本不清楚的資訊
 - 提供範例 In-context Learning - Language Models are Few-Shot Learners, https://arxiv.org/abs/2005.14165
   - 提供與嘗試相反的範例，希望語言模型答錯
@@ -106,7 +106,7 @@
 +結合以上全部： arxiv
 - 在適當時機產生特殊符號 繼續文字接龍 > 有延伸影片 > 也可能會干擾原本對的答案
 
-# 2024.03.24【生成式AI導論 2024】第5講：訓練不了人工智慧？你可以訓練你自己 (下) — 讓語言彼此合作，把一個人活成一個團隊 (開頭有芙莉蓮雷，慎入) 
+# 2024.03.24【生成式AI導論 2024】第5講：訓練不了人工智慧？你可以訓練你自己 (下) — 讓語言彼此合作，把一個人活成一個團隊 
 - video: https://www.youtube.com/watch?v=inebiWdQW-4
 - slide: https://drive.google.com/file/d/1dMxMAewRtcUM2xktVm77txSk1leepgD1/view
 #### A1.5.模型合作
@@ -121,4 +121,22 @@ i.g. 為讓討論順利且持久arxiv 要適度反對 arxiv
 i.g. 組成一個團隊 arxiv 優化團隊 arxiv MetaGPT arxiv ChatDev arxiv
 i.g. 甚至組成一個社群
 
-//TODO adding goto link
+# 2024.03.24【生成式AI導論 2024】第6講：大型語言模型修練史 — 第一階段: 自我學習，累積實力
+- video: https://www.youtube.com/watch?v=cCpErV7To2o
+- slide: https://drive.google.com/file/d/1myvHjoeFOpIl1uGU9H1t4OpDErkhF0zO/view
+### A2.訓練自己的模型 (improving parameters)
+#### A2.1.自我學習，累積實力 (Self-supervised Learning)
+
+# 2024.03.25【生成式AI導論 2024】第7講：大型語言模型修練史 — 第二階段: 名師指點，發揮潛力
+- video: https://www.youtube.com/watch?v=Q9cNkUPXUB8
+- slide: https://drive.google.com/file/d/1SOXBQhsC_L6aHXcLx2rltaDdcO6N2FmJ/view
+#### A2.2.名師指點，發揮潛力 (Instruction Fine-tuning)
+
+# 2024.04.12【生成式AI導論 2024】第8講：大型語言模型修練史 — 第三階段: 參與實戰，打磨技巧
+- video: https://www.youtube.com/watch?v=v12IKvF6Cj8
+- slide: https://drive.google.com/file/d/1CTSovIDsimYFiCLNYEQEMLuBNW8RYBVY/view
+#### A2.3.參與實戰，打磨技巧 (Reinforcement Learning from Human Feedback (RLHF))
+
+# 2024.04.20【生成式AI導論 2024】第9講：以大型語言模型打造的AI Agent
+- video: https://www.youtube.com/watch?v=bJZTJ7MjYqg
+- slide: https://drive.google.com/file/d/1aW1cRdsxDzHuLdJCDwVHQ5KVlX2Tf7mN/view
