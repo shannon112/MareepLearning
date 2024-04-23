@@ -89,18 +89,18 @@
 - video: https://www.youtube.com/watch?v=lwe3_x50_uw
 - slide: https://drive.google.com/file/d/1eVC4dx77Mba2_yMFe1_w4tXvIdSDTOCO/view
 #### A1.3.拆解任務
-
-複雜的任務拆成多個步驟
-- e.g. 大綱分段寫長篇小說 Re3 arxiv
-- e.g. 算數學有列式 CoT 
-多一個讓模型檢查自己錯誤的步驟
-- e.g.檢查自己的錯誤 Constitutional AI arxiv
-同一個問題問多次 再整合
-- 為什麼同一個問題每次答案都不同 => 輸出是機率分佈 每個字都有可能出現
-也可以結合以上三種
-- ToT Tree of Thought arxiv
-- Algorithm of Thought arxiv
-- Graph of Thought arxiv
+- 複雜的任務拆成多個步驟
+  - e.g. 大綱分段寫長篇小說 Re3: Generating Longer Stories With Recursive Reprompting and Revision https://arxiv.org/abs/2210.06774
+  - e.g. 算數學有列式 that's why Chain of Thought (CoT) works 
+- 多一個讓模型檢查自己錯誤的步驟
+  - e.g. 檢查自己的錯誤 Constitutional AI: Harmlessness from AI Feedback https://arxiv.org/abs/2212.08073
+- 同一個問題問多次 再整合
+  - 為什麼同一個問題每次答案都不同? => 輸出是機率分佈 每個字都有可能出現 
+  - Self-Consistency Improves Chain of Thought Reasoning in Language Models https://arxiv.org/abs/2203.11171
+- 綜合
+  - Tree of Thought (ToT) https://arxiv.org/abs/2305.10601
+  - Algorithm of Thought https://arxiv.org/abs/2308.10379 
+  - Graph of Thought https://arxiv.org/abs/2308.09687
 
 #### A1.4.使用工具
 +搜尋引擎(得到額外的資訊) Retrieval of Augmented Generation RAG arxiv
