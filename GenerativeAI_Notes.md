@@ -102,6 +102,16 @@
 +結合以上全部： arxiv
 - 在適當時機產生特殊符號 繼續文字接龍 > 有延伸影片 > 也可能會干擾原本對的答案
 
-
+#2024.03.24
+- 5.模型合作
+- 讓適合的模型做適合的事 殺機焉用牛刀 FrugalGPT arxiv
+- 反省 討論
+i.g. 討論推翻 比自己推翻自己容易 arxiv
+i.g. 越多agent越好 越多討論次數越好 arxiv
+i.g. 不同的任務用不同的討論方式 角色 權限 exchange of thought arxiv 
+i.g. 討論的共識=>由裁判模型
+i.g. 為讓討論順利且持久arxiv 要適度反對 arxiv
+i.g. 組成一個團隊 arxiv 優化團隊 arxiv MetaGPT arxiv ChatDev arxiv
+i.g. 甚至組成一個社群
 
 //TODO adding goto link
