@@ -38,7 +38,10 @@
       - A1.3.拆解任務 [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a13%E6%8B%86%E8%A7%A3%E4%BB%BB%E5%8B%99)
       - A1.4.使用工具 [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a14%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7)
       - A1.5.模型合作 [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a15%E6%A8%A1%E5%9E%8B%E5%90%88%E4%BD%9C)
-    - A2.訓練自己的模型 (improving parameters) [continue](https:)
+    - A2.訓練自己的模型 (improving parameters) [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a2%E8%A8%93%E7%B7%B4%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B-improving-parameters)
+      - A2.1.自我學習，累積實力 (Self-supervised Learning) [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a21%E8%87%AA%E6%88%91%E5%AD%B8%E7%BF%92%E7%B4%AF%E7%A9%8D%E5%AF%A6%E5%8A%9B-self-supervised-learning)
+      - A2.2.名師指點，發揮潛力 (Instruction Fine-tuning) [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a22%E5%90%8D%E5%B8%AB%E6%8C%87%E9%BB%9E%E7%99%BC%E6%8F%AE%E6%BD%9B%E5%8A%9B-instruction-fine-tuning)
+      - A2.3.參與實戰，打磨技巧 (Reinforcement Learning from Human Feedback (RLHF)) [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a23%E5%8F%83%E8%88%87%E5%AF%A6%E6%88%B0%E6%89%93%E7%A3%A8%E6%8A%80%E5%B7%A7-reinforcement-learning-from-human-feedback-rlhf)
 
 # 2024.03.03【生成式AI導論 2024】第3講：訓練不了人工智慧？你可以訓練你自己 (上) — 神奇咒語與提供更多資訊 
 - video: https://www.youtube.com/watch?v=A3Yx35KrSN0
