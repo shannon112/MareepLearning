@@ -82,5 +82,26 @@
 - video: 
 - slide: https://drive.google.com/file/d/1eVC4dx77Mba2_yMFe1_w4tXvIdSDTOCO/view?usp=sharing
 - 3.拆解任務
-- e.g. 分段寫長篇小說 Re3 arxiv
+複雜的任務拆成多個步驟
+- e.g. 大綱分段寫長篇小說 Re3 arxiv
 - e.g. 算數學有列式 CoT 
+多一個讓模型檢查自己錯誤的步驟
+- e.g.檢查自己的錯誤 Constitutional AI arxiv
+同一個問題問多次 再整合
+- 為什麼同一個問題每次答案都不同 => 輸出是機率分佈 每個字都有可能出現
+也可以結合以上三種
+- ToT Tree of Thought arxiv
+- Algorithm of Thought arxiv
+- Graph of Thought arxiv
+
+- 4.使用工具
++搜尋引擎(得到額外的資訊) Retrieval of Augmented Generation RAG arxiv
++寫程式(並執行) Program of Though PoT arxiv
++文字生圖AI ChatGPT4+DALL-E
++其他更多plugin ChatGPT4 Plugins
++結合以上全部： arxiv
+- 在適當時機產生特殊符號 繼續文字接龍 > 有延伸影片 > 也可能會干擾原本對的答案
+
+
+
+//TODO adding goto link
