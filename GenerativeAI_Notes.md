@@ -49,7 +49,7 @@
 ### A1.改變自己來強化模型 (improving inputs) - prompt engineering
 <img src="https://i.imgur.com/EekRhP4.png" height=200>
 
-#### A1.1.神奇咒語 (不一定對所有模型、所有任務都適用) => 最有名: Chain of Thought 
+#### A1.1.神奇咒語 (不一定對所有模型、所有任務都適用) => 最有名: Chain of Thought (CoT)
 - 叫模型思考 "Chain of Thought (CoT)"
   - i.g. Let's think step by step, 
   - Large Language Models are Zero-Shot Reasoners, https://arxiv.org/abs/2205.11916
@@ -62,19 +62,20 @@
   - i.g. This is very important to my career 
   - Large Language Models Understand and Can be Enhanced by Emotional Stimuli, https://arxiv.org/abs/2307.11760
 - 更多的神奇咒語 驗證都市傳說
-  - i.g. No need to be polite like “please”, “if you don’t mind”, “thank you”, “I would like to”, etc., 有禮貌是沒用的
-  - i.g. Employ affirmative directives such as ‘do,’ while steering clear of negative language like ‘don’t’. 正面表述 好過負面表述
-  - i.g. Add “I’m going to tip $xxx for a better solution!” 說要給小費 是有用的
-  - i.g. Incorporate the following phrases: “You will be penalized” 說會有處罰 是有用的
-  - i.g. Add prompt “Ensure that your answer is unbiased and avoids relying on stereotypes.” 要其中立無偏見 是有用的
+  - i.g. 有禮貌是沒用的 No need to be polite like “please”, “if you don’t mind”, “thank you”, “I would like to”, etc., 
+  - i.g. 正面表述 好過負面表述 Employ affirmative directives such as ‘do,’ while steering clear of negative language like ‘don’t’. 
+  - i.g. 說要給小費 是有用的 Add “I’m going to tip $xxx for a better solution!” 
+  - i.g. 說會有處罰 是有用的 Incorporate the following phrases: “You will be penalized” 
+  - i.g. 要其中立無偏見 是有用的 Add prompt “Ensure that your answer is unbiased and avoids relying on stereotypes.” 
   - Principled Instructions Are All You Need for Questioning LLaMA-1/2, GPT-3.5/4, https://arxiv.org/abs/2312.16171
-- 用增強式學習 (Reinforcement Learning, RL) 找神奇咒語
+- 用 增強式學習 (Reinforcement Learning, RL) 找神奇咒語
   - i.g. 任務目標:回應越長越好, prompt: “ways ways ways ways ways ways ways .......”
   - Learning to Generate Prompts for Dialogue Generation through Reinforcement Learning, https://arxiv.org/abs/2206.03931
-- 用大型語言模型來 找神奇咒語
+- 用 大型語言模型 找神奇咒語
   - i.g. Let’s work this out in a step by step way to be sure we have the right answer. 
   - i.g. Take a deep breath and work on this problem step-by-step  
   - Large Language Models Are Human-Level Prompt Engineers, https://arxiv.org/abs/2211.01910
+
 #### A1.2.提供更多資訊 => 最有名: In-context Learning
 - 提供生成式AI原本不清楚的資訊
 - 提供範例 In-context Learning - Language Models are Few-Shot Learners, https://arxiv.org/abs/2005.14165
