@@ -32,12 +32,12 @@
   - 評估模型(evaluation)困難 不好評估答案之於問題是否完美被解決
   - 要防止說出有害內容 AI倫理
   - 優化:
-    - A1.改變自己來強化模型 (improving inputs) - prompt engineering, [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#20240303%E7%94%9F%E6%88%90%E5%BC%8Fai%E5%B0%8E%E8%AB%96-2024%E7%AC%AC3%E8%AC%9B%E8%A8%93%E7%B7%B4%E4%B8%8D%E4%BA%86%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E4%BD%A0%E5%8F%AF%E4%BB%A5%E8%A8%93%E7%B7%B4%E4%BD%A0%E8%87%AA%E5%B7%B1-%E4%B8%8A--%E7%A5%9E%E5%A5%87%E5%92%92%E8%AA%9E%E8%88%87%E6%8F%90%E4%BE%9B%E6%9B%B4%E5%A4%9A%E8%B3%87%E8%A8%8A)
-      - A1.1.神奇咒語 [continue]()
-      - A1.2.把前提講清楚 [continue]()
-      - A1.3.拆解任務 [continue]()
-      - A1.4.使用工具 [continue]()
-      - A1.5.模型合作 [continue]()
+    - A1.改變自己來強化模型 (improving inputs) - prompt engineering, [continue]([https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#20240303%E7%94%9F%E6%88%90%E5%BC%8Fai%E5%B0%8E%E8%AB%96-2024%E7%AC%AC3%E8%AC%9B%E8%A8%93%E7%B7%B4%E4%B8%8D%E4%BA%86%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E4%BD%A0%E5%8F%AF%E4%BB%A5%E8%A8%93%E7%B7%B4%E4%BD%A0%E8%87%AA%E5%B7%B1-%E4%B8%8A--%E7%A5%9E%E5%A5%87%E5%92%92%E8%AA%9E%E8%88%87%E6%8F%90%E4%BE%9B%E6%9B%B4%E5%A4%9A%E8%B3%87%E8%A8%8A](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a1%E6%94%B9%E8%AE%8A%E8%87%AA%E5%B7%B1%E4%BE%86%E5%BC%B7%E5%8C%96%E6%A8%A1%E5%9E%8B-improving-inputs---prompt-engineering))
+      - A1.1.神奇咒語 [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a11%E7%A5%9E%E5%A5%87%E5%92%92%E8%AA%9E-%E4%B8%8D%E4%B8%80%E5%AE%9A%E5%B0%8D%E6%89%80%E6%9C%89%E6%A8%A1%E5%9E%8B%E6%89%80%E6%9C%89%E4%BB%BB%E5%8B%99%E9%83%BD%E9%81%A9%E7%94%A8--%E6%9C%80%E6%9C%89%E5%90%8D-chain-of-thought)
+      - A1.2.把前提講清楚 [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a12%E6%8A%8A%E5%89%8D%E6%8F%90%E8%AC%9B%E6%B8%85%E6%A5%9A--%E6%9C%80%E6%9C%89%E5%90%8D-in-context-learning)
+      - A1.3.拆解任務 [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a13%E6%8B%86%E8%A7%A3%E4%BB%BB%E5%8B%99)
+      - A1.4.使用工具 [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a14%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7)
+      - A1.5.模型合作 [continue](https://github.com/shannon112/MareepLearning/blob/master/GenerativeAI_Notes.md#a15%E6%A8%A1%E5%9E%8B%E5%90%88%E4%BD%9C)
     - A2.訓練自己的模型 (improving parameters) [continue](https:)
 
 # 2024.03.03【生成式AI導論 2024】第3講：訓練不了人工智慧？你可以訓練你自己 (上) — 神奇咒語與提供更多資訊 
