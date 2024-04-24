@@ -49,7 +49,7 @@
 ### A1.改變自己來強化模型 (improving inputs) - prompt engineering
 <img src="https://i.imgur.com/EekRhP4.png" height=200>
 
-#### A1.1.神奇咒語 (不一定對所有模型、所有任務都適用) => 最有名: Chain of Thought (CoT)
+#### A1.1.神奇咒語 (不一定對所有模型、所有任務都適用)
 - 叫模型思考 "Chain of Thought (CoT)"
   - i.g. Let's think step by step, 
   - Large Language Models are Zero-Shot Reasoners, https://arxiv.org/abs/2205.11916
@@ -76,7 +76,7 @@
   - i.g. Take a deep breath and work on this problem step-by-step  
   - Large Language Models Are Human-Level Prompt Engineers, https://arxiv.org/abs/2211.01910
 
-#### A1.2.提供更多資訊 => 最有名: In-context Learning
+#### A1.2.提供更多資訊
 - 提供生成式AI原本不清楚的資訊
 - 提供範例 In-context Learning - Language Models are Few-Shot Learners, https://arxiv.org/abs/2005.14165
   - 提供與嘗試相反的範例，希望語言模型答錯
@@ -97,18 +97,21 @@
 - 同一個問題問多次 再整合
   - 為什麼同一個問題每次答案都不同? => 輸出是機率分佈 每個字都有可能出現 
   - Self-Consistency Improves Chain of Thought Reasoning in Language Models https://arxiv.org/abs/2203.11171
-- 綜合
-  - Tree of Thought (ToT) https://arxiv.org/abs/2305.10601
-  - Algorithm of Thought https://arxiv.org/abs/2308.10379 
-  - Graph of Thought https://arxiv.org/abs/2308.09687
+- 綜合使用:
+  - Tree of Thoughts: Deliberate Problem Solving with Large Language Models https://arxiv.org/abs/2305.10601
+  - Algorithm of Thoughts: Enhancing Exploration of Ideas in Large Language Models https://arxiv.org/abs/2308.10379 
+  - Graph of Thoughts: Solving Elaborate Problems with Large Language Models https://arxiv.org/abs/2308.09687
 
 #### A1.4.使用工具
-+搜尋引擎(得到額外的資訊) Retrieval of Augmented Generation RAG arxiv
-+寫程式(並執行) Program of Though PoT arxiv
-+文字生圖AI ChatGPT4+DALL-E
-+其他更多plugin ChatGPT4 Plugins
-+結合以上全部： arxiv
-- 在適當時機產生特殊符號 繼續文字接龍 > 有延伸影片 > 也可能會干擾原本對的答案
+- 使用搜尋引擎(得到額外的資訊)
+  - Retrieval Augmented Generation (RAG)
+- 寫程式(並執行)
+  - Program of Thoughts: Disentangling Computation from Reasoning for Numerical Reasoning Tasks https://arxiv.org/abs/2211.12588
+- 使用文字生圖AI
+  - ChatGPT4+DALL-E
+- 結合使用:
+  - ChatGPT4 and its plugins
+- 原理:在適當時機產生特殊符號 繼續文字接龍 => 但也可能會干擾原本對的答案變錯
 
 # 2024.03.24【生成式AI導論 2024】第5講：訓練不了人工智慧？你可以訓練你自己 (下) — 讓語言彼此合作，把一個人活成一個團隊 
 - video: https://www.youtube.com/watch?v=inebiWdQW-4
