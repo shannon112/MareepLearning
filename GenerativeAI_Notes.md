@@ -117,21 +117,30 @@
 - video: https://www.youtube.com/watch?v=inebiWdQW-4
 - slide: https://drive.google.com/file/d/1dMxMAewRtcUM2xktVm77txSk1leepgD1/view
 #### A1.5.模型合作
-
-- 讓適合的模型做適合的事 殺機焉用牛刀 FrugalGPT arxiv
-- 反省 討論
-i.g. 討論推翻 比自己推翻自己容易 arxiv
-i.g. 越多agent越好 越多討論次數越好 arxiv
-i.g. 不同的任務用不同的討論方式 角色 權限 exchange of thought arxiv 
-i.g. 討論的共識=>由裁判模型
-i.g. 為讓討論順利且持久arxiv 要適度反對 arxiv
-i.g. 組成一個團隊 arxiv 優化團隊 arxiv MetaGPT arxiv ChatDev arxiv
-i.g. 甚至組成一個社群
+- 讓 適合的模型 做適合的事 殺機焉用牛刀
+  - FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance https://arxiv.org/abs/2305.05176
+- 讓模型們 彼此討論 彼此反省
+  - i.g. 討論 比自己推翻自己容易
+    - Encouraging Divergent Thinking in Large Language Models through Multi-Agent Debate https://arxiv.org/abs/2305.19118
+  - i.g. 越多agent越好 越多討論次數越好
+    - Improving Factuality and Reasoning in Language Models through Multiagent Debate https://arxiv.org/abs/2305.14325
+  - i.g. 不同的任務 用 不同的討論方式 不同權限 => 不同任務最合適的討論方式是不一樣的
+    - Exchange-of-Thought: Enhancing LLM Capabilities through Cross-Model Communication https://arxiv.org/abs/2312.01823
+- 討論的共識 由裁判模型決定
+  - i.g. 為讓討論順利且持久 要適度反對
+    - Encouraging Divergent Thinking in Large Language Models through Multi-Agent Debate https://arxiv.org/abs/2305.19118
+    - Improving Factuality and Reasoning in Language Models through Multiagent Debate https://arxiv.org/abs/2305.14325
+- 總成一個團隊 
+  - 社群 CAMEL: Communicative Agents for "Mind" Exploration of Large Language Model Society https://arxiv.org/abs/2303.17760
+  - 成為軟體開發團隊 MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework https://arxiv.org/abs/2308.00352
+  - 成為軟體開發團隊 ChatDev: Communicative Agents for Software Development https://github.com/OpenBMB/ChatDev
 
 # 2024.03.24【生成式AI導論 2024】第6講：大型語言模型修練史 — 第一階段: 自我學習，累積實力
 - video: https://www.youtube.com/watch?v=cCpErV7To2o
 - slide: https://drive.google.com/file/d/1myvHjoeFOpIl1uGU9H1t4OpDErkhF0zO/view
 ### A2.訓練自己的模型 (improving parameters)
+<img src="https://i.imgur.com/OY0dU6Q.png" height=200>
+
 #### A2.1.自我學習，累積實力 (Self-supervised Learning)
 
 # 2024.03.25【生成式AI導論 2024】第7講：大型語言模型修練史 — 第二階段: 名師指點，發揮潛力
